@@ -1,0 +1,98 @@
+.container {
+    /*min-height: 500px;*/
+}
+
+body {
+    background-color: #fafcff;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: none;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.logo{
+    max-height: 86px;
+    max-width: 86px;
+}
+.applicant input {
+    margin-top: 10px;
+}
+
+.suspect input {
+    margin-top: 10px;
+}
+
+.applicant {
+    border-bottom: #5c636a solid 1px;
+    padding: 1%;
+
+}
+
+.suspect {
+    border: gray 1px solid;
+}
+
+.actions {
+    overflow: hidden;
+}
+
+.action {
+    cursor: pointer;
+    display: flex;
+    border: #5c636a solid 1px;
+    border-radius: 2px;
+    margin: 1%;
+    /*border-radius: 1px;*/
+    background-color: rgb(250, 251, 255);
+    transition: background-color 0.3s;
+
+}
+
+.action:hover {
+    background-color: rgb(169, 217, 249);
+}
+
+.action-icon {
+    display: flex;
+    background-image: url("/src/main/webapp/img/icons8-pencil-24.png");
+    flex: 1;
+    padding: 10px;
+    align-items: center;
+    align-content: center;
+}
+
+.action-icon img {
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+    align-items: center;
+}
+
+.action-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    padding: 10px;
+}
+
+.action-desc {
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+    justify-content: center;
+    flex: 4;
+    padding: 10px;
+
+}

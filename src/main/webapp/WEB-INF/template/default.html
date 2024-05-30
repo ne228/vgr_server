@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <title></title>
+    <link th:include="template/_metaStyle :: head" />
+</head>
+<body>
+<!--<div th:insert="template/header :: header"></div>-->
+<div th:insert="template/header.html"></div>
+
+
+
+<div class="container" >
+
+    <h2>Login</h2>
+    <form th:object="${authRequest}" th:action="@{/auth/loginAction}" method="POST"  >
+        <div>
+            <label for="email">Username</label>
+            <input type="text" id="email" name="email" th:field="*{email}">
+            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" th:field="*{password}">
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+<div th:insert="template/footer :: footer"></div>
+
+</body>
+</html>

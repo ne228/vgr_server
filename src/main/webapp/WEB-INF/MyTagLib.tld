@@ -1,0 +1,70 @@
+<taglib version="2.0"
+
+>
+    <!-- xmlns="http://java.sun.com/xml/j2ee"-->
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>2.0</jsp-version>
+    <short-name>My-tags</short-name>
+    <uri>MyTagLib</uri>
+    <display-name>MyTagLib</display-name>
+
+    <tag>
+        <name>ErrorTag</name>
+        <tag-class>com.example.ais_ecc.tagHandlers.ErrorTagHandler</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>errors</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <!--            <type>java.util.List&lt;org.springframework.validation.ObjectError&gt;</type>-->
+        </attribute>
+        <attribute>
+            <name>fieldName</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+        </attribute>
+    </tag>
+
+    <!--    ActionHandler tag-->
+    <tag>
+        <name>Action</name>
+        <tag-class>com.example.ais_ecc.tagHandlers.ActionTagHandler</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>action</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>com.example.ais_ecc.entity.actions.Action</type>
+        </attribute>
+    </tag>
+    <!--    ROLE CHECK TAG-->
+    <tag>
+        <name>roleCheck</name>
+        <tag-class>com.example.ais_ecc.tagHandlers.RoleCheckTagHandler</tag-class>
+        <body-content>scriptless</body-content>
+        <attribute>
+            <name>roles</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>allowedRole</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <!--    USER TAG-->
+    <tag>
+        <name>userTag</name>
+        <tag-class>com.example.ais_ecc.tagHandlers.UserTagHandler</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>userPrincipal</name>
+            <required>true</required>
+        </attribute>
+    </tag>
+</taglib>
+
+
