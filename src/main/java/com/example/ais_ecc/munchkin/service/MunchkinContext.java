@@ -3,15 +3,6 @@ package com.example.ais_ecc.munchkin.service;
 import com.example.ais_ecc.entity.User;
 import com.example.ais_ecc.munchkin.models.*;
 import com.example.ais_ecc.munchkin.models.doorCards.DoorCard;
-import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.*;
-import com.example.ais_ecc.munchkin.models.doorCards.doorCardsImpl.BonusDoorCardTest;
-import com.example.ais_ecc.munchkin.models.doorCards.doorCardsImpl.CurseDoorCardTest;
-import com.example.ais_ecc.munchkin.models.doorCards.enemyCards.CalmadzillaEnemyCard;
-import com.example.ais_ecc.munchkin.models.doorCards.enemyCards.LawyerEnemyCard;
-import com.example.ais_ecc.munchkin.models.doorCards.racesCards.DwarfCard;
-import com.example.ais_ecc.munchkin.models.doorCards.racesCards.ElfCard;
-import com.example.ais_ecc.munchkin.models.doorCards.racesCards.HalfingCard;
-import com.example.ais_ecc.munchkin.models.doorCards.racesCards.RaceCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.TreasureCard;
 import com.example.ais_ecc.munchkin.payload.request.PlayCardRequest;
 import com.example.ais_ecc.munchkin.service.action.*;
@@ -57,21 +48,24 @@ public class MunchkinContext {
 
     @JsonIgnore
     private ActionHandler actionHandler;
+
+    @JsonIgnore
+    private CardInit cardInit;
 //    @Id
 //    @GeneratedValue(generator = "uuid")
 //    @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
 //    private String id;
 
     public MunchkinContext() {
-        doorCards = new ArrayList<>();
         treasureCards = new ArrayList<>();
         discardCards = new ArrayList<>();
+        doorCards = new ArrayList<>();
     }
 
     public void registerServices(SimpMessagingTemplate messagingTemplate, UserRepository userRepository) throws Exception {
         this.userRepository = userRepository;
         this.actionHandler = new ActionHandler(this, messagingTemplate);
-
+        this.cardInit = new CardInit(this);
     }
 
 
@@ -144,39 +138,7 @@ public class MunchkinContext {
         return null;
     }
 
-    public void initDoorCards() throws Exception {
-        setDoorCards(new ArrayList<>());
-        DoorCard bonus = new BonusDoorCardTest(this);
-        DoorCard curse = new CurseDoorCardTest(this);
-        DoorCard calmadzillaEnemyCard = new CalmadzillaEnemyCard(this);
-        DoorCard lawyerEnemyCard = new LawyerEnemyCard(this);
 
-
-        // GEN RACE CARDS
-        RaceCard dwarfCard = new DwarfCard(this);
-        RaceCard elfCard = new ElfCard(this);
-        RaceCard halfingCard = new HalfingCard(this);
-
-        // GEN CLASS CARDS
-        ClassesCard clericCard = new ClericCard(this);
-        ClassesCard thiefCard = new ThiefCard(this);
-        ClassesCard warriorCard = new WarriorCard(this);
-        ClassesCard wizardCard = new WizardCard(this);
-
-        getDoorCards().add(lawyerEnemyCard);
-        getDoorCards().add(lawyerEnemyCard);
-        getDoorCards().add(lawyerEnemyCard);
-//        getDoorCards().add(calmadzillaEnemyCard);
-
-//        getDoorCards().add(curse);
-//        getDoorCards().add(bonus);
-
-//        getDiscardCards().add(new WarriorCard(this));
-//        getDiscardCards().add(new WizardCard(this));
-//        getDiscardCards().add(new ClericCard(this));
-//        getDiscardCards().add(new DwarfCard(this));
-
-    }
 
     @JsonIgnore
     public Player getPlayerById(String id) {
@@ -640,5 +602,11 @@ public class MunchkinContext {
         this.discardCards = discardCards;
     }
 
+    public CardInit getCardInit() {
+        return cardInit;
+    }
 
+    public void setCardInit(CardInit cardInit) {
+        this.cardInit = cardInit;
+    }
 }

@@ -59,68 +59,14 @@ public class ActionStart extends IAction {
     public String start() throws Exception {
 //        if (context.isGameStarted) throw new Exception("Game already started");
         try {
-            context.initDoorCards();
+            context.getCardInit().initDeckDoor();
+            context.getCardInit().initDeckTreasure();
+            context.getCardInit().initPlayerDeck();
             var player = context.getPlayers().get(0);
             var move = new Move(player, context);
             context.getMoves().add(move);
             context.isGameStarted = true;
-            for (var i_player : context.getPlayers()) {
-                // GEN RACE CARDS
-                RaceCard dwarfCard = new DwarfCard(context);
-                RaceCard elfCard = new ElfCard(context);
-                RaceCard halfingCard = new HalfingCard(context);
 
-                // GEN CLASS CARDS
-                ClassesCard clericCard = new ClericCard(context);
-                ClassesCard thiefCard = new ThiefCard(context);
-                ClassesCard warriorCard = new WarriorCard(context);
-                ClassesCard wizardCard = new WizardCard(context);
-
-                // BONUS DOOR CARDS
-                BonusDoorCard psychoCard = new PsychoCard(context);
-                i_player.getCards().add(psychoCard);
-
-                i_player.getCards().add(dwarfCard);
-                i_player.getCards().add(elfCard);
-                i_player.getCards().add(halfingCard);
-
-                i_player.getCards().add(clericCard);
-                i_player.getCards().add(thiefCard);
-                i_player.getCards().add(warriorCard);
-                i_player.getCards().add(wizardCard);
-
-
-                i_player.getCards().add(new BonusDoorCardTest(context));
-                i_player.getCards().add(new CalmadzillaEnemyCard(context));
-                i_player.getCards().add(new CurseDoorCardTest(context));
-                i_player.getCards().add(new ClericCard(context));
-                i_player.getCards().add(new WizardCard(context));
-
-
-                i_player.getCards().add(new BurntArmorCard(context));
-                i_player.getCards().add(new BurntArmorCard(context));
-
-                i_player.getCards().add(new HornedHelmetCard(context));
-                i_player.getCards().add(new HornedHelmetCard(context));
-
-                i_player.getCards().add(new SandalsProtectorsCard(context));
-                i_player.getCards().add(new SandalsProtectorsCard(context));
-
-                i_player.getCards().add(new CharmingDudaCard(context));
-                i_player.getCards().add(new CharmingDudaCard(context));
-
-                i_player.getCards().add(new SwissArmyHalberdCard(context));
-                i_player.getCards().add(new SwissArmyHalberdCard(context));
-
-                i_player.getCards().add(new SwordSongDance(context));
-                i_player.getCards().add(new SwordSongDance(context));
-
-                // BONUS TREASURE CARDS
-                i_player.getCards().add(new PotionIdiotCourage(context));
-                i_player.getCards().add(new PotionIdiotCourage(context));
-                i_player.getCards().add(new PotionIdiotCourage(context));
-
-            }
         } catch (Exception exc) {
             throw new Exception("Start game error: " + exc.getMessage());
         }
