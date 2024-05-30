@@ -9,7 +9,7 @@ import com.example.ais_ecc.munchkin.service.action.card.ActionBonusDoorCard;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BonusDoorCard extends DoorCard {
+public abstract class BonusDoorCard extends DoorCard {
     public BonusDoorCard(MunchkinContext munchkinContext) {
         super(munchkinContext);
     }

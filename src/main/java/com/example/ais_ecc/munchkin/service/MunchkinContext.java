@@ -242,6 +242,7 @@ public class MunchkinContext {
                 allCards.addAll(move.getFight().getHelpTreasureCards());
                 allCards.addAll(move.getFight().getHarmTreasureCards());
                 allCards.addAll(move.getFight().getEnemyCards());
+                allCards.addAll(move.getFight().getDoorCards());
             }
         }
 

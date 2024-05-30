@@ -1,6 +1,7 @@
 package com.example.ais_ecc.munchkin.models;
 
 
+import com.example.ais_ecc.munchkin.models.doorCards.DoorCard;
 import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.TreasureCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.bonusTreasureCards.BonusTreasureCard;
@@ -20,6 +21,8 @@ public class Fight {
     public Player player;
     public List<EnemyCard> enemyCards;
     private List<TreasureCard> helpTreasureCards;
+
+    private List<DoorCard> doorCards;
     private List<TreasureCard> harmTreasureCards;
     private List<FightAgree> fightAgrees;
     private List<OrderFight> orders;
@@ -32,6 +35,7 @@ public class Fight {
     public Fight(Player player, MunchkinContext context) {
         this.context = context;
         fightAgrees = new ArrayList<>();
+        doorCards = new ArrayList<>();
         for (var player_game : context.getPlayers())
             fightAgrees.add(new FightAgree(player_game));
 
@@ -183,5 +187,21 @@ public class Fight {
 
     public void setLoss(boolean loss) {
         isLoss = loss;
+    }
+
+    public List<DoorCard> getDoorCards() {
+        return doorCards;
+    }
+
+    public void setDoorCards(List<DoorCard> doorCards) {
+        this.doorCards = doorCards;
+    }
+
+    public List<OrderFight> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<OrderFight> orders) {
+        this.orders = orders;
     }
 }
