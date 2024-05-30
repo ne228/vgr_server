@@ -4,14 +4,15 @@ import com.example.ais_ecc.munchkin.models.doorCards.BonusDoorCard;
 import com.example.ais_ecc.munchkin.models.doorCards.DoorCard;
 import com.example.ais_ecc.munchkin.models.doorCards.bonusDoorCards.PsychoCard;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.*;
-import com.example.ais_ecc.munchkin.models.doorCards.doorCardsImpl.BonusDoorCardTest;
-import com.example.ais_ecc.munchkin.models.doorCards.doorCardsImpl.CurseDoorCardTest;
 import com.example.ais_ecc.munchkin.models.doorCards.enemyCards.CalmadzillaEnemyCard;
 import com.example.ais_ecc.munchkin.models.doorCards.enemyCards.LawyerEnemyCard;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.DwarfCard;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.ElfCard;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.HalfingCard;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.RaceCard;
+import com.example.ais_ecc.munchkin.models.doorCards.walkingDeadCardsImpl.WalkingMonsterCard1;
+import com.example.ais_ecc.munchkin.models.doorCards.walkingDeadCardsImpl.WalkingMonsterCard2;
+import com.example.ais_ecc.munchkin.models.doorCards.walkingDeadCardsImpl.WalkingMonsterCard3;
 import com.example.ais_ecc.munchkin.models.treasureCards.bonusTreasureCards.bonusTreasureCardsImpl.PotionIdiotCourage;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.armoredItemCardsImpl.BurntArmorCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.headItemCards.HornedHelmetCard;
@@ -29,8 +30,6 @@ public class CardInit {
     }
 
     public void initDeckDoor() {
-        DoorCard bonus = new BonusDoorCardTest(context);
-        DoorCard curse = new CurseDoorCardTest(context);
         DoorCard calmadzillaEnemyCard = new CalmadzillaEnemyCard(context);
         DoorCard lawyerEnemyCard = new LawyerEnemyCard(context);
 
@@ -106,9 +105,9 @@ public class CardInit {
             i_player.getCards().add(wizardCard);
 
 
-            i_player.getCards().add(new BonusDoorCardTest(context));
+
             i_player.getCards().add(new CalmadzillaEnemyCard(context));
-            i_player.getCards().add(new CurseDoorCardTest(context));
+
             i_player.getCards().add(new ClericCard(context));
             i_player.getCards().add(new WizardCard(context));
 
@@ -135,6 +134,11 @@ public class CardInit {
             i_player.getCards().add(new PotionIdiotCourage(context));
             i_player.getCards().add(new PotionIdiotCourage(context));
             i_player.getCards().add(new PotionIdiotCourage(context));
+
+
+            i_player.getCards().add(new WalkingMonsterCard1(context));
+            i_player.getCards().add(new WalkingMonsterCard2(context));
+            i_player.getCards().add(new WalkingMonsterCard3(context));
 
         }
     }
