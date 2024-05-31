@@ -10,7 +10,9 @@ public class ElfRace extends Races {
 
     public ElfRace() {
         this.name = "Elf";
+        this.race = RaceList.ELF;
     }
+
     @Override
     public void accept(Player player) {
         player.setDefBonusFlushing(player.getDefBonusFlushing() + 1);

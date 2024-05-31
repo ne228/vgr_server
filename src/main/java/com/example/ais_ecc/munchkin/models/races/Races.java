@@ -12,6 +12,8 @@ public abstract class Races {
 
     public abstract List<IAction> getActions(Player player);
 
+    public RaceList race;
+
     public String getName() {
         return name;
     }
@@ -20,5 +22,11 @@ public abstract class Races {
         this.name = name;
     }
 
+    public RaceList getRace() {
+        return race;
+    }
 
+    public void setRace(RaceList race) {
+        this.race = race;
+    }
 }

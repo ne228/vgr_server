@@ -1,6 +1,7 @@
 package com.example.ais_ecc.munchkin.models.treasureCards.itemCards.weaponItemCards;
 
 import com.example.ais_ecc.munchkin.models.Player;
+import com.example.ais_ecc.munchkin.models.classes.ClassList;
 import com.example.ais_ecc.munchkin.models.classes.Classes;
 import com.example.ais_ecc.munchkin.models.classes.ThiefClass;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.WeaponItemCard;
@@ -30,9 +31,8 @@ public class SwordSongDance extends WeaponItemCard {
 
     @Override
     public boolean canPutItem(Player player) {
-        var targetClass = new ThiefClass();
         for(Classes _class : player.getClasses()){
-            if (_class.getName() == targetClass.getName())
+            if (_class._class == ClassList.THIEF)
                 return false;
         }
         return true;

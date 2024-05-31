@@ -10,6 +10,7 @@ public class WarriorClass  extends Classes{
 
     public WarriorClass() {
         this.name = "Warrior";
+        this._class = ClassList.WARRIOR;
     }
 
     @Override

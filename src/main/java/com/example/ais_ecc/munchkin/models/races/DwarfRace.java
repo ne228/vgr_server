@@ -10,6 +10,7 @@ public class DwarfRace extends Races {
 
     public DwarfRace() {
         this.name = "Dwarf";
+        this.race = RaceList.DWARF;
     }
     int canUseBigСlothesCount = 10;
     int canHandCardCount = 6;
