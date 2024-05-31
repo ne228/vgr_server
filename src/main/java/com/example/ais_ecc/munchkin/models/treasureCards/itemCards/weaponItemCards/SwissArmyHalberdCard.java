@@ -10,7 +10,7 @@ import com.example.ais_ecc.munchkin.service.action.fight.ActionConfirmFightOrder
 import com.example.ais_ecc.munchkin.service.observer.ISubscribe;
 
 public class SwissArmyHalberdCard extends WeaponItemCard {
-    ISubscribe subscribe;
+
 
     public SwissArmyHalberdCard(MunchkinContext munchkinContext) {
         super(munchkinContext);
@@ -23,34 +23,7 @@ public class SwissArmyHalberdCard extends WeaponItemCard {
         setBigSize(true);
     }
 
-    @Override
-    public void accept(Player player) {
-        var context = getMunchkinContext();
-        var card = this;
-        var target_player = context.getCurrentPlayer();
-        subscribe = new ISubscribe(ActionPlayRace.createAction()) {
-            @Override
-            public void update() {
-                var action = getAction();
-                if (target_player.getRaces().size() >= 0) {
-                    var takeOffAction = new ActionTakeOffWeapon(target_player, card);
-                    try {
-                        context.getActionHandler().doAction(takeOffAction);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }
-        };
 
-        context.getActionHandler().getSubscribeService().register(subscribe);
-    }
-
-    @Override
-    public void discard(Player player) {
-        var context = getMunchkinContext();
-        context.getActionHandler().getSubscribeService().unRegister(subscribe);
-    }
 
     @Override
     public boolean canPutItem(Player player) {

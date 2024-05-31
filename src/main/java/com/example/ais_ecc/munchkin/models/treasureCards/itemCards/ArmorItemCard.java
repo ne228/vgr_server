@@ -1,20 +1,54 @@
 package com.example.ais_ecc.munchkin.models.treasureCards.itemCards;
 
 import com.example.ais_ecc.munchkin.models.CardAction;
+import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.payload.request.PlayCardRequest;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.action.IAction;
+import com.example.ais_ecc.munchkin.service.action.card.ActionPlayRace;
 import com.example.ais_ecc.munchkin.service.action.card.items.ActionPutArmor;
 import com.example.ais_ecc.munchkin.service.action.card.items.ActionTakeOffArmor;
+import com.example.ais_ecc.munchkin.service.observer.ISubscribe;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ArmorItemCard extends ItemCard {
+    ISubscribe subscribe;
+
     public ArmorItemCard(MunchkinContext munchkinContext) {
         super(munchkinContext);
         this.itemType = "Броник";
+    }
+
+    @Override
+    public void accept(Player player) {
+        var context = getMunchkinContext();
+        var card = this;
+        var target_player = context.getCurrentPlayer();
+        subscribe = new ISubscribe(ActionPlayRace.createAction()) {
+            @Override
+            public void update() {
+                var action = getAction();
+                if (card.canPutItem(target_player)) {
+                    var takeOffAction = new ActionTakeOffArmor(target_player, card);
+                    try {
+                        context.getActionHandler().doAction(takeOffAction);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        };
+
+        context.getActionHandler().getSubscribeService().register(subscribe);
+    }
+
+    @Override
+    public void discard(Player player) {
+        var context = getMunchkinContext();
+        context.getActionHandler().getSubscribeService().unRegister(subscribe);
     }
 
     @Override

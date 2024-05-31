@@ -25,6 +25,7 @@ public class SandalsProtectorsCard extends LegsItemCard {
 
     @Override
     public void accept(Player player) {
+        super.accept(player);
         // TODO
         var context = getMunchkinContext();
         subscribe = new ISubscribe(ActionKickDoor.createAction(context)) {
@@ -40,6 +41,7 @@ public class SandalsProtectorsCard extends LegsItemCard {
 
     @Override
     public void discard(Player player) {
+        super.discard(player);
         var context = getMunchkinContext();
         context.getActionHandler().getSubscribeService().unRegister(subscribe);
     }
