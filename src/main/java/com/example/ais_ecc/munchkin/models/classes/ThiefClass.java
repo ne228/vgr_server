@@ -9,6 +9,7 @@ import java.util.List;
 public class ThiefClass  extends Classes{
     public ThiefClass() {
         this.name = "Thief";
+        this._class = ClassList.THIEF;
     }
 
     @Override

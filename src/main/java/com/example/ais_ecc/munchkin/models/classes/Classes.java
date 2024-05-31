@@ -17,6 +17,7 @@ public abstract class Classes {
     public abstract void accept(Player player);
     public abstract void discard(Player player);
 
+    public ClassList _class;
     public abstract List<IAction> getActions(Player player);
 
     public String getName() {
@@ -27,4 +28,11 @@ public abstract class Classes {
         this.name = name;
     }
 
+    public ClassList get_class() {
+        return _class;
+    }
+
+    public void set_class(ClassList _class) {
+        this._class = _class;
+    }
 }

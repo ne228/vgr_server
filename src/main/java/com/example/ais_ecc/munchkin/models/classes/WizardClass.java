@@ -10,6 +10,7 @@ public class WizardClass  extends Classes{
 
     public WizardClass() {
         this.name = "Wizard";
+        this._class = ClassList.WIZARD;
     }
 
     @Override

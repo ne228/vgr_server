@@ -10,6 +10,7 @@ public class HalflingRace extends Races {
 
     public HalflingRace() {
         this.name = "Halfling";
+        this.race = RaceList.HALFING;
     }
 
     @Override

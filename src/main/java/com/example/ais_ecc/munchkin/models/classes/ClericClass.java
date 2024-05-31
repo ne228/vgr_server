@@ -14,6 +14,7 @@ public class ClericClass extends Classes {
     int canHandCardCount = 6;
     public ClericClass() {
         this.name = "Cleric";
+        this._class = ClassList.CLERIC;
     }
 
     @Override
