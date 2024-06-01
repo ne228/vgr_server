@@ -16,6 +16,7 @@ import com.example.ais_ecc.munchkin.models.doorCards.walkingDeadCardsImpl.Walkin
 import com.example.ais_ecc.munchkin.models.treasureCards.bonusTreasureCards.bonusTreasureCardsImpl.PotionIdiotCourage;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.armoredItemCardsImpl.BurntArmorCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.headItemCards.HornedHelmetCard;
+import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.legsItemCardsIml.ReallyFastRunningShoesCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.legsItemCardsIml.SandalsProtectorsCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.weaponItemCards.CharmingDudaCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.weaponItemCards.SwissArmyHalberdCard;
@@ -105,13 +106,12 @@ public class CardInit {
             i_player.getCards().add(wizardCard);
 
 
-
             i_player.getCards().add(new CalmadzillaEnemyCard(context));
 
             i_player.getCards().add(new ClericCard(context));
             i_player.getCards().add(new WizardCard(context));
 
-
+            /// ITEM CARDS
             i_player.getCards().add(new BurntArmorCard(context));
             i_player.getCards().add(new BurntArmorCard(context));
 
@@ -129,7 +129,7 @@ public class CardInit {
 
             i_player.getCards().add(new SwordSongDance(context));
             i_player.getCards().add(new SwordSongDance(context));
-
+            i_player.getCards().add(new ReallyFastRunningShoesCard(context));
             // BONUS TREASURE CARDS
             i_player.getCards().add(new PotionIdiotCourage(context));
             i_player.getCards().add(new PotionIdiotCourage(context));
