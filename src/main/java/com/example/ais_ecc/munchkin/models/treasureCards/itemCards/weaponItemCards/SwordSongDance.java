@@ -19,15 +19,7 @@ public class SwordSongDance extends WeaponItemCard {
         setBigSize(false);
     }
 
-    @Override
-    public void accept(Player player) {
 
-    }
-
-    @Override
-    public void discard(Player player) {
-
-    }
 
     @Override
     public boolean canPutItem(Player player) {

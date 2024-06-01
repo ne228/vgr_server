@@ -19,12 +19,14 @@ public class HornedHelmetCard extends HeadItemCard {
 
     @Override
     public void accept(Player player) {
+        super.accept(player);
         if (player.isRace(new ElfRace()))
             power += 2;
     }
 
     @Override
     public void discard(Player player) {
+        super.discard(player);
         if (player.isRace(new ElfRace()))
             power -= 2;
     }

@@ -16,16 +16,6 @@ public class BurntArmorCard extends ArmorItemCard {
         power = 2;
         iconPath = "/images/burntArmorCard.png";
     }
-    ISubscribe subscribe;
-    @Override
-    public void accept(Player player) {
-
-    }
-
-    @Override
-    public void discard(Player player) {
-
-    }
 
     @Override
     public boolean canPutItem(Player player) {

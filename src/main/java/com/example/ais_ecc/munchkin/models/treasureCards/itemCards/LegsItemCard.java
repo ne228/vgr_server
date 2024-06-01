@@ -1,11 +1,15 @@
 package com.example.ais_ecc.munchkin.models.treasureCards.itemCards;
 
 import com.example.ais_ecc.munchkin.models.CardAction;
+import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.payload.request.PlayCardRequest;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.action.IAction;
+import com.example.ais_ecc.munchkin.service.action.card.ActionPlayRace;
 import com.example.ais_ecc.munchkin.service.action.card.items.ActionPutLegs;
 import com.example.ais_ecc.munchkin.service.action.card.items.ActionTakeOffLegs;
+import com.example.ais_ecc.munchkin.service.action.card.items.ActionTakeOffWeapon;
+import com.example.ais_ecc.munchkin.service.observer.ISubscribe;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
@@ -16,7 +20,36 @@ public abstract class LegsItemCard extends ItemCard {
         super(munchkinContext);
         this.itemType = "Обувка";
     }
+    ISubscribe subscribe;
 
+    @Override
+    public void accept(Player player) {
+        var context = getMunchkinContext();
+        var card = this;
+        var target_player = context.getCurrentPlayer();
+        subscribe = new ISubscribe(ActionPlayRace.createAction()) {
+            @Override
+            public void update() {
+                var action = getAction();
+                if (card.canPutItem(target_player)) {
+                    var takeOffAction = new ActionTakeOffLegs(target_player, card);
+                    try {
+                        context.getActionHandler().doAction(takeOffAction);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        };
+
+        context.getActionHandler().getSubscribeService().register(subscribe);
+    }
+
+    @Override
+    public void discard(Player player) {
+        var context = getMunchkinContext();
+        context.getActionHandler().getSubscribeService().unRegister(subscribe);
+    }
     @Override
     public IAction createAction(PlayCardRequest playCardRequest) throws Exception {
 
