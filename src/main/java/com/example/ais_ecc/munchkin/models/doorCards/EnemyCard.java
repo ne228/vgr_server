@@ -5,23 +5,21 @@ import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.payload.request.PlayCardRequest;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.action.IAction;
+import com.example.ais_ecc.munchkin.service.action.card.ActionAddEnemyCard;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class EnemyCard extends DoorCard {
 
     public int level;
-    protected int defaultFlushValue = 4;
-
     public int rewardLevel;
     public int rewardTreasure;
-
     public int levelChaise = -1;
-
     public boolean enemyCard = true;
-    protected String obscenityText;
-
     public boolean unDead = false;
+    protected int defaultFlushValue = 4;
+    protected String obscenityText;
 
     public EnemyCard(MunchkinContext munchkinContext) {
         super(munchkinContext);
@@ -29,20 +27,36 @@ public abstract class EnemyCard extends DoorCard {
 
     public abstract void obscenity(Player player);
 
-    public int getTotalPower(){
+    public int getTotalPower() {
         return level;
     }
 
     public abstract boolean canChaise(Player player);
 
     @Override
-    public IAction createAction(PlayCardRequest playCardRequest) {
+    public IAction createAction(PlayCardRequest playCardRequest) throws Exception {
+        var action = new ActionAddEnemyCard(this);
+
+        if (action.canAmI(getMunchkinContext()))
+            return action;
+
         return null;
     }
 
     @Override
     public List<CardAction> getActions() throws Exception {
-        return super.getActions();
+        var actions = new ArrayList<CardAction>();
+        actions.addAll(super.getActions());
+
+        var request = new PlayCardRequest(this.getId(), "null", false, "null");
+        var action = createAction(request);
+        if (!action.canAmI(getMunchkinContext()))
+            return actions;
+
+        var cardAction = new CardAction(request.toEndpointPath("play_card", getMunchkinContext().getId()), "Подкинуть монстра");
+        actions.add(cardAction);
+
+        return actions;
     }
 
     public int getLevel() {

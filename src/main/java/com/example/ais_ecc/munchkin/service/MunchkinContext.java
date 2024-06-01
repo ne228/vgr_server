@@ -100,6 +100,27 @@ public class MunchkinContext {
             return;
         }
 
+        var lastMove = getLastMove();
+        if (lastMove == null)
+            throw new Exception("Not found card. Card not discarded");
+
+        var fight = lastMove.getFight();
+        if (fight == null)
+            throw new Exception("Not found card. Card not discarded");
+
+        card = ListExtensions.extractById(lastMove.getFight().getDoorCards(), cardId);
+        if (card != null) {
+            discardCards.add(card);
+            return;
+        }
+
+        card = ListExtensions.extractById(lastMove.getFight().getEnemyCards(), cardId);
+        if (card != null) {
+            discardCards.add(card);
+            return;
+        }
+
+
         throw new Exception("Not found card. Card not discarded");
     }
 
@@ -137,7 +158,6 @@ public class MunchkinContext {
         }
         return null;
     }
-
 
 
     @JsonIgnore

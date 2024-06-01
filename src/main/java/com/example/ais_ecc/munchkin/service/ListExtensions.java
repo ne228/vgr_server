@@ -1,6 +1,7 @@
 package com.example.ais_ecc.munchkin.service;
 
 import com.example.ais_ecc.munchkin.models.Card;
+import com.example.ais_ecc.munchkin.models.doorCards.DoorCard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,4 +47,6 @@ public class ListExtensions {
         }
         return null; // Если элемент с заданным id не найден, возвращаем null
     }
+
+
 }
