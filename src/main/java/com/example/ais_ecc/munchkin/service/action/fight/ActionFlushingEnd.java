@@ -10,7 +10,6 @@ import com.example.ais_ecc.munchkin.service.action.IAction;
 public class ActionFlushingEnd extends IAction {
 
 
-    private Player player;
     private Move move;
 
     private Fight fight;
@@ -24,6 +23,12 @@ public class ActionFlushingEnd extends IAction {
         this.path = "flushing_end/" + context.getId(); //TODO
         this.name = "Flushing end";
         this.title = "Flushing end";
+
+        try {
+            canAmI(context);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static ActionFlushingEnd createAction(MunchkinContext context) {
@@ -63,6 +68,9 @@ public class ActionFlushingEnd extends IAction {
         if (!flush.get().getPlayer().getId().equalsIgnoreCase(currentPlayer.getId()))
             return false;
 
+        var success_text =  flush.get().getCubeNumber();
+        this.name = "Закончить смывку от " + flush.get().getEnemyCard().getTitle() + " (кубик - " + success_text + ")";
+        this.title = "Закончить смывку от " + flush.get().getEnemyCard().getTitle() + " (кубик - " + success_text + ")";
 
         return true;
     }
@@ -71,6 +79,7 @@ public class ActionFlushingEnd extends IAction {
     public String start() throws Exception {
         var currentPlayer = context.getCurrentPlayer();
         var flushing = fight.getFlushings().stream().findFirst().get();
+
 
 
         var flushSuccess = false;
@@ -91,11 +100,12 @@ public class ActionFlushingEnd extends IAction {
         if (flushSuccess) {
             flushing.endFlushing(true);
             fight.getFlushings().remove(flushing);
-            return "Player " + currentPlayer.getUser().getUsername() + " success flushing from fight";
+            return "Игрок " + currentPlayer.getUser().getUsername() + " смылся от " + flushing.getEnemyCard().getTitle();
         } else {
             flushing.endFlushing(false);
-            flushing.getEnemyCard().obscenity(player);
-            return "Player " + currentPlayer.getUser().getUsername() + "  gets an obscenity: " + flushing.getEnemyCard().getObscenityText();
+            flushing.getEnemyCard().obscenity(currentPlayer);
+            return "Игрок " + currentPlayer.getUser().getUsername() + " не смылся от " + flushing.getEnemyCard().getTitle() + "." +
+                    "Получает непотребство: " + flushing.getEnemyCard().getObscenityText();
         }
 
 

@@ -1,9 +1,9 @@
 package com.example.ais_ecc.munchkin.service.action.fight;
 
-import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.models.Fight;
 import com.example.ais_ecc.munchkin.models.Flushing;
 import com.example.ais_ecc.munchkin.models.Move;
+import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.action.IAction;
 
@@ -23,13 +23,14 @@ public class ActionFlushingRoll extends IAction {
 
     }
 
-    private ActionFlushingRoll(MunchkinContext context) {
+    private ActionFlushingRoll(MunchkinContext context) throws Exception {
         this.path = "flushing_roll/" + context.getId(); //TODO
         this.name = "Flushing roll";
         this.title = "Flushing roll";
+        canAmI(context);
     }
 
-    public static ActionFlushingRoll createAction(MunchkinContext context) {
+    public static ActionFlushingRoll createAction(MunchkinContext context) throws Exception {
         return new ActionFlushingRoll(context);
     }
 
@@ -42,6 +43,8 @@ public class ActionFlushingRoll extends IAction {
 
             if (!flushing.isEndRolling())
                 if (flushing.getPlayer().getId().equalsIgnoreCase(currentPlayer.getId())) {
+                    this.name = "Кинуть кубик на смывку от " + flushing.getEnemyCard().getTitle();
+                    this.title = "Кинуть кубик на смывку от " + flushing.getEnemyCard().getTitle();
                     return flushing;
                 }
         }
@@ -78,6 +81,9 @@ public class ActionFlushingRoll extends IAction {
             return false;
 
 
+        this.name = "Бросить кубик на смывку от " + flush.get().getEnemyCard().getTitle();
+        this.title = "Бросить кубик на смывку от " + flush.get().getEnemyCard().getTitle();
+
         return true;
     }
 
@@ -94,7 +100,8 @@ public class ActionFlushingRoll extends IAction {
             flushing.setCubeNumber(roll);
             flushing.setEndRolling(true);
 //            fight.getFlushings().remove(flushing);
-            return "Player " + currentPlayer.getUser().getUsername() + "  has rolled a die with a value of " + roll;
+            return "Игрок " + currentPlayer.getUser().getUsername() + " бросил кубинк на смывку от " + flushing.getEnemyCard().getTitle() +
+                    " на значение: " + roll;
         }
 
 

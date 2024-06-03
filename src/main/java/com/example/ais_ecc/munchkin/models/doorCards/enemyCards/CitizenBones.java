@@ -36,6 +36,7 @@ public class CitizenBones extends EnemyCard {
 
     @Override
     public void flushing(Player player) {
+        munchkinContext.getMessages().add("Игрок " + player.getUser().getUsername() + " теряет 1 уровень");
         player.lvlUp(-1);
     }
 }
