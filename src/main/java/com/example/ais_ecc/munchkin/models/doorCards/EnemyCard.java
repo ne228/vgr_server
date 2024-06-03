@@ -27,7 +27,8 @@ public abstract class EnemyCard extends DoorCard {
 
     public abstract void obscenity(Player player);
 
-    public int getTotalPower() {
+    public int getTotalPower() throws Exception {
+
         return level;
     }
 
@@ -75,9 +76,6 @@ public abstract class EnemyCard extends DoorCard {
         this.defaultFlushValue = defaultFlushValue;
     }
 
-    public int getPower(Player player) {
-        return level;
-    }
 
 
     public int getRewardLevel() {

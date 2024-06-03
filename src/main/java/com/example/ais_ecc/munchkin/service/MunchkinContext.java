@@ -440,6 +440,18 @@ public class MunchkinContext {
         }
     }
 
+    @JsonIgnore
+    public Fight getFight() throws Exception {
+        try {
+            var move = getLastMove();
+            var fight = move.getFight();
+
+            return fight;
+        } catch (Exception exc) {
+            throw new Exception("Error getLastMove + " + exc.getMessage());
+        }
+    }
+
 
     // В любой момент игры ты можешь:
     //• сбросить класс или расу;

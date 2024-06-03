@@ -97,10 +97,10 @@ public class Fight {
         return power;
     }
 
-    public int getEnemiesPower() {
+    public int getEnemiesPower() throws Exception {
         int power = 0;
         for (var enemyCard : enemyCards) {
-            power += enemyCard.getPower(player);
+            power += enemyCard.getTotalPower();
             // TODO нужно добавить както услвоия +3 против эльфов и тд и тп для других игроков
         }
         for (var harmCard : harmTreasureCards) {

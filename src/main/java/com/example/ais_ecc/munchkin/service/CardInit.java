@@ -6,6 +6,7 @@ import com.example.ais_ecc.munchkin.models.doorCards.bonusDoorCards.PsychoCard;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.*;
 import com.example.ais_ecc.munchkin.models.doorCards.enemyCards.CalmadzillaEnemyCard;
 import com.example.ais_ecc.munchkin.models.doorCards.enemyCards.CitizenBones;
+import com.example.ais_ecc.munchkin.models.doorCards.enemyCards.HammerRatEnemyCard;
 import com.example.ais_ecc.munchkin.models.doorCards.enemyCards.LawyerEnemyCard;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.DwarfCard;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.ElfCard;
@@ -111,6 +112,7 @@ public class CardInit {
             i_player.getCards().add(new CalmadzillaEnemyCard(context));
             i_player.getCards().add(new CalmadzillaEnemyCard(context));
             i_player.getCards().add(new CalmadzillaEnemyCard(context));
+            i_player.getCards().add(new HammerRatEnemyCard(context));
             i_player.getCards().add(new CitizenBones(context));
             i_player.getCards().add(new CitizenBones(context));
             i_player.getCards().add(new CitizenBones(context));

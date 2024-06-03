@@ -2,7 +2,9 @@ package com.example.ais_ecc.munchkin.models;
 
 
 import com.example.ais_ecc.entity.User;
+import com.example.ais_ecc.munchkin.models.classes.ClassList;
 import com.example.ais_ecc.munchkin.models.classes.Classes;
+import com.example.ais_ecc.munchkin.models.races.RaceList;
 import com.example.ais_ecc.munchkin.models.races.Races;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.ArmorItemCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.HeadItemCard;
@@ -54,11 +56,11 @@ public class Player {
         gender = randomGender;
     }
 
-    public int getTotalPower(){
+    public int getTotalPower() {
         return getItemPower() + lvl;
     }
 
-    private int getItemPower(){
+    private int getItemPower() {
         int power = 0;
 
         if (headItemCard != null)
@@ -85,52 +87,21 @@ public class Player {
 
 
     // CLASS ACTIONS
-    public boolean isClass(Classes _class) {
+    public boolean isClass(ClassList _class) {
         for (Classes m_class : getClasses())
-            if (_class == m_class)
+            if (_class == m_class.get_class())
                 return true;
         return false;
     }
 
-    public void addClass(Classes _class) {
-        if (isClass(_class))
-            return;
-
-        getClasses().add(_class);
-    }
-
-    public void removeClass(Classes _class) throws Exception {
-        for (Classes playerClass : getClasses())
-            if (_class == playerClass) {
-                getClasses().remove(playerClass);
-                return;
-            }
-        throw new Exception("Player " + getUser().getUsername() + " not contains class " + _class);
-    }
 
     // RACE ACTIONS
 
-    public boolean isRace(Races race) {
+    public boolean isRace(RaceList race) {
         for (Races playerRace : getRaces())
-            if (race == playerRace)
+            if (race == playerRace.getRace())
                 return true;
         return false;
-    }
-
-    public void addRace(Races race) {
-        if (isRace(race))
-            return;
-
-        getRaces().add(race);
-    }
-
-    public void removeRace(Races race) throws Exception {
-        for (Races playerRace : getRaces())
-            if (race == playerRace) {
-                getClasses().remove(playerRace);
-                return;
-            }
-        throw new Exception("Player " + getUser().getUsername() + " not contains race " + race);
     }
 
     // ITEMS ACTIONS
