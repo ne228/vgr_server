@@ -5,6 +5,7 @@ import com.example.ais_ecc.munchkin.models.doorCards.DoorCard;
 import com.example.ais_ecc.munchkin.models.doorCards.bonusDoorCards.PsychoCard;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.*;
 import com.example.ais_ecc.munchkin.models.doorCards.enemyCards.CalmadzillaEnemyCard;
+import com.example.ais_ecc.munchkin.models.doorCards.enemyCards.CitizenBones;
 import com.example.ais_ecc.munchkin.models.doorCards.enemyCards.LawyerEnemyCard;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.DwarfCard;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.ElfCard;
@@ -46,6 +47,7 @@ public class CardInit {
         ClassesCard warriorCard = new WarriorCard(context);
         ClassesCard wizardCard = new WizardCard(context);
 
+        context.getDoorCards().add(new CitizenBones(context));
         context.getDoorCards().add(lawyerEnemyCard);
         context.getDoorCards().add(lawyerEnemyCard);
         context.getDoorCards().add(lawyerEnemyCard);
@@ -105,13 +107,19 @@ public class CardInit {
             i_player.getCards().add(warriorCard);
             i_player.getCards().add(wizardCard);
 
-
+            // Enemies Cards
             i_player.getCards().add(new CalmadzillaEnemyCard(context));
+            i_player.getCards().add(new CalmadzillaEnemyCard(context));
+            i_player.getCards().add(new CalmadzillaEnemyCard(context));
+            i_player.getCards().add(new CitizenBones(context));
+            i_player.getCards().add(new CitizenBones(context));
+            i_player.getCards().add(new CitizenBones(context));
 
             i_player.getCards().add(new ClericCard(context));
             i_player.getCards().add(new WizardCard(context));
 
             /// ITEM CARDS
+
             i_player.getCards().add(new BurntArmorCard(context));
             i_player.getCards().add(new BurntArmorCard(context));
 

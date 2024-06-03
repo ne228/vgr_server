@@ -52,7 +52,7 @@ public class ActionAddEnemyCard extends IAction {
         if (fight.enemyCards.stream().anyMatch(card -> card.isUnDead()) && enemyCard.isUnDead())
             return true;
 
-        if (fight.getDoorCards().stream().anyMatch(card -> card.getClass() == WalkingMonsterCard.class))
+        if (fight.getDoorCards().stream().anyMatch(card -> card  instanceof WalkingMonsterCard))
             return true;
 
         return false;
@@ -65,14 +65,13 @@ public class ActionAddEnemyCard extends IAction {
             context.discardCard(enemyCard.getId());
             return "Игрок " + player.getUser().getUsername() + " подкинул монстра Андеда  " + enemyCard.getTitle();
         }
-        var cards = fight.getDoorCards().stream().filter(card -> card.getClass() == WalkingMonsterCard.class).collect(Collectors.toList());
+        var cards = fight.getDoorCards().stream().filter(card -> card instanceof WalkingMonsterCard).collect(Collectors.toList());
         if (cards.size() != 0) {
             fight.getEnemyCards().add(enemyCard);
             context.discardCard(enemyCard.getId());
             context.discardCard(cards.get(0).getId());
             return "Игрок " + player.getUser().getUsername() + " подкинул монстра (бродячая тварь)  " + enemyCard.getTitle();
         }
-
         return null;
     }
 }

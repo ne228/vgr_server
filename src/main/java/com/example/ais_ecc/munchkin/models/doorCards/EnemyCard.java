@@ -50,7 +50,7 @@ public abstract class EnemyCard extends DoorCard {
 
         var request = new PlayCardRequest(this.getId(), "null", false, "null");
         var action = createAction(request);
-        if (!action.canAmI(getMunchkinContext()))
+        if (action == null)
             return actions;
 
         var cardAction = new CardAction(request.toEndpointPath("play_card", getMunchkinContext().getId()), "Подкинуть монстра");
@@ -126,5 +126,8 @@ public abstract class EnemyCard extends DoorCard {
 
     public void setLevelChaise(int levelChaise) {
         this.levelChaise = levelChaise;
+    }
+
+    public void flushing(Player player) {
     }
 }
