@@ -3,7 +3,10 @@ package com.example.ais_ecc.munchkin.service.action;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.UUID;
+
 public abstract class IAction {
+    public String id;
     protected String name;
     protected String path;
     protected String color = "red";
@@ -56,5 +59,15 @@ public abstract class IAction {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getId() {
+        if (id == null)
+            setId(UUID.randomUUID().toString());
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

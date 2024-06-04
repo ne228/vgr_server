@@ -44,12 +44,6 @@ public class ActionPlayRace extends IAction {
         if (player.getRaces().size() > 0)
             return false;
 
-        var player = context.getCurrentPlayer();
-        var playerHaveTargetCard = player
-                .getCards().stream()
-                .anyMatch(card -> card.getId().equalsIgnoreCase(raceCard.getId()));
-        if (!playerHaveTargetCard)
-            return false;
 
         return true;
     }

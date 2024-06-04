@@ -35,6 +35,9 @@ public class ActionTakeOffLegs extends IAction {
         if (!player.getLegsItemCard().getId().equalsIgnoreCase(legsItemCard.getId()))
             return false;
 
+        if (!player.isHaveCard(legsItemCard))
+            return false;
+
         return true;
     }
 

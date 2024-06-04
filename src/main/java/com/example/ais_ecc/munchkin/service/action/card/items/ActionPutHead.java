@@ -35,6 +35,9 @@ public class ActionPutHead extends IAction {
         if (!headItemCard.canPutItem(player))
             return false;
 
+        if (!player.isHaveCard(headItemCard))
+            return false;
+
         return true;
     }
 
@@ -44,6 +47,6 @@ public class ActionPutHead extends IAction {
         headItemCard.accept(player);
         context.discardCard(headItemCard.getId());
 
-        return "Player " + player.getUser().getUsername() + " put on " + headItemCard.getTitle() ;   //TODO
+        return "Player " + player.getUser().getUsername() + " put on " + headItemCard.getTitle();   //TODO
     }
 }

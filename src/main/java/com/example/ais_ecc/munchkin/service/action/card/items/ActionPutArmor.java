@@ -35,6 +35,9 @@ public class ActionPutArmor extends IAction {
         if (!armorItemCard.canPutItem(player))
             return false;
 
+        if (!player.isHaveCard(armorItemCard))
+            return false;
+
         return true;
     }
 

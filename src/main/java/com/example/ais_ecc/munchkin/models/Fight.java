@@ -64,13 +64,14 @@ public class Fight {
         return false;
     }
 
-    public boolean isAgree(){
+    public boolean isAgree() {
         for (var fightAgree : getFightAgrees()) {
             if (!fightAgree.isAgree())
                 return false;
         }
         return true;
     }
+
     public boolean getAgree() {
         var player = context.getCurrentPlayer();
         for (var fightAgree : fightAgrees) {
@@ -108,6 +109,17 @@ public class Fight {
                 power += ((BonusTreasureCard) harmCard).getBonus();
         }
         return power;
+    }
+
+    @JsonIgnore
+    public ArrayList<Player> getFightPlayers() {
+        var res = new ArrayList<Player>();
+        res.add(getPlayer());
+        for (var fightOrder : getFightOrders()){
+            if (fightOrder.isTrust())
+                res.add(fightOrder.getPlayer());
+        }
+        return res;
     }
 
     public Player getPlayer() {
@@ -151,6 +163,10 @@ public class Fight {
     }
 
     public boolean isEnd() {
+        if (flushings != null)
+            if (flushings.size() > 0)
+                return false;
+
         return isEnd;
     }
 
@@ -170,7 +186,6 @@ public class Fight {
     public void setFightAgrees(List<FightAgree> fightAgrees) {
         this.fightAgrees = fightAgrees;
     }
-
 
 
     public List<Flushing> getFlushings() {

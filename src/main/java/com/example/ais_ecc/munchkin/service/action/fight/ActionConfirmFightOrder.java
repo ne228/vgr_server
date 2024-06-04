@@ -71,6 +71,8 @@ public class ActionConfirmFightOrder extends IAction {
         if (player.getId() == fight.getPlayer().getId())
             return true;
 
+        if (fight.getFlushings() != null)
+            return false;
 
         return false;
     }

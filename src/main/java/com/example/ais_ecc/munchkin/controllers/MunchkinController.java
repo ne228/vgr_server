@@ -593,6 +593,31 @@ public class MunchkinController {
         }
     }
 
+    @GetMapping("/play_required/{id}")
+    public ResponseEntity<?> flushingRoll(@PathVariable String id,
+                                          @RequestParam(required = true) String actionId) {
+        try {
+            var user = getUser();
+            var munchkinContext = contextHandler.getContext(id);
+            if (munchkinContext == null)
+                throw new Exception("Not found game id " + id);
+
+            munchkinContext.playRequired(actionId);
+
+            return ResponseEntity
+                    .ok()
+                    .body(("User " + user.getUsername() + " success connected!"));
+        } catch (ExpiredJwtException exc) {
+            return ResponseEntity
+                    .status(401)
+                    .body(("Error: " + exc.getMessage()));
+        } catch (Exception exc) {
+            return ResponseEntity
+                    .status(403)
+                    .body(("Error: " + exc.getMessage()));
+        }
+    }
+
     @GetMapping("/{id}/image/{cardId}/")
     public ResponseEntity<byte[]> getImage(@PathVariable String id, @PathVariable String cardId) throws Exception {
 //        var user = getUser();

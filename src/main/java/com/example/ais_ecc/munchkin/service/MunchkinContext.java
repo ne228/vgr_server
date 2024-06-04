@@ -444,9 +444,12 @@ public class MunchkinContext {
     public Fight getFight() throws Exception {
         try {
             var move = getLastMove();
-            var fight = move.getFight();
+            if (move.getFight() != null)
+                return move.getFight();
 
-            return fight;
+
+            return null;
+
         } catch (Exception exc) {
             throw new Exception("Error getLastMove + " + exc.getMessage());
         }
@@ -481,8 +484,10 @@ public class MunchkinContext {
         var fight = move.getFight();
         if (fight == null) return true;
 
+
+        // Если этот игрок в бою
         if (fight.getPlayer().getUser().getUsername().equalsIgnoreCase(user.getUsername()) && !fight.isEnd())
-            throw new Exception("User " + user.getUsername() + " in fighting!");
+            return false;
 
 
         var playerInOrder = fight.getFightOrders()
@@ -494,6 +499,19 @@ public class MunchkinContext {
             return false;
 
         return true;
+    }
+
+    @JsonIgnore
+    public void playRequired(String actionId) throws Exception {
+        var action = getActionHandler().getRequiredActions()
+                .stream().filter(x -> x.getId().equalsIgnoreCase(actionId))
+                .findFirst();
+
+        if (action.isPresent()) {
+            getActionHandler().doAction(action.get());
+        } else {
+            throw new Exception("Not found required action id: " + actionId);
+        }
     }
 
     @JsonIgnore

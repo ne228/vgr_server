@@ -10,6 +10,7 @@ import com.example.ais_ecc.munchkin.service.observer.SubscribeService;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 
 public class ActionHandler {
@@ -21,12 +22,15 @@ public class ActionHandler {
 
     private ArrayList<IAction> actions;
 
+    private ArrayList<RequiredAction> requiredActions;
+
     public ActionHandler(MunchkinContext munchkinContext,
                          SimpMessagingTemplate messagingTemplate) throws Exception {
         this.munchkinContext = munchkinContext;
         this.messagingTemplate = messagingTemplate;
         this.subscribeService = new SubscribeService();
         actions = new ArrayList<>();
+        requiredActions = new ArrayList<>();
 
         // SHARE ACTIONS
         actions.add(ActionKickDoor.createAction(munchkinContext));
@@ -86,9 +90,37 @@ public class ActionHandler {
     }
 
     public void doAction(IAction action) throws Exception {
+
+
         if (action.canAmI(munchkinContext)) {
 
             subscribeService.update(action);
+
+            // Поиск по id обязательный действий
+            var reqActionOpt = requiredActions.stream()
+                    .filter(act -> act.getId().equalsIgnoreCase(action.getId()))
+                    .findFirst();
+
+            // Проверяем обязательное ли действия
+            // Если да выполняем по правилу обязательных действий
+            // Удаляем все из scope обязательныйх действий
+            if (reqActionOpt.isPresent()) {
+                var reqAct = reqActionOpt.get();
+                var scopedActions = new ArrayList<RequiredAction>();
+                for(var act : requiredActions)
+                    if (act.getScopeId().equalsIgnoreCase(reqAct.getScopeId()))
+                        scopedActions.add(act);
+//                var scopedActions = requiredActions.stream()
+//                        .filter(act -> act.getScopeId().equalsIgnoreCase(reqAct.getScopeId()))
+//                        .collect(Collectors.toList());
+
+                requiredActions.removeAll(scopedActions);
+
+            } else { // Если не обязательное действи, проверяем выполнены ли все обязтаельные действия
+                if (requiredActions.size() > 0)
+                    return;
+            }
+
             var resultAction = action.start();
             munchkinContext.getMessages().add(resultAction);
             updateContext();
@@ -100,7 +132,15 @@ public class ActionHandler {
     public ArrayList<IAction> getResolvedActions(Player player) throws Exception {
         var res = new ArrayList<IAction>();
 
-        var currentPlayer = munchkinContext.getCurrentPlayer();
+        // Пока не выполнены все обязательный действия - нельзя продолжить игру
+        for (IAction requiredAction : requiredActions) {
+            if (requiredAction.canAmI(munchkinContext))
+                res.add(requiredAction);
+        }
+
+        if (requiredActions.size() > 0)
+            return res;
+
         for (IAction action : getActions()) {
             try {
                 var canAmi = action.canAmI(munchkinContext);
@@ -158,5 +198,13 @@ public class ActionHandler {
 
     public void setSubscribeService(SubscribeService subscribeService) {
         this.subscribeService = subscribeService;
+    }
+
+    public ArrayList<RequiredAction> getRequiredActions() {
+        return requiredActions;
+    }
+
+    public void setRequiredActions(ArrayList<RequiredAction> requiredActions) {
+        this.requiredActions = requiredActions;
     }
 }

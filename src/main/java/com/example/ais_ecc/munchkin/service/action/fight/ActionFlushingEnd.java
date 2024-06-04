@@ -92,18 +92,25 @@ public class ActionFlushingEnd extends IAction {
         }
 
         fight.getFlushings().remove(flushing);
+        flushing.endFlushing(false);
+
         if (fight.getFlushings().size() == 0) {
             move.setEnd(true);
             context.getActionHandler().doAction(new ActionNextMove(context));
         }
 
         if (flushSuccess) {
-            flushing.endFlushing(true);
-            fight.getFlushings().remove(flushing);
+            // ПОБЕДА!!!))
+
+            if (fight.getFlushings().size() == 0) {
+                move.setEnd(true);
+                context.getActionHandler().doAction(new ActionNextMove(context));
+            }
             return "Игрок " + currentPlayer.getUser().getUsername() + " смылся от " + flushing.getEnemyCard().getTitle();
         } else {
-            flushing.endFlushing(false);
-            flushing.getEnemyCard().obscenity(currentPlayer);
+
+            flushing.getEnemyCard().obscenity(fight, currentPlayer);
+
             return "Игрок " + currentPlayer.getUser().getUsername() + " не смылся от " + flushing.getEnemyCard().getTitle() + "." +
                     "Получает непотребство: " + flushing.getEnemyCard().getObscenityText();
         }

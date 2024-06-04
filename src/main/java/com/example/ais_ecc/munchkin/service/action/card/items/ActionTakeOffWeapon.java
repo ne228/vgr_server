@@ -31,6 +31,9 @@ public class ActionTakeOffWeapon extends IAction {
         if (!context.isAllNotFight())
             return false;
 
+        if (!player.isHaveCard(weaponItemCard))
+            return false;
+
         if (player.getWeaponItemCard_1() != null) {
             if (player.getWeaponItemCard_1().getId().equalsIgnoreCase(weaponItemCard.getId()))
                 return true;
@@ -39,6 +42,8 @@ public class ActionTakeOffWeapon extends IAction {
             if (player.getWeaponItemCard_2().getId().equalsIgnoreCase(weaponItemCard.getId()))
                 return true;
         }
+
+
 
         return false;
     }

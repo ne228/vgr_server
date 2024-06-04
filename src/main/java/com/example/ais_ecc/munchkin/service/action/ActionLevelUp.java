@@ -27,14 +27,14 @@ public class ActionLevelUp extends IAction {
         player = context.getCurrentPlayer();
 
 
-        if (!context.isAllNotFight())
-            return false;
-
         if (player.getGold() < 1000)
             return false;
 
         if (player.getLvl() == 9)
             return false;
+
+        if (context.isAllNotFight())
+            return true;
 
         return true;
     }

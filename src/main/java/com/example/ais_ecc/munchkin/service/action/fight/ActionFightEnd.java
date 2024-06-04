@@ -1,15 +1,14 @@
 package com.example.ais_ecc.munchkin.service.action.fight;
 
-import com.example.ais_ecc.munchkin.models.Fight;
-import com.example.ais_ecc.munchkin.models.Flushing;
-import com.example.ais_ecc.munchkin.models.Move;
-import com.example.ais_ecc.munchkin.models.Player;
+import com.example.ais_ecc.munchkin.models.*;
 import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
-import com.example.ais_ecc.munchkin.service.*;
+import com.example.ais_ecc.munchkin.service.ListExtensions;
+import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.action.ActionNextMove;
 import com.example.ais_ecc.munchkin.service.action.IAction;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class ActionFightEnd extends IAction {
@@ -76,6 +75,14 @@ public class ActionFightEnd extends IAction {
         int playerPower = fight.getPlayersPower();
         int enemyPower = fight.getEnemiesPower();
         fight.setEnd(true);
+        List<OrderFight> fightOrders = fight.getFightOrders();
+        for (int i = 0; i < fightOrders.size(); i++) {
+            OrderFight order = fightOrders.get(i);
+            if (!order.isTrust()) {
+                fight.getFightOrders().remove(order);
+            }
+        }
+
 
         if (playerPower > enemyPower) {
             int maxLvlReward = fight.getEnemyCards().stream()
@@ -106,7 +113,7 @@ public class ActionFightEnd extends IAction {
 
             move.setEnd(true);
             context.getActionHandler().doAction(new ActionNextMove(context));
-            return  "Player " + fight.getPlayer().getUser().getUsername() + " win the fight!";
+            return "Player " + fight.getPlayer().getUser().getUsername() + " win the fight!";
 
             // Заебисся пахнет пися
         } else {
@@ -129,4 +136,5 @@ public class ActionFightEnd extends IAction {
             return "Player " + fight.getPlayer().getUser().getUsername() + " loss the fight!";
         }
     }
+
 }

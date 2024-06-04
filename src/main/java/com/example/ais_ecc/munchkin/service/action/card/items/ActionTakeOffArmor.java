@@ -33,6 +33,9 @@ public class ActionTakeOffArmor extends IAction {
         if (!player.getArmorItemCard().getId().equalsIgnoreCase(armorItemCard.getId()))
             return false;
 
+        if (!player.isHaveCard(armorItemCard))
+            return false;
+
         return true;
     }
 

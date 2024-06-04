@@ -36,6 +36,9 @@ public class ActionPutLegs extends IAction {
         if (!legsItemCard.canPutItem(player))
             return false;
 
+        if (!player.isHaveCard(legsItemCard))
+            return false;
+
         return true;
     }
 

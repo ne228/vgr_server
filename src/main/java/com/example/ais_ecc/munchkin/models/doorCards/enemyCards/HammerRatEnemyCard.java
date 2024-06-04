@@ -1,5 +1,6 @@
 package com.example.ais_ecc.munchkin.models.doorCards.enemyCards;
 
+import com.example.ais_ecc.munchkin.models.Fight;
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.models.classes.ClassList;
 import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
@@ -20,7 +21,7 @@ public class HammerRatEnemyCard extends EnemyCard {
     }
 
     @Override
-    public void obscenity(Player player) {
+    public void obscenity(Fight fight, Player player) {
         player.lvlUp(-1);
     }
 

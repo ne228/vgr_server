@@ -6,10 +6,12 @@ import com.example.ais_ecc.munchkin.models.classes.ClassList;
 import com.example.ais_ecc.munchkin.models.classes.Classes;
 import com.example.ais_ecc.munchkin.models.races.RaceList;
 import com.example.ais_ecc.munchkin.models.races.Races;
+import com.example.ais_ecc.munchkin.models.treasureCards.TreasureCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.ArmorItemCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.HeadItemCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.LegsItemCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.WeaponItemCard;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,8 @@ public class Player {
     private int canUseBigСlothesCount = 1;
     private int canHandCardCount = 5;
 
+    private ArrayList<TreasureCard> openTreasureCards;
+
     private int defBonusFlushing = 0;
 
     private List<Card> cards;
@@ -47,6 +51,7 @@ public class Player {
         cards = new ArrayList<>();
         races = new ArrayList<>();
         classes = new ArrayList<>();
+        openTreasureCards = new ArrayList<>();
 
         Gender[] genders = Gender.values();
         Random random = new Random();
@@ -54,6 +59,39 @@ public class Player {
         // Выбор случайного элемента из Enum
         Gender randomGender = genders[randomIndex];
         gender = randomGender;
+    }
+
+    @JsonIgnore
+    public boolean isHaveCard(Card card) {
+        var cardInDeck = getCards().stream().filter(c -> c.getId().equalsIgnoreCase(card.getId())).findFirst();
+        if (cardInDeck.isPresent())
+            return true;
+
+        var cardInDeckTreasure = getOpenTreasureCards().stream().filter(c -> c.getId().equalsIgnoreCase(card.getId())).findFirst();
+        if (cardInDeckTreasure.isPresent())
+            return true;
+
+        if (headItemCard != null)
+            if (headItemCard.getId().equalsIgnoreCase(card.getId()))
+                return true;
+
+        if (armorItemCard != null)
+            if (armorItemCard.getId().equalsIgnoreCase(card.getId()))
+                return true;
+
+        if (legsItemCard != null)
+            if (legsItemCard.getId().equalsIgnoreCase(card.getId()))
+                return true;
+
+        if (weaponItemCard_1 != null)
+            if (weaponItemCard_1.getId().equalsIgnoreCase(card.getId()))
+                return true;
+
+        if (weaponItemCard_2 != null)
+            if (weaponItemCard_2.getId().equalsIgnoreCase(card.getId()))
+                return true;
+
+        return false;
     }
 
     public int getTotalPower() {
@@ -83,6 +121,9 @@ public class Player {
 
     public void lvlUp(int lvl) {
         this.lvl += lvl;
+
+        if (this.lvl < 0)
+            this.lvl = 1;
     }
 
 
@@ -235,5 +276,13 @@ public class Player {
 
     public void setGold(int gold) {
         this.gold = gold;
+    }
+
+    public ArrayList<TreasureCard> getOpenTreasureCards() {
+        return openTreasureCards;
+    }
+
+    public void setOpenTreasureCards(ArrayList<TreasureCard> openTreasureCards) {
+        this.openTreasureCards = openTreasureCards;
     }
 }

@@ -54,6 +54,9 @@ public class ActionPutWeapon extends IAction {
         if (!weaponItemCard.canPutItem(player))
             return false;
 
+        if (!player.isHaveCard(weaponItemCard))
+            return false;
+
         return true;
     }
 

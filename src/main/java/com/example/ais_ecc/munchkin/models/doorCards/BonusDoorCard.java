@@ -5,6 +5,7 @@ import com.example.ais_ecc.munchkin.payload.request.PlayCardRequest;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.action.IAction;
 import com.example.ais_ecc.munchkin.service.action.card.ActionBonusDoorCard;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,7 @@ public abstract class BonusDoorCard extends DoorCard {
 
     }
 
+    @JsonIgnore
     @Override
     public List<CardAction> getActions() throws Exception {
         List<CardAction> cardActions = new ArrayList<>();

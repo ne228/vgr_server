@@ -1,6 +1,7 @@
 package com.example.ais_ecc.munchkin.models.doorCards;
 
 import com.example.ais_ecc.munchkin.models.CardAction;
+import com.example.ais_ecc.munchkin.models.Fight;
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.payload.request.PlayCardRequest;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
@@ -25,7 +26,7 @@ public abstract class EnemyCard extends DoorCard {
         super(munchkinContext);
     }
 
-    public abstract void obscenity(Player player);
+    public abstract void obscenity(Fight fight, Player player) throws Exception;
 
     public int getTotalPower() throws Exception {
 

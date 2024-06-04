@@ -57,6 +57,9 @@ public class ActionCreateFightOrder extends IAction {
                 if (order.trust)
                     return false;
 
+        if (fight.getFlushings() != null)
+            return false;
+
         return true;
     }
 

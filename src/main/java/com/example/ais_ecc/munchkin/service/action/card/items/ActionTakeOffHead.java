@@ -32,9 +32,11 @@ public class ActionTakeOffHead extends IAction {
         if (player.getHeadItemCard() == null)
             return false;
 
-        if (!player.getHeadItemCard().getId().equalsIgnoreCase(headItemCard.getId()) )
+        if (!player.getHeadItemCard().getId().equalsIgnoreCase(headItemCard.getId()))
             return false;
 
+        if (!player.isHaveCard(headItemCard))
+            return false;
         return true;
     }
 
@@ -44,6 +46,6 @@ public class ActionTakeOffHead extends IAction {
         headItemCard.discard(player);
         player.getCards().add(headItemCard);
 
-        return "Player " + player.getUser().getUsername() + " take off " + headItemCard.getTitle() ;   //TODO
+        return "Player " + player.getUser().getUsername() + " take off " + headItemCard.getTitle();   //TODO
     }
 }
