@@ -107,16 +107,15 @@ public class CardInit {
 
             // Enemies Cards
             i_player.getCards().add(new CalmadzillaEnemyCard(context));
-            i_player.getCards().add(new CalmadzillaEnemyCard(context));
-            i_player.getCards().add(new CalmadzillaEnemyCard(context));
+
 
             i_player.getCards().add(new ForumTroll(context));
 
             i_player.getCards().add(new HammerRatEnemyCard(context));
 
             i_player.getCards().add(new CitizenBones(context));
-            i_player.getCards().add(new CitizenBones(context));
-            i_player.getCards().add(new CitizenBones(context));
+
+            i_player.getCards().add(new Pitbull(context));
 
             i_player.getCards().add(new ClericCard(context));
             i_player.getCards().add(new WizardCard(context));
