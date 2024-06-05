@@ -28,8 +28,8 @@ public class CalmadzillaEnemyCard extends EnemyCard {
         player.lvlUp(-1);
     }
 
-    @Override
-    public int getTotalPower() {
+    @Override// TODO
+    public int getTotalPower(Fight fight) {
         return level;
     }
 

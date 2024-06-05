@@ -25,15 +25,10 @@ public class CitizenBones extends EnemyCard {
     }
 
     @Override
-    public int getTotalPower() {
-
-        return level;
-    }
-
-    @Override
     public boolean canChaise(Player player) {
         return true;
     }
+
 
     @Override
     public void flushing(Player player) {

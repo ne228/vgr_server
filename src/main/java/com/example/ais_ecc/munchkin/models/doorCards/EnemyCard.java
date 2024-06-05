@@ -28,7 +28,7 @@ public abstract class EnemyCard extends DoorCard {
 
     public abstract void obscenity(Fight fight, Player player) throws Exception;
 
-    public int getTotalPower() throws Exception {
+    public int getTotalPower(Fight fight) throws Exception {
 
         return level;
     }

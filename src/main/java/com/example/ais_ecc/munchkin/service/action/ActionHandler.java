@@ -129,6 +129,12 @@ public class ActionHandler {
         }
     }
 
+    public void addRequiredAction(RequiredAction action) throws Exception {
+        getRequiredActions().add(action);
+        updateContext();
+        updatePlayerActions();
+        updateCards();
+    }
     public ArrayList<IAction> getResolvedActions(Player player) throws Exception {
         var res = new ArrayList<IAction>();
 

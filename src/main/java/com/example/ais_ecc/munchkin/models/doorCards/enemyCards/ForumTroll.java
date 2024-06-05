@@ -48,41 +48,36 @@ public class ForumTroll extends EnemyCard {
             if (player.getHeadItemCard() != null)
                 getMunchkinContext()
                         .getActionHandler()
-                        .getRequiredActions()
-                        .add(new ActionPickUpItemCard(scopeId, maxLvlPlayer, player.getHeadItemCard(), player));
+                        .addRequiredAction(new ActionPickUpItemCard(scopeId, maxLvlPlayer, player.getHeadItemCard(), player));
 
             if (player.getArmorItemCard() != null)
                 getMunchkinContext()
                         .getActionHandler()
-                        .getRequiredActions()
-                        .add(new ActionPickUpItemCard(scopeId, maxLvlPlayer, player.getArmorItemCard(), player));
+                        .addRequiredAction(new ActionPickUpItemCard(scopeId, maxLvlPlayer, player.getArmorItemCard(), player));
 
 
             if (player.getLegsItemCard() != null)
                 getMunchkinContext()
                         .getActionHandler()
-                        .getRequiredActions()
-                        .add(new ActionPickUpItemCard(scopeId, maxLvlPlayer, player.getLegsItemCard(), player));
+                        .addRequiredAction(new ActionPickUpItemCard(scopeId, maxLvlPlayer, player.getLegsItemCard(), player));
 
             if (player.getWeaponItemCard_1() != null)
                 getMunchkinContext()
                         .getActionHandler()
-                        .getRequiredActions()
-                        .add(new ActionPickUpItemCard(scopeId, maxLvlPlayer, player.getWeaponItemCard_1(), player));
+                        .addRequiredAction(new ActionPickUpItemCard(scopeId, maxLvlPlayer, player.getWeaponItemCard_1(), player));
 
             if (player.getWeaponItemCard_2() != null)
                 getMunchkinContext()
                         .getActionHandler()
-                        .getRequiredActions()
-                        .add(new ActionPickUpItemCard(scopeId, maxLvlPlayer, player.getWeaponItemCard_2(), player));
+                        .addRequiredAction(new ActionPickUpItemCard(scopeId, maxLvlPlayer, player.getWeaponItemCard_2(), player));
 
         }
 
     }
 
     @Override
-    public int getTotalPower() throws Exception {
-        var fight = munchkinContext.getFight();
+    public int getTotalPower(Fight fight) throws Exception {
+
         if (fight != null) {
             if (fight.getPlayer().isClass(ClassList.CLERIC))
                 return level + 3;

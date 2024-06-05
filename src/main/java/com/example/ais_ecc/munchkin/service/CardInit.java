@@ -117,6 +117,8 @@ public class CardInit {
 
             i_player.getCards().add(new Pitbull(context));
 
+            i_player.getCards().add(new Uticora(context));
+
             i_player.getCards().add(new ClericCard(context));
             i_player.getCards().add(new WizardCard(context));
 

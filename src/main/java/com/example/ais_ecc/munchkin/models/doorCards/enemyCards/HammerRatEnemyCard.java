@@ -26,8 +26,8 @@ public class HammerRatEnemyCard extends EnemyCard {
     }
 
     @Override
-    public int getTotalPower() throws Exception {
-        var fight = munchkinContext.getFight();
+    public int getTotalPower(Fight fight) throws Exception {
+
         if (fight != null) {
             if (fight.getPlayer().isClass(ClassList.CLERIC))
                 return level + 3;
