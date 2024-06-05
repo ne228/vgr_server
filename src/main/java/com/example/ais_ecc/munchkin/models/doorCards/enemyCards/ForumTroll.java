@@ -21,7 +21,6 @@ public class ForumTroll extends EnemyCard {
         rewardTreasure = 3;
         level = 10;
         unDead = false;
-        defaultFlushValue = 4;
         iconPath = "/images/forumTroll.png";
     }
 
@@ -95,8 +94,5 @@ public class ForumTroll extends EnemyCard {
         return true;
     }
 
-    @Override
-    public void flushing(Player player) {
 
-    }
 }

@@ -1,6 +1,7 @@
 package com.example.ais_ecc.munchkin.models.doorCards.enemyCards;
 
 import com.example.ais_ecc.munchkin.models.Fight;
+import com.example.ais_ecc.munchkin.models.Flushing;
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
@@ -31,8 +32,8 @@ public class CitizenBones extends EnemyCard {
 
 
     @Override
-    public void flushing(Player player) {
-        munchkinContext.getMessages().add("Игрок " + player.getUser().getUsername() + " теряет 1 уровень");
-        player.lvlUp(-1);
+    public void flushing(Flushing flushing) {
+        munchkinContext.getMessages().add("Игрок " + flushing.getPlayer().getUser().getUsername() + " теряет 1 уровень");
+        flushing.getPlayer().lvlUp(-1);
     }
 }

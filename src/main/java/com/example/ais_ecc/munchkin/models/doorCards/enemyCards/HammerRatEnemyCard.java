@@ -45,8 +45,5 @@ public class HammerRatEnemyCard extends EnemyCard {
         return true;
     }
 
-    @Override
-    public void flushing(Player player) {
 
-    }
 }

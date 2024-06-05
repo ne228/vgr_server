@@ -2,6 +2,7 @@ package com.example.ais_ecc.munchkin.models.doorCards;
 
 import com.example.ais_ecc.munchkin.models.CardAction;
 import com.example.ais_ecc.munchkin.models.Fight;
+import com.example.ais_ecc.munchkin.models.Flushing;
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.payload.request.PlayCardRequest;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
@@ -127,6 +128,6 @@ public abstract class EnemyCard extends DoorCard {
         this.levelChaise = levelChaise;
     }
 
-    public void flushing(Player player) {
+    public void flushing(Flushing flushing) {
     }
 }
