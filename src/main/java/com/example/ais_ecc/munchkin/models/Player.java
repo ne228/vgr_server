@@ -28,6 +28,9 @@ public class Player {
     private int lvl = 1;
     private List<Classes> classes;
     private List<Races> races;
+
+    private boolean superMunchkin = false;
+    private boolean halfBreed = false;
     private int canUseBigСlothesCount = 1;
     private int canHandCardCount = 5;
 
@@ -284,5 +287,21 @@ public class Player {
 
     public void setOpenTreasureCards(ArrayList<TreasureCard> openTreasureCards) {
         this.openTreasureCards = openTreasureCards;
+    }
+
+    public boolean isSuperMunchkin() {
+        return superMunchkin;
+    }
+
+    public void setSuperMunchkin(boolean superMunchkin) {
+        this.superMunchkin = superMunchkin;
+    }
+
+    public boolean isHalfBreed() {
+        return halfBreed;
+    }
+
+    public void setHalfBreed(boolean halfBreed) {
+        this.halfBreed = halfBreed;
     }
 }
