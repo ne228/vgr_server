@@ -42,6 +42,9 @@ public class ActionTakeOffHead extends IAction {
 
     @Override
     public String start() throws Exception {
+
+        if (headItemCard == null)
+            return "";
         player.setHeadItemCard(null);
         headItemCard.discard(player);
         player.getCards().add(headItemCard);

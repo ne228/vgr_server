@@ -50,6 +50,8 @@ public class ActionTakeOffWeapon extends IAction {
 
     @Override
     public String start() throws Exception {
+        if (weaponItemCard == null)
+            return "";
 
         if (player.getWeaponItemCard_1() != null)
             if (player.getWeaponItemCard_1().getId().equalsIgnoreCase(weaponItemCard.getId())) {

@@ -10,7 +10,6 @@ import com.example.ais_ecc.munchkin.service.observer.SubscribeService;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 
 public class ActionHandler {
@@ -107,7 +106,7 @@ public class ActionHandler {
             if (reqActionOpt.isPresent()) {
                 var reqAct = reqActionOpt.get();
                 var scopedActions = new ArrayList<RequiredAction>();
-                for(var act : requiredActions)
+                for (var act : requiredActions)
                     if (act.getScopeId().equalsIgnoreCase(reqAct.getScopeId()))
                         scopedActions.add(act);
 //                var scopedActions = requiredActions.stream()
@@ -129,12 +128,22 @@ public class ActionHandler {
         }
     }
 
+    public void doRawAction(IAction action) throws Exception {
+        var resultAction = action.start();
+        munchkinContext.getMessages().add(resultAction);
+        updateContext();
+        updatePlayerActions();
+        updateCards();
+
+    }
+
     public void addRequiredAction(RequiredAction action) throws Exception {
         getRequiredActions().add(action);
         updateContext();
         updatePlayerActions();
         updateCards();
     }
+
     public ArrayList<IAction> getResolvedActions(Player player) throws Exception {
         var res = new ArrayList<IAction>();
 

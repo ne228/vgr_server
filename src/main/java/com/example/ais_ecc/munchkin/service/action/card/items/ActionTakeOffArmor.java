@@ -41,6 +41,8 @@ public class ActionTakeOffArmor extends IAction {
 
     @Override
     public String start() throws Exception {
+        if (armorItemCard == null)
+            return "";
         player.setArmorItemCard(null);
         armorItemCard.discard(player);
         player.getCards().add(armorItemCard);

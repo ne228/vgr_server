@@ -43,6 +43,8 @@ public class ActionTakeOffLegs extends IAction {
 
     @Override
     public String start() throws Exception {
+        if (legsItemCard == null)
+            return "";
         player.setLegsItemCard(null);
         legsItemCard.discard(player);
         player.getCards().add(legsItemCard);

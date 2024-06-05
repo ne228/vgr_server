@@ -3,7 +3,6 @@ package com.example.ais_ecc.munchkin.service.action.obscenity;
 import com.example.ais_ecc.munchkin.models.Card;
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
-import com.example.ais_ecc.munchkin.service.action.IAction;
 import com.example.ais_ecc.munchkin.service.action.RequiredAction;
 
 import java.util.ArrayList;
@@ -13,13 +12,15 @@ public class ActionDropAllHand extends RequiredAction {
 
     private Player player;
 
-    public ActionDropAllHand(Player player, String scopeId, MunchkinContext context){
+    public ActionDropAllHand(Player player, String scopeId, MunchkinContext context) {
         setScopeId(scopeId);
+        this.context = context;
         this.id = getId();
         this.player = player;
         this.path = "/play_required/" + context.getId() + "?actionId=" + id;
         this.name = "Сбросить всю руку";
     }
+
     @Override
     public boolean canAmI(MunchkinContext munchkinContext) throws Exception {
         context = munchkinContext;

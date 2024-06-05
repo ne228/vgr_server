@@ -16,9 +16,6 @@ public class ActionNextMove extends IAction {
         this.color = "success";
     }
 
-    public ActionNextMove(User user) {
-        this.user = user;
-    }
 
     public static ActionNextMove createAction(MunchkinContext context) {
         return new ActionNextMove(context);
