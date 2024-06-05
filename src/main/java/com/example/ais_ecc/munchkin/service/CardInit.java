@@ -120,6 +120,9 @@ public class CardInit {
             i_player.getCards().add(new Uticora(context));
             i_player.getCards().add(new PlutoniumDragon(context));
             i_player.getCards().add(new PlutoniumDragon(context));
+            i_player.getCards().add(new PottedGrass(context));
+            i_player.getCards().add(new PottedGrass(context));
+
 
             i_player.getCards().add(new ClericCard(context));
             i_player.getCards().add(new WizardCard(context));

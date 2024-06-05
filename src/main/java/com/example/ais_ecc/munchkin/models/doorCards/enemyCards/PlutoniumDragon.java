@@ -45,7 +45,7 @@ public class PlutoniumDragon extends EnemyCard {
     @Override
     public boolean canChaise(Player player) {
         // TODO верни
-        if (player.getLvl() <= 0)
+        if (player.getLvl() <= 5)
             return false;
 
         return true;
