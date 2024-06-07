@@ -34,7 +34,9 @@ public abstract class EnemyCard extends DoorCard {
         return level;
     }
 
-    public abstract boolean canChaise(Player player);
+    public boolean canChaise(Player player){
+        return true;
+    }
 
     @Override
     public IAction createAction(PlayCardRequest playCardRequest) throws Exception {

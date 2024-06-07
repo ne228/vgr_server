@@ -109,7 +109,7 @@ public class CardInit {
             // Enemies Cards
             i_player.getCards().add(new CalmadzillaEnemyCard(context));
 
-
+            i_player.getCards().add(new BigChip(context));
             i_player.getCards().add(new CrippledGoblin(context));
             i_player.getCards().add(new KingToot(context));
             i_player.getCards().add(new KingToot(context));
