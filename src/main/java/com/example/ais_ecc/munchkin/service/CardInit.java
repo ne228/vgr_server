@@ -114,6 +114,9 @@ public class CardInit {
             i_player.getCards().add(new Mademonouselli(context));
             i_player.getCards().add(new Harpists(context));
             i_player.getCards().add(new Harpists(context));
+            i_player.getCards().add(new Hippogriff(context));
+            i_player.getCards().add(new Hippogriff(context));
+
             i_player.getCards().add(new AcceleratedSnails(context));
             i_player.getCards().add(new AcceleratedSnails(context));
             i_player.getCards().add(new GelatinOctahedron(context));

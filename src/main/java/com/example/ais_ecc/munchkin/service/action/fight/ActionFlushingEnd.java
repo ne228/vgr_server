@@ -93,6 +93,7 @@ public class ActionFlushingEnd extends IAction {
         flushing.endFlushing(false);
 
         if (fight.getFlushings().size() == 0) {
+
             move.setEnd(true);
             context.getActionHandler().doAction(new ActionNextMove(context));
         }
@@ -100,10 +101,6 @@ public class ActionFlushingEnd extends IAction {
         if (flushSuccess) {
             // ПОБЕДА!!!))
 
-            if (fight.getFlushings().size() == 0) {
-                move.setEnd(true);
-                context.getActionHandler().doAction(new ActionNextMove(context));
-            }
             return "Игрок " + currentPlayer.getUser().getUsername() + " смылся от " + flushing.getEnemyCard().getTitle();
         } else {
 
