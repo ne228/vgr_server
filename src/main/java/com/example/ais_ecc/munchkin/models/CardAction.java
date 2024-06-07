@@ -4,7 +4,6 @@ public class CardAction {
     private String path;
     private String text;
 
-
     public CardAction(String path, String text) {
         this.path = path;
         this.text = text;
