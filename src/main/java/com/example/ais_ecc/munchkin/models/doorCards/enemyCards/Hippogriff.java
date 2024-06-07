@@ -93,9 +93,9 @@ public class Hippogriff extends EnemyCard {
 
     @Override
     public boolean canChaise(Player player) {
-        // TODO вернуи лвлв
-//        if (player.getLvl() < 3)
-//            return false;
+
+        if (player.getLvl() < 3)
+            return false;
 
         return true;
     }
