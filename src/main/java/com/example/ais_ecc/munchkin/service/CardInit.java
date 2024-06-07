@@ -110,6 +110,8 @@ public class CardInit {
             i_player.getCards().add(new CalmadzillaEnemyCard(context));
 
 
+            i_player.getCards().add(new KingToot(context));
+            i_player.getCards().add(new KingToot(context));
             i_player.getCards().add(new Mademonouselli(context));
             i_player.getCards().add(new Mademonouselli(context));
             i_player.getCards().add(new Harpists(context));
