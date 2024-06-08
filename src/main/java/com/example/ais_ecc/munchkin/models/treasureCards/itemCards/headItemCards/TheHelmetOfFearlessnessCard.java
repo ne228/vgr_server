@@ -5,7 +5,7 @@ import com.example.ais_ecc.munchkin.models.races.RaceList;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.HeadItemCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 
-public class TheHelmetOfFearlessnessCard extends HeadItemCard {
+public class TheHelmetOfFearlessnessCard extends HeadItemCard{
     public TheHelmetOfFearlessnessCard(MunchkinContext munchkinContext) {
         super(munchkinContext);
         title = "Шлем Бесстрашия";
