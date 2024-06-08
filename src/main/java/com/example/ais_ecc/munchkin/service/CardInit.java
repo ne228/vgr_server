@@ -164,6 +164,8 @@ public class CardInit {
             i_player.getCards().add(new SwordSongDance(context));
             i_player.getCards().add(new ReallyFastRunningShoesCard(context));
             i_player.getCards().add(new TheShoesOfTheMightyPendelCard(context));
+
+
             // BONUS TREASURE CARDS
             i_player.getCards().add(new PotionIdiotCourage(context));
             i_player.getCards().add(new PotionIdiotCourage(context));
