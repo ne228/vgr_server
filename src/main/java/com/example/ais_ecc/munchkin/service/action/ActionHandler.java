@@ -21,6 +21,8 @@ public class ActionHandler {
 
     private ArrayList<IAction> actions;
 
+    private  ArrayList<IAction> endActions;
+
     private ArrayList<RequiredAction> requiredActions;
 
     public ActionHandler(MunchkinContext munchkinContext,
@@ -29,6 +31,7 @@ public class ActionHandler {
         this.messagingTemplate = messagingTemplate;
         this.subscribeService = new SubscribeService();
         actions = new ArrayList<>();
+        endActions = new ArrayList<>();
         requiredActions = new ArrayList<>();
 
         // SHARE ACTIONS
@@ -121,6 +124,7 @@ public class ActionHandler {
             }
 
             var resultAction = action.start();
+            endActions.add(action);
             munchkinContext.getMessages().add(resultAction);
             updateContext();
             updatePlayerActions();
@@ -130,6 +134,7 @@ public class ActionHandler {
 
     public void doRawAction(IAction action) throws Exception {
         var resultAction = action.start();
+        endActions.add(action);
         munchkinContext.getMessages().add(resultAction);
         updateContext();
         updatePlayerActions();
@@ -221,5 +226,25 @@ public class ActionHandler {
 
     public void setRequiredActions(ArrayList<RequiredAction> requiredActions) {
         this.requiredActions = requiredActions;
+    }
+
+    public void setMunchkinContext(MunchkinContext munchkinContext) {
+        this.munchkinContext = munchkinContext;
+    }
+
+    public SimpMessagingTemplate getMessagingTemplate() {
+        return messagingTemplate;
+    }
+
+    public void setMessagingTemplate(SimpMessagingTemplate messagingTemplate) {
+        this.messagingTemplate = messagingTemplate;
+    }
+
+    public ArrayList<IAction> getEndActions() {
+        return endActions;
+    }
+
+    public void setEndActions(ArrayList<IAction> endActions) {
+        this.endActions = endActions;
     }
 }

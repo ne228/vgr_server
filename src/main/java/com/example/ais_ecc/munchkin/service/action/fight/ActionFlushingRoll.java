@@ -6,16 +6,17 @@ import com.example.ais_ecc.munchkin.models.Move;
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.action.IAction;
+import com.example.ais_ecc.munchkin.service.action.IRollAction;
 
 import java.util.List;
 import java.util.Random;
 
-public class ActionFlushingRoll extends IAction {
+public class ActionFlushingRoll extends IAction implements IRollAction {
 
 
+    Flushing flushing;
     private Player currentPlayer;
     private Move move;
-
     private Fight fight;
     private MunchkinContext context;
 
@@ -71,6 +72,7 @@ public class ActionFlushingRoll extends IAction {
 
 
         var flush = fight.getFlushings().stream().findFirst();
+
         if (flush.isEmpty())
             return false;
         if (flush.get().isEndRolling())
@@ -90,7 +92,7 @@ public class ActionFlushingRoll extends IAction {
     @Override
     public String start() {
         currentPlayer = context.getCurrentPlayer();
-        var flushing = fight.getFlushings().stream().findFirst().get();
+        flushing = fight.getFlushings().stream().findFirst().get();
 
 
         if (flushing.getPlayer().getId().equalsIgnoreCase(currentPlayer.getId())) {
@@ -99,12 +101,17 @@ public class ActionFlushingRoll extends IAction {
             roll += currentPlayer.getDefBonusFlushing();
             flushing.setCubeNumber(roll);
             flushing.setEndRolling(true);
-//            fight.getFlushings().remove(flushing);
+
             return "Игрок " + currentPlayer.getUser().getUsername() + " бросил кубинк на смывку от " + flushing.getEnemyCard().getTitle() +
                     " на значение: " + roll;
         }
 
 
         return "TODO";
+    }
+
+    @Override
+    public void setRoll(int rollNum) {
+        flushing.setCubeNumber(rollNum);
     }
 }

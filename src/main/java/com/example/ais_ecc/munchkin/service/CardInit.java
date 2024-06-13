@@ -12,6 +12,7 @@ import com.example.ais_ecc.munchkin.models.doorCards.racesCards.RaceCard;
 import com.example.ais_ecc.munchkin.models.doorCards.walkingDeadCardsImpl.WalkingMonsterCard1;
 import com.example.ais_ecc.munchkin.models.doorCards.walkingDeadCardsImpl.WalkingMonsterCard2;
 import com.example.ais_ecc.munchkin.models.doorCards.walkingDeadCardsImpl.WalkingMonsterCard3;
+import com.example.ais_ecc.munchkin.models.treasureCards.bonusTreasureCards.CheaterCube;
 import com.example.ais_ecc.munchkin.models.treasureCards.bonusTreasureCards.bonusTreasureCardsImpl.PotionIdiotCourage;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.armoredItemCardsImpl.BurntArmorCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.armoredItemCardsImpl.LeatherOutfitCard;
@@ -112,6 +113,8 @@ public class CardInit {
             i_player.getCards().add(new CalmadzillaEnemyCard(context));
             i_player.getCards().add(new Leprechaun(context));
             i_player.getCards().add(new Leprechaun(context));
+            i_player.getCards().add(new Orcs(context));
+            i_player.getCards().add(new Orcs(context));
             i_player.getCards().add(new BigChip(context));
             i_player.getCards().add(new CrippledGoblin(context));
             i_player.getCards().add(new KingToot(context));
@@ -178,6 +181,10 @@ public class CardInit {
             i_player.getCards().add(new PotionIdiotCourage(context));
             i_player.getCards().add(new PotionIdiotCourage(context));
             i_player.getCards().add(new PotionIdiotCourage(context));
+
+            i_player.getCards().add(new CheaterCube(context));
+            i_player.getCards().add(new CheaterCube(context));
+            i_player.getCards().add(new CheaterCube(context));
 
 
             i_player.getCards().add(new WalkingMonsterCard1(context));
