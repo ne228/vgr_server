@@ -2,9 +2,9 @@ package com.example.ais_ecc.munchkin.models.doorCards.enemyCards;
 
 import com.example.ais_ecc.munchkin.models.Fight;
 import com.example.ais_ecc.munchkin.models.Player;
+import com.example.ais_ecc.munchkin.models.classes.ClassList;
 import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
-import com.example.ais_ecc.munchkin.service.action.obscenity.ActionDropAllHand;
 import com.example.ais_ecc.munchkin.service.action.obscenity.ActionDropRaceAndClass;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -42,6 +42,9 @@ public class ScreamingNerd extends EnemyCard {
             rewardLevel = 2;
         else
             rewardLevel = 1;
+
+        if (fight.getFightPlayers().stream().anyMatch(player -> player.isClass(ClassList.WARRIOR)))
+            return level + 6;
 
         return level;
     }
