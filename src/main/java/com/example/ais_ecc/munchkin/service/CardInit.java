@@ -114,6 +114,7 @@ public class CardInit {
             i_player.getCards().add(new InsuranceAgent(context));
             i_player.getCards().add(new InsuranceAgent(context));
             i_player.getCards().add(new Bigfoot(context));
+            i_player.getCards().add(new Bulrog(context));
 
             i_player.getCards().add(new CalmadzillaEnemyCard(context));
             i_player.getCards().add(new Leprechaun(context));
