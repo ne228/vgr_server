@@ -70,7 +70,7 @@ public class ActionHandler {
                     actions.add(action);
     }
 
-    private void updateContext() {
+    public void updateContext() {
         var contextId = munchkinContext.getId();
         if (contextId == null) {
             messagingTemplate.convertAndSend("/topic/contexts", munchkinContext.getId() + " gameContext is null");

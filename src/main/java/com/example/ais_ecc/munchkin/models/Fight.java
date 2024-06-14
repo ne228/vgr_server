@@ -25,7 +25,7 @@ public class Fight {
     private List<DoorCard> doorCards;
     private List<TreasureCard> harmTreasureCards;
     private List<FightAgree> fightAgrees;
-    private List<OrderFight> orders;
+    private List<OrderFight> fightOrders;
     private boolean isEnd;
     private List<Flushing> flushings;
 
@@ -155,11 +155,11 @@ public class Fight {
     }
 
     public List<OrderFight> getFightOrders() {
-        return orders;
+        return fightOrders;
     }
 
     public void setFightOrders(List<OrderFight> orders) {
-        this.orders = orders;
+        this.fightOrders = orders;
     }
 
     public boolean isEnd() {
@@ -212,11 +212,5 @@ public class Fight {
         this.doorCards = doorCards;
     }
 
-    public List<OrderFight> getOrders() {
-        return orders;
-    }
 
-    public void setOrders(List<OrderFight> orders) {
-        this.orders = orders;
-    }
 }

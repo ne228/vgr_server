@@ -111,11 +111,11 @@ public class CardInit {
 
             // Enemies Cards
 
+            i_player.getCards().add(new Gazebo(context));
             i_player.getCards().add(new InsuranceAgent(context));
             i_player.getCards().add(new InsuranceAgent(context));
             i_player.getCards().add(new Bigfoot(context));
             i_player.getCards().add(new Bulrog(context));
-
             i_player.getCards().add(new FlyingFrogs(context));
             i_player.getCards().add(new LikeLouse(context));
             i_player.getCards().add(new OozingMucus(context));
