@@ -49,7 +49,6 @@ public class CalmadzillaEnemyCard extends EnemyCard {
         if (player.getLvl() <= 4)
             return false;
 
-
         return true;
     }
 }
