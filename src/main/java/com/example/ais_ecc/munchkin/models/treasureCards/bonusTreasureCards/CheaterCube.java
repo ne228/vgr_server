@@ -20,6 +20,7 @@ public class CheaterCube extends TreasureCard {
                 "Одноразовая.";
 
         iconPath = "/images/cheaterCube.png";
+        cost = 300;
     }
 
     @Override

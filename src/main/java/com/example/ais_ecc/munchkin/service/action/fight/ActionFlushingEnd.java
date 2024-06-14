@@ -99,7 +99,7 @@ public class ActionFlushingEnd extends IAction {
         }
 
         if (flushSuccess) {
-            // ПОБЕДА!!!))
+            // СМЫВКА ОК!!!))
 
             return "Игрок " + currentPlayer.getUser().getUsername() + " смылся от " + flushing.getEnemyCard().getTitle();
         } else {

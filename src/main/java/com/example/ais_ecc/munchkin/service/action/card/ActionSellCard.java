@@ -4,6 +4,7 @@ import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.models.treasureCards.TreasureCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.action.IAction;
+import com.example.ais_ecc.munchkin.service.action.obscenity.ActionDrop1000Gold;
 
 public class ActionSellCard extends IAction {
 
@@ -35,10 +36,15 @@ public class ActionSellCard extends IAction {
         if (!playerHaveTargetCard)
             return false;
 
-        if (!context.isAllNotFight())
+//        if (context.getActionHandler()
+//                .getRequiredActions()
+//                .stream().anyMatch(action -> action instanceof ActionDrop1000Gold))
+//            return true;
+
+
+        if (!context.isAllNotFight()) {
             return false;
-
-
+        }
 
         return true;
     }
