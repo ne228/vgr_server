@@ -23,6 +23,7 @@ public class CalmadzillaEnemyCard extends EnemyCard {
         rewardLevel = 2;
         rewardTreasure = 4;
         level = 18;
+        iconPath = "/images/calmadzillaEnemyCard.png";
     }
 
     @Override
