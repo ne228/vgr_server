@@ -49,14 +49,21 @@ public class CardInit {
         ClassesCard warriorCard = new WarriorCard(context);
         ClassesCard wizardCard = new WizardCard(context);
 
-        context.getDoorCards().add(new CitizenBones(context));
-        context.getDoorCards().add(lawyerEnemyCard);
-        context.getDoorCards().add(lawyerEnemyCard);
-        context.getDoorCards().add(lawyerEnemyCard);
+//        context.getDoorCards().add(new CitizenBones(context));
+//        context.getDoorCards().add(lawyerEnemyCard);
+//        context.getDoorCards().add(lawyerEnemyCard);
+//        context.getDoorCards().add(lawyerEnemyCard);
+
+
+        context.getDoorCards().add(new ClericCard(context));
+        context.getDoorCards().add(new ClericCard(context));
+        context.getDoorCards().add(new ClericCard(context));
+        context.getDoorCards().add(new ClericCard(context));
+        context.getDoorCards().add(new ClericCard(context));
         //        getDoorCards().add(calmadzillaEnemyCard);
 
         //        getDoorCards().add(curse);
-        //        getDoorCards().add(bonus);
+//                getDoorCards().add(bonus);
 
         //        getDiscardCards().add(new WarriorCard(this));
         //        getDiscardCards().add(new WizardCard(this));

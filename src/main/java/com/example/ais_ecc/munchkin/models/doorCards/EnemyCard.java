@@ -8,6 +8,7 @@ import com.example.ais_ecc.munchkin.payload.request.PlayCardRequest;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.action.IAction;
 import com.example.ais_ecc.munchkin.service.action.card.ActionAddEnemyCard;
+import com.example.ais_ecc.munchkin.service.action.card.ActionPlayEnemy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,17 +35,20 @@ public abstract class EnemyCard extends DoorCard {
         return level;
     }
 
-    public boolean canChaise(Player player){
+    public boolean canChaise(Player player) {
         return true;
     }
 
     @Override
     public IAction createAction(PlayCardRequest playCardRequest) throws Exception {
-        var action = new ActionAddEnemyCard(this);
+        var actionAddEnemyCard = new ActionAddEnemyCard(this);
+        if (actionAddEnemyCard.canAmI(getMunchkinContext()))
+            return actionAddEnemyCard;
 
-        if (action.canAmI(getMunchkinContext()))
-            return action;
-
+        var actionPlayEnemy = new ActionPlayEnemy(this);
+        if (actionPlayEnemy.canAmI(getMunchkinContext())) {
+            return actionPlayEnemy;
+        }
         return null;
     }
 
@@ -54,12 +58,18 @@ public abstract class EnemyCard extends DoorCard {
         actions.addAll(super.getActions());
 
         var request = new PlayCardRequest(this.getId(), "null", false, "null");
-        var action = createAction(request);
-        if (action == null)
-            return actions;
 
-        var cardAction = new CardAction(request.toEndpointPath("play_card", getMunchkinContext().getId()), "Подкинуть монстра");
-        actions.add(cardAction);
+        var actionAddEnemyCard = new ActionAddEnemyCard(this);
+        if (actionAddEnemyCard.canAmI(getMunchkinContext())) {
+            var cardAction = new CardAction(request.toEndpointPath("play_card", getMunchkinContext().getId()), "Подкинуть монстра");
+            actions.add(cardAction);
+        }
+
+        var actionPlayEnemy = new ActionPlayEnemy(this);
+        if (actionPlayEnemy.canAmI(getMunchkinContext())) {
+            var cardAction = new CardAction(request.toEndpointPath("play_card", getMunchkinContext().getId()), "Сыграть монстра");
+            actions.add(cardAction);
+        }
 
         return actions;
     }
@@ -79,7 +89,6 @@ public abstract class EnemyCard extends DoorCard {
     public void setDefaultFlushValue(int defaultFlushValue) {
         this.defaultFlushValue = defaultFlushValue;
     }
-
 
 
     public int getRewardLevel() {

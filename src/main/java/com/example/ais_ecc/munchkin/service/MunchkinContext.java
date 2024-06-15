@@ -660,4 +660,11 @@ public class MunchkinContext {
     public void setCardInit(CardInit cardInit) {
         this.cardInit = cardInit;
     }
+
+    public String cleaningNooks() throws Exception {
+        var player = getPlayerByUser(getUser());
+        var actionKickDoor = new ActionCleaningNooks(player);
+        actionHandler.doAction(actionKickDoor);
+        return "";
+    }
 }

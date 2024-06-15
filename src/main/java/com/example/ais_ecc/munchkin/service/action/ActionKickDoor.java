@@ -1,11 +1,10 @@
 package com.example.ais_ecc.munchkin.service.action;
 
-import com.example.ais_ecc.munchkin.models.Player;
-import com.example.ais_ecc.munchkin.models.doorCards.BonusDoorCard;
-import com.example.ais_ecc.munchkin.models.doorCards.CurseDoorCard;
-import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
 import com.example.ais_ecc.munchkin.models.Fight;
 import com.example.ais_ecc.munchkin.models.Move;
+import com.example.ais_ecc.munchkin.models.Player;
+import com.example.ais_ecc.munchkin.models.doorCards.CurseDoorCard;
+import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 
 public class ActionKickDoor extends IAction {
@@ -58,12 +57,9 @@ public class ActionKickDoor extends IAction {
             return "Player " + player.getUser().getUsername() + " is cursed " + card.getTitle();
         }
 
-        if (card instanceof BonusDoorCard) {
-            var bonusDoorCard = (BonusDoorCard) card;
-            player.getCards().add(bonusDoorCard);
-            move.endKickDoor();
-            return "Player " + player.getUser().getUsername() + " give the door card";
-        }
-        return "error what the fuck";
+
+        player.getCards().add(card);
+        move.endKickDoor();
+        return "Player " + player.getUser().getUsername() + " give the door card";
     }
 }

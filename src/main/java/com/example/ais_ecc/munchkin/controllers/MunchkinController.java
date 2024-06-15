@@ -242,6 +242,29 @@ public class MunchkinController {
 
     }
 
+    @GetMapping("/cleaning_nooks/{id}")
+    public ResponseEntity<?> cleaningNooks(@PathVariable String id) {
+        try {
+            var munchkinContext = contextHandler.getContext(id);
+            if (munchkinContext == null)
+                throw new Exception("Not found game id " + id);
+
+
+            var response = munchkinContext.cleaningNooks();
+            return ResponseEntity
+                    .ok()
+                    .body(new MessageResponse(response));
+        } catch (ExpiredJwtException exc) {
+            return ResponseEntity
+                    .status(401)
+                    .body(("Error: " + exc.getMessage()));
+        } catch (Exception exc) {
+            return ResponseEntity
+                    .status(403)
+                    .body(("Error: " + exc.getMessage()));
+        }
+
+    }
     @GetMapping("/get_cards/{id}")
     public ResponseEntity<?> getCards(@PathVariable String id) {
         try {

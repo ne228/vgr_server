@@ -40,6 +40,7 @@ public class ActionHandler {
         actions.add(ActionDisconnect.createAction(munchkinContext));
         actions.add(ActionStart.createAction(munchkinContext));
         actions.add(ActionLevelUp.createAction(munchkinContext));
+        actions.add(ActionCleaningNooks.createAction(munchkinContext));
 
         // FIGHT ACTIONS
         actions.add(ActionFightAgree.createAction(munchkinContext));
@@ -53,8 +54,6 @@ public class ActionHandler {
 
         // cards
 //        actions.add(ActionPlayCurse.createAction());
-
-
         // CLASSES ACTIONS
         var player = munchkinContext.getCurrentPlayer();
         if (player != null)
