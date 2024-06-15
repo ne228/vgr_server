@@ -111,6 +111,8 @@ public class CardInit {
 
             // Enemies Cards
 
+
+            i_player.getCards().add(new WightBrothers(context));
             i_player.getCards().add(new Horror(context));
             i_player.getCards().add(new UndeadHorse(context));
             i_player.getCards().add(new TongueDemon(context));
