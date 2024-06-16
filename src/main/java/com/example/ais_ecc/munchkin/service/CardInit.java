@@ -21,10 +21,7 @@ import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.headItemCards
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.legsItemCardsIml.ReallyFastRunningShoesCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.legsItemCardsIml.SandalsProtectorsCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.legsItemCardsIml.TheShoesOfTheMightyPendelCard;
-import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.weaponItemCards.CharmingDudaCard;
-import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.weaponItemCards.PretentiousBucklerCard;
-import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.weaponItemCards.SwissArmyHalberdCard;
-import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.weaponItemCards.SwordSongDance;
+import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.weaponItemCards.*;
 
 public class CardInit {
 
@@ -200,6 +197,8 @@ public class CardInit {
             i_player.getCards().add(new TheHelmetOfFearlessnessCard(context));
 
             i_player.getCards().add(new PretentiousBucklerCard(context));
+
+            i_player.getCards().add(new AnElevenFootCueCard(context));
 
             // BONUS TREASURE CARDS
             i_player.getCards().add(new PotionIdiotCourage(context));
