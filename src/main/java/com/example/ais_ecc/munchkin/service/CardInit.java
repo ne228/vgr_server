@@ -203,6 +203,9 @@ public class CardInit {
 
             i_player.getCards().add(new HugeRockCard(context));
 
+            i_player.getCards().add(new NapalmStaffCard(context));
+
+
             i_player.getCards().add(new SpikyKnees(context));
             i_player.getCards().add(new SpikyKnees(context));
             i_player.getCards().add(new SpikyKnees(context));
