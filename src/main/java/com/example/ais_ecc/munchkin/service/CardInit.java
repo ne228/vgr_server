@@ -19,6 +19,7 @@ import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.armoredItemCa
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.bonusItemCards.SpikyKnees;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.headItemCards.HornedHelmetCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.headItemCards.TheHelmetOfFearlessnessCard;
+import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.legsItemCardsIml.CombatStepladderCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.legsItemCardsIml.ReallyFastRunningShoesCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.legsItemCardsIml.SandalsProtectorsCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.legsItemCardsIml.TheShoesOfTheMightyPendelCard;
@@ -204,6 +205,8 @@ public class CardInit {
             i_player.getCards().add(new HugeRockCard(context));
 
             i_player.getCards().add(new NapalmStaffCard(context));
+
+            i_player.getCards().add(new CombatStepladderCard(context));
 
 
             i_player.getCards().add(new SpikyKnees(context));
