@@ -201,6 +201,8 @@ public class CardInit {
 
             i_player.getCards().add(new AnElevenFootCueCard(context));
 
+            i_player.getCards().add(new HugeRockCard(context));
+
             i_player.getCards().add(new SpikyKnees(context));
             i_player.getCards().add(new SpikyKnees(context));
             i_player.getCards().add(new SpikyKnees(context));
