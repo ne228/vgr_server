@@ -5,10 +5,12 @@ import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.models.classes.ClassList;
 import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
 import com.example.ais_ecc.munchkin.models.races.RaceList;
+import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.BonusItemCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.action.obscenity.ActionDropMyItemCard;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class TongueDemon extends EnemyCard {
@@ -44,6 +46,7 @@ public class TongueDemon extends EnemyCard {
     @Override
     public int getTotalPower(Fight fight) throws Exception {
         if (dropCard) {
+            dropCard = false;
             var player = fight.getPlayer();
             var scopeId = UUID.randomUUID().toString();
             if (player.getHeadItemCard() != null) {
@@ -70,7 +73,14 @@ public class TongueDemon extends EnemyCard {
                 var act = new ActionDropMyItemCard(scopeId, player, player.getWeaponItemCard_2());
                 getMunchkinContext().getActionHandler().addRequiredAction(act);
             }
-            dropCard = false;
+            var bonusItemCards = new ArrayList<BonusItemCard>();
+            bonusItemCards.addAll(player.getBonusItemCards());
+
+            for (var bonusItemCard : bonusItemCards) {
+                var act = new ActionDropMyItemCard(scopeId, player, bonusItemCard);
+                getMunchkinContext().getActionHandler().addRequiredAction(act);
+            }
+
         }
 
         if (fight.getFightPlayers().stream().anyMatch(player -> player.isClass(ClassList.CLERIC)))

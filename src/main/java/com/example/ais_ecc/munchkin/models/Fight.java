@@ -115,7 +115,7 @@ public class Fight {
     public ArrayList<Player> getFightPlayers() {
         var res = new ArrayList<Player>();
         res.add(getPlayer());
-        for (var fightOrder : getFightOrders()){
+        for (var fightOrder : getFightOrders()) {
             if (fightOrder.isTrust())
                 res.add(fightOrder.getPlayer());
         }

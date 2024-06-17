@@ -113,7 +113,7 @@ public class ActionFightEnd extends IAction {
 
             move.setEnd(true);
             context.getActionHandler().doAction(new ActionNextMove(context));
-            return "Player " + fight.getPlayer().getUser().getUsername() + " win the fight!";
+            return "Игрок " + fight.getPlayer().getUser().getUsername() + " выиграл сражение!";
 
             // Заебисся пахнет пися
         } else {

@@ -39,6 +39,6 @@ public class ActionPlayEnemy extends IAction {
         move.setFight(new Fight(player, context));
         move.getFight().getEnemyCards().add(enemyCard);
         move.endFindTroubles();
-        return "Игрок " + player.getUser().getUsername() + " ищет неприятности и сраэается с " + enemyCard.getTitle();
+        return "Игрок " + player.getUser().getUsername() + " ищет неприятности и сражается с " + enemyCard.getTitle();
     }
 }

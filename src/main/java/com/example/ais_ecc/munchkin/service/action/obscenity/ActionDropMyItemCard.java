@@ -2,6 +2,7 @@ package com.example.ais_ecc.munchkin.service.action.obscenity;
 
 import com.example.ais_ecc.munchkin.models.Card;
 import com.example.ais_ecc.munchkin.models.Player;
+import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.BonusItemCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.action.RequiredAction;
 
@@ -45,6 +46,12 @@ public class ActionDropMyItemCard extends RequiredAction {
         if (player.getWeaponItemCard_2() != null)
             if (player.getWeaponItemCard_2().getId().equalsIgnoreCase(card.getId()))
                 return true;
+
+        if (card instanceof BonusItemCard) {
+            var bonusCard = player.getPuttedBonusCard((BonusItemCard) card);
+            if (bonusCard != null)
+                return true;
+        }
 
         return false;
     }
@@ -99,6 +106,13 @@ public class ActionDropMyItemCard extends RequiredAction {
                 context.discardCard(card.getId());
                 return "Игрок сбросил карту " + card.getTitle();
             }
+        if (card instanceof BonusItemCard) {
+            var bonusCard = player.getPuttedBonusCard((BonusItemCard) card);
+            player.getBonusItemCards().remove(bonusCard);
+            bonusCard.discard(player);
+            context.discardCard(bonusCard.getId());
+            return "Игрок сбросил карту " + card.getTitle();
+        }
 
 
         return null;

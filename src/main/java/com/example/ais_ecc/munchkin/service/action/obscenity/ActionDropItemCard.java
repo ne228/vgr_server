@@ -2,6 +2,7 @@ package com.example.ais_ecc.munchkin.service.action.obscenity;
 
 import com.example.ais_ecc.munchkin.models.Card;
 import com.example.ais_ecc.munchkin.models.Player;
+import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.BonusItemCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.action.RequiredAction;
 
@@ -49,6 +50,12 @@ public class ActionDropItemCard extends RequiredAction {
         if (loserPlayer.getWeaponItemCard_2() != null)
             if (loserPlayer.getWeaponItemCard_2().getId().equalsIgnoreCase(card.getId()))
                 return true;
+
+        if (card instanceof BonusItemCard) {
+            var bonusCard = loserPlayer.getPuttedBonusCard((BonusItemCard) card);
+            if (bonusCard != null)
+                return true;
+        }
 
         return false;
     }
@@ -107,12 +114,20 @@ public class ActionDropItemCard extends RequiredAction {
                 removeActions();
                 return "Игрок сбросил карту " + card.getTitle();
             }
+        if (card instanceof BonusItemCard) {
+            var bonusCard = loserPlayer.getPuttedBonusCard((BonusItemCard) card);
+            loserPlayer.getBonusItemCards().remove(bonusCard);
+            bonusCard.discard(loserPlayer);
+            context.discardCard(bonusCard.getId());
+            removeActions();
+            return "Игрок сбросил карту " + card.getTitle();
+        }
 
 
         return null;
     }
 
-    private void removeActions(){
+    private void removeActions() {
         if (loserPlayer.getHeadItemCard() == null
                 && loserPlayer.getArmorItemCard() == null
                 && loserPlayer.getLegsItemCard() == null

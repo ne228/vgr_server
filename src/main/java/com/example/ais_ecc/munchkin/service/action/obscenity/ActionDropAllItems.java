@@ -2,12 +2,10 @@ package com.example.ais_ecc.munchkin.service.action.obscenity;
 
 import com.example.ais_ecc.munchkin.models.Card;
 import com.example.ais_ecc.munchkin.models.Player;
+import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.BonusItemCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.action.RequiredAction;
-import com.example.ais_ecc.munchkin.service.action.card.items.ActionTakeOffArmor;
-import com.example.ais_ecc.munchkin.service.action.card.items.ActionTakeOffHead;
-import com.example.ais_ecc.munchkin.service.action.card.items.ActionTakeOffLegs;
-import com.example.ais_ecc.munchkin.service.action.card.items.ActionTakeOffWeapon;
+import com.example.ais_ecc.munchkin.service.action.card.items.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +68,14 @@ public class ActionDropAllItems extends RequiredAction {
             var act = new ActionTakeOffWeapon(player, card);
             context.getActionHandler().doRawAction(act);
         }
+
+        var bonusItemCards = new ArrayList<BonusItemCard>();
+        bonusItemCards.addAll(player.getBonusItemCards());
+
+        for (var bonusItemCard : bonusItemCards)
+            context.getActionHandler()
+                    .doRawAction(new ActionTakeOffBonus(player, bonusItemCard));
+
 
         List<Card> cards = new ArrayList<>();
         cards.addAll(player.getCards());

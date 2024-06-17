@@ -3,10 +3,9 @@ package com.example.ais_ecc.munchkin.service.action.obscenity;
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.action.IAction;
-import com.example.ais_ecc.munchkin.service.action.card.items.ActionTakeOffArmor;
-import com.example.ais_ecc.munchkin.service.action.card.items.ActionTakeOffHead;
-import com.example.ais_ecc.munchkin.service.action.card.items.ActionTakeOffLegs;
-import com.example.ais_ecc.munchkin.service.action.card.items.ActionTakeOffWeapon;
+import com.example.ais_ecc.munchkin.service.action.card.items.*;
+
+import java.util.stream.Collectors;
 
 public class ActionDropAllBigItems extends IAction {
 
@@ -55,6 +54,16 @@ public class ActionDropAllBigItems extends IAction {
                         .doRawAction(new ActionTakeOffWeapon(player, player.getWeaponItemCard_2()));
                 context.discardCard(player.getWeaponItemCard_2().getId());
             }
+
+        var bigBonusItemCards = player.getBonusItemCards()
+                .stream().filter(card -> card.isBigSize()).collect(Collectors.toList());
+
+        for (var bigBonusItemCard : bigBonusItemCards) {
+            context.getActionHandler()
+                    .doRawAction(new ActionTakeOffBonus(player, bigBonusItemCard));
+            context.discardCard(bigBonusItemCard.getId());
+        }
+
         return "Игрок " + player.getUser().getUsername() + " сбросил все свои болшие шмотки";
     }
 }

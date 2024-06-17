@@ -4,6 +4,7 @@ import com.example.ais_ecc.munchkin.models.Fight;
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.models.classes.ClassList;
 import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
+import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.BonusItemCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.action.obscenity.ActionPicUpRandomHandCard;
 import com.example.ais_ecc.munchkin.service.action.obscenity.ActionPickUpItemCard;
@@ -67,10 +68,19 @@ public class Hippogriff extends EnemyCard {
                         .getActionHandler()
                         .addRequiredAction(new ActionPickUpItemCard(scopeId, whoPickUpPlayer, player.getWeaponItemCard_2(), player));
 
+            var bonusItemCards = new ArrayList<BonusItemCard>();
+            bonusItemCards.addAll(player.getBonusItemCards());
+
+            for (var bonusItemCard : bonusItemCards)
+                getMunchkinContext()
+                        .getActionHandler()
+                        .addRequiredAction(new ActionPickUpItemCard(scopeId, whoPickUpPlayer, bonusItemCard, player));
+
 
             getMunchkinContext()
                     .getActionHandler()
                     .addRequiredAction(new ActionPicUpRandomHandCard(scopeId, player, whoPickUpPlayer, getMunchkinContext()));
+
 
         }
 

@@ -5,6 +5,7 @@ import com.example.ais_ecc.munchkin.models.Fight;
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
 import com.example.ais_ecc.munchkin.models.races.RaceList;
+import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.BonusItemCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.action.RequiredAction;
 import com.example.ais_ecc.munchkin.service.action.obscenity.ActionDropItemCard;
@@ -51,6 +52,12 @@ public class Leprechaun extends EnemyCard {
         if (player.getWeaponItemCard_2() != null) {
             cards.add(player.getWeaponItemCard_2());
         }
+        var bonusItemCards = new ArrayList<BonusItemCard>();
+        bonusItemCards.addAll(player.getBonusItemCards());
+
+        for (var bonusItemCard : bonusItemCards)
+            cards.add(bonusItemCard);
+
 
         var fightPlayers = fight.getFightPlayers();
         var players = new ArrayList<Player>();

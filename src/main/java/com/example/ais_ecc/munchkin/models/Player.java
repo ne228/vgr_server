@@ -7,10 +7,7 @@ import com.example.ais_ecc.munchkin.models.classes.Classes;
 import com.example.ais_ecc.munchkin.models.races.RaceList;
 import com.example.ais_ecc.munchkin.models.races.Races;
 import com.example.ais_ecc.munchkin.models.treasureCards.TreasureCard;
-import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.ArmorItemCard;
-import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.HeadItemCard;
-import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.LegsItemCard;
-import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.WeaponItemCard;
+import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
@@ -47,6 +44,8 @@ public class Player {
     private WeaponItemCard weaponItemCard_1;
     private WeaponItemCard weaponItemCard_2;
 
+    private ArrayList<BonusItemCard> bonusItemCards;
+
     // Выставленные бонусные карты
     // Выставленные оружие и тд
     public Player(User user) {
@@ -55,6 +54,7 @@ public class Player {
         races = new ArrayList<>();
         classes = new ArrayList<>();
         openTreasureCards = new ArrayList<>();
+        bonusItemCards = new ArrayList<>();
 
         Gender[] genders = Gender.values();
         Random random = new Random();
@@ -94,7 +94,25 @@ public class Player {
             if (weaponItemCard_2.getId().equalsIgnoreCase(card.getId()))
                 return true;
 
+
         return false;
+    }
+
+    public BonusItemCard getPuttedBonusCard(BonusItemCard bonusItemCard) {
+        var optional = bonusItemCards
+                .stream().filter(bonsuCard -> bonsuCard.getId().equalsIgnoreCase(bonusItemCard.getId())).findFirst();
+        if (optional.isPresent())
+            return optional.get();
+
+        return null;
+    }
+
+    public ArrayList<BonusItemCard> getBonusItemCards() {
+        return bonusItemCards;
+    }
+
+    public void setBonusItemCards(ArrayList<BonusItemCard> bonusItemCards) {
+        this.bonusItemCards = bonusItemCards;
     }
 
     public int getTotalPower() {
@@ -118,6 +136,10 @@ public class Player {
 
         if (weaponItemCard_2 != null)
             power += weaponItemCard_2.getPower();
+
+        for (var bonusItemCard : getBonusItemCards()) {
+            power += bonusItemCard.getPower();
+        }
 
         return power;
     }

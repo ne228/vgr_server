@@ -33,10 +33,6 @@ public class AcceleratedSnails extends EnemyCard {
     @JsonIgnore
     @Override
     public int getTotalPower(Fight fight) throws Exception {
-        if (fight.getFightPlayers().size() == 1 && fight.getHelpTreasureCards().size() == 0)
-            rewardLevel = 2;
-        else
-            rewardLevel = 1;
 
         return level;
     }

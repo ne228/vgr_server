@@ -254,6 +254,8 @@ public class MunchkinContext {
 
                 if (player.getWeaponItemCard_2() != null)
                     allCards.add(player.getWeaponItemCard_2());
+
+                allCards.addAll(player.getBonusItemCards());
             }
 
 

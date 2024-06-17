@@ -1,13 +1,13 @@
 package com.example.ais_ecc.munchkin.service.action.obscenity;
 
 import com.example.ais_ecc.munchkin.models.Player;
+import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.BonusItemCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.action.ActionNull;
 import com.example.ais_ecc.munchkin.service.action.IAction;
-import com.example.ais_ecc.munchkin.service.action.card.items.ActionTakeOffArmor;
-import com.example.ais_ecc.munchkin.service.action.card.items.ActionTakeOffHead;
-import com.example.ais_ecc.munchkin.service.action.card.items.ActionTakeOffLegs;
-import com.example.ais_ecc.munchkin.service.action.card.items.ActionTakeOffWeapon;
+import com.example.ais_ecc.munchkin.service.action.card.items.*;
+
+import java.util.ArrayList;
 
 public class ActionTakeOffAllItems extends IAction {
     Player player;
@@ -59,6 +59,14 @@ public class ActionTakeOffAllItems extends IAction {
             var act = new ActionTakeOffWeapon(player, card);
             context.getActionHandler().doRawAction(act);
         }
+
+        var bonusItemCards = new ArrayList<BonusItemCard>();
+        bonusItemCards.addAll(player.getBonusItemCards());
+
+        for (var bonusItemCard : bonusItemCards)
+            context.getActionHandler()
+                    .doRawAction(new ActionTakeOffBonus(player, bonusItemCard));
+
 
         context.getActionHandler().doAction(new ActionNull("Игрок сняли все шмотки!!"));
 
