@@ -3,9 +3,6 @@ package com.example.ais_ecc.munchkin.models.treasureCards.itemCards.armoredItemC
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.ArmorItemCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
-import com.example.ais_ecc.munchkin.service.action.ActionConnect;
-import com.example.ais_ecc.munchkin.service.action.card.ActionPlayCurse;
-import com.example.ais_ecc.munchkin.service.observer.ISubscribe;
 
 public class BurntArmorCard extends ArmorItemCard {
     public BurntArmorCard(MunchkinContext munchkinContext) {

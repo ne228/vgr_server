@@ -2,10 +2,7 @@ package com.example.ais_ecc.munchkin.payload.response;
 
 import com.example.ais_ecc.munchkin.models.Card;
 import com.example.ais_ecc.munchkin.service.JSONSerializer;
-import com.example.ais_ecc.munchkin.service.action.IAction;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GetCardsResponse {

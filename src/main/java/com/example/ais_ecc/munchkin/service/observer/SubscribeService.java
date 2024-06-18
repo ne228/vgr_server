@@ -1,6 +1,6 @@
 package com.example.ais_ecc.munchkin.service.observer;
 
-import com.example.ais_ecc.munchkin.service.action.IAction;
+import com.example.ais_ecc.munchkin.service.actions.IAction;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -6,8 +6,8 @@ import com.example.ais_ecc.munchkin.models.CardAction;
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.payload.request.PlayCardRequest;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
-import com.example.ais_ecc.munchkin.service.action.card.ActionPlayCurse;
-import com.example.ais_ecc.munchkin.service.action.IAction;
+import com.example.ais_ecc.munchkin.service.actions.card.ActionPlayCurse;
+import com.example.ais_ecc.munchkin.service.actions.IAction;
 
 import java.util.ArrayList;
 import java.util.List;

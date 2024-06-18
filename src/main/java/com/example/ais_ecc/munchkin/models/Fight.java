@@ -26,6 +26,7 @@ public class Fight {
     private List<TreasureCard> harmTreasureCards;
     private List<FightAgree> fightAgrees;
     private List<OrderFight> fightOrders;
+    private int bonusPlayerPower = 0;
     private boolean isEnd;
     private List<Flushing> flushings;
 
@@ -84,6 +85,7 @@ public class Fight {
 
     public int getPlayersPower() {
         var power = player.getTotalPower();
+        power += bonusPlayerPower;
 
         for (var fightOrder : getFightOrders()) {
             if (fightOrder.isTrust()) {
@@ -109,6 +111,10 @@ public class Fight {
                 power += ((BonusTreasureCard) harmCard).getBonus();
         }
         return power;
+    }
+
+    public void addBonusPlayerPower(int addPower) {
+        bonusPlayerPower += addPower;
     }
 
     @JsonIgnore
@@ -212,5 +218,11 @@ public class Fight {
         this.doorCards = doorCards;
     }
 
+    public int getBonusPlayerPower() {
+        return bonusPlayerPower;
+    }
 
+    public void setBonusPlayerPower(int bonusPlayerPower) {
+        this.bonusPlayerPower = bonusPlayerPower;
+    }
 }

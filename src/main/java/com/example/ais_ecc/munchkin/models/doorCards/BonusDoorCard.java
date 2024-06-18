@@ -3,8 +3,8 @@ package com.example.ais_ecc.munchkin.models.doorCards;
 import com.example.ais_ecc.munchkin.models.CardAction;
 import com.example.ais_ecc.munchkin.payload.request.PlayCardRequest;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
-import com.example.ais_ecc.munchkin.service.action.IAction;
-import com.example.ais_ecc.munchkin.service.action.card.ActionBonusDoorCard;
+import com.example.ais_ecc.munchkin.service.actions.IAction;
+import com.example.ais_ecc.munchkin.service.actions.card.ActionBonusDoorCard;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;

@@ -265,6 +265,7 @@ public class MunchkinController {
         }
 
     }
+
     @GetMapping("/get_cards/{id}")
     public ResponseEntity<?> getCards(@PathVariable String id) {
         try {
@@ -662,5 +663,37 @@ public class MunchkinController {
             return ResponseEntity.notFound().build();
         }
 
+    }
+
+    // CLASSES AND RACE ACTIONS
+    // CLASS CLERIC
+    @GetMapping("/cleric_exile/{id}")
+    public ResponseEntity<?> playCard(@PathVariable String id,
+                                      @RequestParam(required = true) String card1Id,
+                                      @RequestParam(required = true) String card2Id,
+                                      @RequestParam(required = true) String card3Id) {
+        try {
+            var munchkinContext = contextHandler.getContext(id);
+            if (munchkinContext == null)
+                throw new Exception("Not found game id " + id);
+
+
+
+            munchkinContext.clericExile(card1Id, card2Id, card3Id);
+
+
+            var response = "null"; // new GetCardsActionsResponse(munchkinContext.getCardAction(cardId));
+            return ResponseEntity
+                    .ok()
+                    .body(response.toString());
+        } catch (ExpiredJwtException exc) {
+            return ResponseEntity
+                    .status(401)
+                    .body(("Error: " + exc.getMessage()));
+        } catch (Exception exc) {
+            return ResponseEntity
+                    .status(403)
+                    .body(("Error: " + exc.getMessage()));
+        }
     }
 }

@@ -4,8 +4,8 @@ import com.example.ais_ecc.munchkin.models.CardAction;
 import com.example.ais_ecc.munchkin.models.treasureCards.TreasureCard;
 import com.example.ais_ecc.munchkin.payload.request.PlayCardRequest;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
-import com.example.ais_ecc.munchkin.service.action.IAction;
-import com.example.ais_ecc.munchkin.service.action.card.ActionPlayBonusTreasureCard;
+import com.example.ais_ecc.munchkin.service.actions.IAction;
+import com.example.ais_ecc.munchkin.service.actions.card.ActionPlayBonusTreasureCard;
 
 import java.util.List;
 

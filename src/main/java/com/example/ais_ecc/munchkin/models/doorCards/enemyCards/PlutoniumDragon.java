@@ -5,7 +5,7 @@ import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.ClassList;
 import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
-import com.example.ais_ecc.munchkin.service.action.ActionDie;
+import com.example.ais_ecc.munchkin.service.actions.ActionDie;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class PlutoniumDragon extends EnemyCard {

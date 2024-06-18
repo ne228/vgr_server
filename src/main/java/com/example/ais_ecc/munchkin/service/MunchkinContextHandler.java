@@ -1,7 +1,6 @@
 package com.example.ais_ecc.munchkin.service;
 
 import com.example.ais_ecc.entity.User;
-import com.example.ais_ecc.munchkin.service.action.ActionHandler;
 import com.example.ais_ecc.repositories.UserRepository;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.context.annotation.Scope;

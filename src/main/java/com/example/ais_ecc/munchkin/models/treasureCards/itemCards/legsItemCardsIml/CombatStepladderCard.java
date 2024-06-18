@@ -1,10 +1,10 @@
 package com.example.ais_ecc.munchkin.models.treasureCards.itemCards.legsItemCardsIml;
 
 import com.example.ais_ecc.munchkin.models.Player;
-import com.example.ais_ecc.munchkin.models.races.RaceList;
+
+import com.example.ais_ecc.munchkin.models.doorCards.racesCards.RaceList;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.LegsItemCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
-import com.example.ais_ecc.munchkin.service.observer.ISubscribe;
 
 public class CombatStepladderCard extends LegsItemCard {
 

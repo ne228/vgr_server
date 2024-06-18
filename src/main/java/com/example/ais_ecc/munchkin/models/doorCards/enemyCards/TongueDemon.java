@@ -7,7 +7,7 @@ import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.RaceList;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.BonusItemCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
-import com.example.ais_ecc.munchkin.service.action.obscenity.ActionDropMyItemCard;
+import com.example.ais_ecc.munchkin.service.actions.obscenity.ActionDropMyItemCard;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;

@@ -5,11 +5,9 @@ import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.models.doorCards.DoorCard;
 import com.example.ais_ecc.munchkin.payload.request.PlayCardRequest;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
-import com.example.ais_ecc.munchkin.service.action.IAction;
-import com.example.ais_ecc.munchkin.service.action.card.ActionPlayClasses;
-import com.example.ais_ecc.munchkin.service.action.card.ActionPlayRace;
-import com.example.ais_ecc.munchkin.service.action.card.ActionTakeOffClass;
-import com.example.ais_ecc.munchkin.service.action.card.ActionTakeOffRace;
+import com.example.ais_ecc.munchkin.service.actions.IAction;
+import com.example.ais_ecc.munchkin.service.actions.card.ActionPlayClasses;
+import com.example.ais_ecc.munchkin.service.actions.card.ActionTakeOffClass;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +70,10 @@ public abstract class ClassesCard extends DoorCard {
 
         res.addAll(super.getActions());
         return res;
+    }
+
+    public List<IAction> getClassActions() {
+        return new ArrayList<>();
     }
 
     public abstract void accept(Player player);

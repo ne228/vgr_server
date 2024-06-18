@@ -4,11 +4,10 @@ import com.example.ais_ecc.munchkin.models.CardAction;
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.payload.request.PlayCardRequest;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
-import com.example.ais_ecc.munchkin.service.action.IAction;
-import com.example.ais_ecc.munchkin.service.action.card.ActionPlayRace;
-import com.example.ais_ecc.munchkin.service.action.card.items.ActionPutLegs;
-import com.example.ais_ecc.munchkin.service.action.card.items.ActionTakeOffLegs;
-import com.example.ais_ecc.munchkin.service.action.card.items.ActionTakeOffWeapon;
+import com.example.ais_ecc.munchkin.service.actions.IAction;
+import com.example.ais_ecc.munchkin.service.actions.card.ActionPlayRace;
+import com.example.ais_ecc.munchkin.service.actions.card.items.ActionPutLegs;
+import com.example.ais_ecc.munchkin.service.actions.card.items.ActionTakeOffLegs;
 import com.example.ais_ecc.munchkin.service.observer.ISubscribe;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

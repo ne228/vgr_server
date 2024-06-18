@@ -4,8 +4,8 @@ import com.example.ais_ecc.munchkin.models.Fight;
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
-import com.example.ais_ecc.munchkin.service.action.obscenity.ActionDrop1000Gold;
-import com.example.ais_ecc.munchkin.service.action.obscenity.ActionDropAllItems;
+import com.example.ais_ecc.munchkin.service.actions.obscenity.ActionDrop1000Gold;
+import com.example.ais_ecc.munchkin.service.actions.obscenity.ActionDropAllItems;
 
 import java.util.UUID;
 

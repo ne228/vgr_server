@@ -7,8 +7,8 @@ import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.RaceList;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.BonusItemCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
-import com.example.ais_ecc.munchkin.service.action.RequiredAction;
-import com.example.ais_ecc.munchkin.service.action.obscenity.ActionDropItemCard;
+import com.example.ais_ecc.munchkin.service.actions.RequiredAction;
+import com.example.ais_ecc.munchkin.service.actions.obscenity.ActionDropItemCard;
 
 import java.util.ArrayList;
 import java.util.List;

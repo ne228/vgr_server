@@ -5,10 +5,11 @@ import com.example.ais_ecc.munchkin.models.*;
 import com.example.ais_ecc.munchkin.models.doorCards.DoorCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.TreasureCard;
 import com.example.ais_ecc.munchkin.payload.request.PlayCardRequest;
-import com.example.ais_ecc.munchkin.service.action.*;
-import com.example.ais_ecc.munchkin.service.action.card.ActionSellCard;
-import com.example.ais_ecc.munchkin.service.action.card.ActionTransferCard;
-import com.example.ais_ecc.munchkin.service.action.fight.*;
+import com.example.ais_ecc.munchkin.service.actions.*;
+import com.example.ais_ecc.munchkin.service.actions.card.ActionSellCard;
+import com.example.ais_ecc.munchkin.service.actions.card.ActionTransferCard;
+import com.example.ais_ecc.munchkin.service.actions.classes.ActionClericExile;
+import com.example.ais_ecc.munchkin.service.actions.fight.*;
 import com.example.ais_ecc.repositories.UserRepository;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -669,6 +670,18 @@ public class MunchkinContext {
         var player = getPlayerByUser(getUser());
         var actionKickDoor = new ActionCleaningNooks(player);
         actionHandler.doAction(actionKickDoor);
+        return "";
+    }
+
+    public String clericExile(String card1Id, String card2Id, String card3Id) throws Exception {
+        var player = getPlayerByUser(getUser());
+        var card1 = getCardById(card1Id);
+        var card2 = getCardById(card2Id);
+        var card3 = getCardById(card3Id);
+        if (card1 == null || card2 == null || card3 == null)
+            throw new Exception("Not found card exception");
+        var actionClericExile = new ActionClericExile(card1, card2, card3, player);
+        actionHandler.doAction(actionClericExile);
         return "";
     }
 }

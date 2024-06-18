@@ -6,9 +6,9 @@ import com.example.ais_ecc.munchkin.models.Flushing;
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.payload.request.PlayCardRequest;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
-import com.example.ais_ecc.munchkin.service.action.IAction;
-import com.example.ais_ecc.munchkin.service.action.card.ActionAddEnemyCard;
-import com.example.ais_ecc.munchkin.service.action.card.ActionPlayEnemy;
+import com.example.ais_ecc.munchkin.service.actions.IAction;
+import com.example.ais_ecc.munchkin.service.actions.card.ActionAddEnemyCard;
+import com.example.ais_ecc.munchkin.service.actions.card.ActionPlayEnemy;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -4,6 +4,12 @@ import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.ClassList;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.ClassesCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
+import com.example.ais_ecc.munchkin.service.actions.IAction;
+import com.example.ais_ecc.munchkin.service.actions.classes.ActionClericExile;
+import com.example.ais_ecc.munchkin.service.actions.classes.ActionClericResurrection;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class ClericCard extends ClassesCard {
     public ClericCard(MunchkinContext munchkinContext) {
@@ -32,7 +38,14 @@ public abstract class ClericCard extends ClassesCard {
 
     }
 
+    @Override
+    public List<IAction> getClassActions() {
+        var res = new ArrayList<IAction>();
+        var actionClericExile = new ActionClericExile();
+        var actionClericResurrection = new ActionClericResurrection();
 
-
-
+        res.add(actionClericExile);
+        res.add(actionClericResurrection);
+        return res;
+    }
 }
