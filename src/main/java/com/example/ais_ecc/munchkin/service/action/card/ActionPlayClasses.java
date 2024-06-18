@@ -1,8 +1,8 @@
 package com.example.ais_ecc.munchkin.service.action.card;
 
+import com.example.ais_ecc.munchkin.models.Move;
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.ClassesCard;
-import com.example.ais_ecc.munchkin.models.Move;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.action.IAction;
 
@@ -33,14 +33,14 @@ public class ActionPlayClasses extends IAction {
     public boolean canAmI(MunchkinContext munchkinContext) throws Exception {
         context = munchkinContext;
 
-        nameClass = classesCard.getClasses().getName();
+        nameClass = classesCard.getTitle();
         this.name = "Play " + nameClass;
         this.title = "Play " + nameClass;
 
         if (!context.isAllNotFight())
             return false;
 
-            if (player.getClasses().size() > 0)
+        if (player.getClasses().size() > 0)
             return false;
 
         var player = context.getCurrentPlayer();
@@ -56,8 +56,8 @@ public class ActionPlayClasses extends IAction {
 
     @Override
     public String start() throws Exception {
-        player.getClasses().add(classesCard.getClasses());
-        classesCard.getClasses().accept(player);
+        player.getClasses().add(classesCard);
+        classesCard.accept(player);
         context.discardCard(classesCard.getId());
 
         return "Player " + player.getUser().getUsername() + " is class + " + nameClass;   //TODO

@@ -1,13 +1,14 @@
-package com.example.ais_ecc.munchkin.models.doorCards.clasessCards;
+package com.example.ais_ecc.munchkin.models.doorCards.clasessCards.clerics;
 
-import com.example.ais_ecc.munchkin.models.classes.Classes;
-import com.example.ais_ecc.munchkin.models.classes.ClericClass;
+import com.example.ais_ecc.munchkin.models.Player;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.ClassList;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.ClassesCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 
-public class ClericCard extends ClassesCard {
+public abstract class ClericCard extends ClassesCard {
     public ClericCard(MunchkinContext munchkinContext) {
         super(munchkinContext);
-        title = "Cleric";
+        title = "Клерик";
         text = "<b>Воскрешение:</b> когда надо вытя" +
                 "нуть карту лицом вверх, ты можешь" +
                 "вместо этого взять верхнюю карту" +
@@ -17,12 +18,21 @@ public class ClericCard extends ClassesCard {
                 "<strong>Изгнание:</strong> можешь сбросить до З" +
                 "карт в бою против Андедов. Каждый" +
                 "сброс дает тебе +3 Бонус.";
-        this.iconPath =  "/images/cleric.png";
-    }
+        _class = ClassList.CLERIC;
 
+    }
 
     @Override
-    public Classes getClasses() {
-        return new ClericClass();
+    public void accept(Player player) {
+
     }
+
+    @Override
+    public void discard(Player player) {
+
+    }
+
+
+
+
 }

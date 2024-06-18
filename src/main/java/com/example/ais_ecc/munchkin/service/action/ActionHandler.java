@@ -1,8 +1,6 @@
 package com.example.ais_ecc.munchkin.service.action;
 
 import com.example.ais_ecc.munchkin.models.Player;
-import com.example.ais_ecc.munchkin.models.classes.Classes;
-import com.example.ais_ecc.munchkin.models.races.Races;
 import com.example.ais_ecc.munchkin.payload.response.GetCardsResponse;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.action.fight.*;
@@ -55,18 +53,20 @@ public class ActionHandler {
         // cards
 //        actions.add(ActionPlayCurse.createAction());
         // CLASSES ACTIONS
-        var player = munchkinContext.getCurrentPlayer();
-        if (player != null)
-            for (Classes _class : player.getClasses())
-                for (var action : _class.getActions(player))
-                    actions.add(action);
+        // TODO
+//        var player = munchkinContext.getCurrentPlayer();
+//        if (player != null)
+//            for (Classes _class : player.getClasses())
+//                for (var action : _class.getActions(player))
+//                    actions.add(action);
 
 
         // RACES ACTIONS
-        if (player != null)
-            for (Races race : player.getRaces())
-                for (var action : race.getActions(player))
-                    actions.add(action);
+        // TODO
+//        if (player != null)
+//            for (var race : player.getRaces())
+//                for (var action : race.getActions())
+//                    actions.add(action);
     }
 
     public void updateContext() {
@@ -172,28 +172,29 @@ public class ActionHandler {
         if (player == null)
             return res;
 
-        for (Classes _class : player.getClasses()) {
-            for (IAction action : _class.getActions(player)) {
-                try {
-                    if (action.canAmI(munchkinContext))
-                        res.add(action);
-                } catch (Exception exc) {
-                    // Nothing do
-                }
-            }
-        }
+        // TODO
+//        for (Classes _class : player.getClasses()) {
+//            for (IAction action : _class.getActions(player)) {
+//                try {
+//                    if (action.canAmI(munchkinContext))
+//                        res.add(action);
+//                } catch (Exception exc) {
+//                    // Nothing do
+//                }
+//            }
+//        }
 
-
-        for (Races race : player.getRaces()) {
-            for (IAction action : race.getActions(player)) {
-                try {
-                    if (action.canAmI(munchkinContext))
-                        res.add(action);
-                } catch (Exception exc) {
-                    // Nothing do
-                }
-            }
-        }
+// TODO
+//        for (Races race : player.getRaces()) {
+//            for (IAction action : race.getActions(player)) {
+//                try {
+//                    if (action.canAmI(munchkinContext))
+//                        res.add(action);
+//                } catch (Exception exc) {
+//                    // Nothing do
+//                }
+//            }
+//        }
 
         return res;
     }

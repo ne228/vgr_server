@@ -2,10 +2,10 @@ package com.example.ais_ecc.munchkin.models;
 
 
 import com.example.ais_ecc.entity.User;
-import com.example.ais_ecc.munchkin.models.classes.ClassList;
-import com.example.ais_ecc.munchkin.models.classes.Classes;
-import com.example.ais_ecc.munchkin.models.races.RaceList;
-import com.example.ais_ecc.munchkin.models.races.Races;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.ClassList;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.ClassesCard;
+import com.example.ais_ecc.munchkin.models.doorCards.racesCards.RaceCard;
+import com.example.ais_ecc.munchkin.models.doorCards.racesCards.RaceList;
 import com.example.ais_ecc.munchkin.models.treasureCards.TreasureCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,8 +23,8 @@ public class Player {
     private Gender gender;
 
     private int lvl = 1;
-    private List<Classes> classes;
-    private List<Races> races;
+    private List<ClassesCard> classes;
+    private List<RaceCard> races;
 
     private boolean superMunchkin = false;
     private boolean halfBreed = false;
@@ -154,39 +154,45 @@ public class Player {
 
     // CLASS ACTIONS
     public boolean isClass(ClassList _class) {
-        for (Classes m_class : getClasses())
+        for (ClassesCard m_class : getClasses())
             if (_class == m_class.get_class())
                 return true;
         return false;
+    }
+
+    public ClassesCard getClass(ClassList _class) {
+        for (ClassesCard m_class : getClasses())
+            if (_class == m_class.get_class())
+                return m_class;
+        return null;
     }
 
 
     // RACE ACTIONS
 
     public boolean isRace(RaceList race) {
-        for (Races playerRace : getRaces())
+        for (var playerRace : getRaces())
             if (race == playerRace.getRace())
                 return true;
         return false;
     }
 
+    public RaceCard getRace(RaceList race) {
+        for (var playerRace : getRaces())
+            if (race == playerRace.getRace())
+                return playerRace;
+        return null;
+    }
+
     // ITEMS ACTIONS
 
 
-    public List<Classes> getClasses() {
+    public List<ClassesCard> getClasses() {
         return classes;
     }
 
-    public void setClasses(List<Classes> classes) {
+    public void setClasses(List<ClassesCard> classes) {
         this.classes = classes;
-    }
-
-    public List<Races> getRaces() {
-        return races;
-    }
-
-    public void setRaces(List<Races> races) {
-        this.races = races;
     }
 
     public User getUser() {
@@ -325,5 +331,13 @@ public class Player {
 
     public void setHalfBreed(boolean halfBreed) {
         this.halfBreed = halfBreed;
+    }
+
+    public List<RaceCard> getRaces() {
+        return races;
+    }
+
+    public void setRaces(List<RaceCard> races) {
+        this.races = races;
     }
 }

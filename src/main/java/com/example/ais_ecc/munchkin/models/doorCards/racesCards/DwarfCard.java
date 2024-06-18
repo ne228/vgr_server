@@ -1,19 +1,23 @@
 package com.example.ais_ecc.munchkin.models.doorCards.racesCards;
 
-import com.example.ais_ecc.munchkin.models.classes.Classes;
-import com.example.ais_ecc.munchkin.models.races.DwarfRace;
-import com.example.ais_ecc.munchkin.models.races.Races;
+import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 
-public class DwarfCard extends RaceCard {
+public abstract class DwarfCard extends RaceCard {
+
     public DwarfCard(MunchkinContext munchkinContext) {
         super(munchkinContext);
         title = "Dwarf";
+        this.race = RaceList.DWARF;
     }
 
     @Override
-    public Races getRace() {
-        return new DwarfRace();
+    public void accept(Player player) {
+    }
+
+    @Override
+    public void discard(Player player) {
+
     }
 
 }

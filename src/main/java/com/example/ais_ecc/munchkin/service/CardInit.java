@@ -1,14 +1,33 @@
 package com.example.ais_ecc.munchkin.service;
 
+import com.example.ais_ecc.munchkin.models.Card;
 import com.example.ais_ecc.munchkin.models.doorCards.BonusDoorCard;
 import com.example.ais_ecc.munchkin.models.doorCards.DoorCard;
 import com.example.ais_ecc.munchkin.models.doorCards.bonusDoorCards.PsychoCard;
-import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.*;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.clerics.Cleric1;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.clerics.Cleric2;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.clerics.Cleric3;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.clerics.ClericCard;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.thiefs.Thief1;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.thiefs.Thief2;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.thiefs.Thief3;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.warriors.Warrior1;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.warriors.Warrior2;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.warriors.Warrior3;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.wizards.Wizard1;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.wizards.Wizard2;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.wizards.Wizard3;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.wizards.WizardCard;
 import com.example.ais_ecc.munchkin.models.doorCards.enemyCards.*;
-import com.example.ais_ecc.munchkin.models.doorCards.racesCards.DwarfCard;
-import com.example.ais_ecc.munchkin.models.doorCards.racesCards.ElfCard;
-import com.example.ais_ecc.munchkin.models.doorCards.racesCards.HalfingCard;
-import com.example.ais_ecc.munchkin.models.doorCards.racesCards.RaceCard;
+import com.example.ais_ecc.munchkin.models.doorCards.racesCards.dwarfs.Dwarf1;
+import com.example.ais_ecc.munchkin.models.doorCards.racesCards.dwarfs.Dwarf2;
+import com.example.ais_ecc.munchkin.models.doorCards.racesCards.dwarfs.Dwarf3;
+import com.example.ais_ecc.munchkin.models.doorCards.racesCards.elfs.Elf1;
+import com.example.ais_ecc.munchkin.models.doorCards.racesCards.elfs.Elf2;
+import com.example.ais_ecc.munchkin.models.doorCards.racesCards.elfs.Elf3;
+import com.example.ais_ecc.munchkin.models.doorCards.racesCards.haflings.Halfing1;
+import com.example.ais_ecc.munchkin.models.doorCards.racesCards.haflings.Halfing2;
+import com.example.ais_ecc.munchkin.models.doorCards.racesCards.haflings.Halfing3;
 import com.example.ais_ecc.munchkin.models.doorCards.walkingDeadCardsImpl.WalkingMonsterCard1;
 import com.example.ais_ecc.munchkin.models.doorCards.walkingDeadCardsImpl.WalkingMonsterCard2;
 import com.example.ais_ecc.munchkin.models.doorCards.walkingDeadCardsImpl.WalkingMonsterCard3;
@@ -25,6 +44,8 @@ import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.legsItemCards
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.legsItemCardsIml.TheShoesOfTheMightyPendelCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.weaponItemCards.*;
 
+import java.util.ArrayList;
+
 public class CardInit {
 
     private MunchkinContext context;
@@ -33,21 +54,59 @@ public class CardInit {
         this.context = context;
     }
 
+    private ArrayList<Card> getClassesCards() {
+        var res = new ArrayList<Card>();
+        res.add(new Cleric1(context));
+        res.add(new Cleric2(context));
+        res.add(new Cleric3(context));
+
+        res.add(new Wizard1(context));
+        res.add(new Wizard2(context));
+        res.add(new Wizard3(context));
+
+        res.add(new Warrior1(context));
+        res.add(new Warrior2(context));
+        res.add(new Warrior3(context));
+
+
+        res.add(new Thief1(context));
+        res.add(new Thief2(context));
+        res.add(new Thief3(context));
+
+        return res;
+    }
+
+    private ArrayList<Card> getRaceCards() {
+        var res = new ArrayList<Card>();
+        res.add(new Dwarf1(context));
+        res.add(new Dwarf2(context));
+        res.add(new Dwarf3(context));
+
+        res.add(new Elf1(context));
+        res.add(new Elf2(context));
+        res.add(new Elf3(context));
+
+
+        res.add(new Halfing1(context));
+        res.add(new Halfing2(context));
+        res.add(new Halfing3(context));
+
+        return res;
+    }
+
     public void initDeckDoor() {
         DoorCard calmadzillaEnemyCard = new CalmadzillaEnemyCard(context);
         DoorCard lawyerEnemyCard = new LawyerEnemyCard(context);
 
 
-        // GEN RACE CARDS
-        RaceCard dwarfCard = new DwarfCard(context);
-        RaceCard elfCard = new ElfCard(context);
-        RaceCard halfingCard = new HalfingCard(context);
+        // GEN RACE AND CLASS CARDS
 
-        // GEN CLASS CARDS
-        ClassesCard clericCard = new ClericCard(context);
-        ClassesCard thiefCard = new ThiefCard(context);
-        ClassesCard warriorCard = new WarriorCard(context);
-        ClassesCard wizardCard = new WizardCard(context);
+        for (var card : getRaceCards())
+            context.getDoorCards().add((DoorCard) card);
+
+        for (var card : getClassesCards())
+            context.getDoorCards().add((DoorCard) card);
+
 
 //        context.getDoorCards().add(new CitizenBones(context));
 //        context.getDoorCards().add(lawyerEnemyCard);
@@ -55,11 +114,6 @@ public class CardInit {
 //        context.getDoorCards().add(lawyerEnemyCard);
 
 
-        context.getDoorCards().add(new ClericCard(context));
-        context.getDoorCards().add(new ClericCard(context));
-        context.getDoorCards().add(new ClericCard(context));
-        context.getDoorCards().add(new ClericCard(context));
-        context.getDoorCards().add(new ClericCard(context));
         //        getDoorCards().add(calmadzillaEnemyCard);
 
         //        getDoorCards().add(curse);
@@ -93,28 +147,13 @@ public class CardInit {
     public void initPlayerDeck() {
         for (var i_player : context.getPlayers()) {
             // GEN RACE CARDS
-            RaceCard dwarfCard = new DwarfCard(context);
-            RaceCard elfCard = new ElfCard(context);
-            RaceCard halfingCard = new HalfingCard(context);
-
-            // GEN CLASS CARDS
-            ClassesCard clericCard = new ClericCard(context);
-            ClassesCard thiefCard = new ThiefCard(context);
-            ClassesCard warriorCard = new WarriorCard(context);
-            ClassesCard wizardCard = new WizardCard(context);
+            i_player.getCards().addAll(getRaceCards());
+            i_player.getCards().addAll(getClassesCards());
 
             // BONUS DOOR CARDS
             BonusDoorCard psychoCard = new PsychoCard(context);
             i_player.getCards().add(psychoCard);
 
-            i_player.getCards().add(dwarfCard);
-            i_player.getCards().add(elfCard);
-            i_player.getCards().add(halfingCard);
-
-            i_player.getCards().add(clericCard);
-            i_player.getCards().add(thiefCard);
-            i_player.getCards().add(warriorCard);
-            i_player.getCards().add(wizardCard);
 
             // Enemies Cards
 
@@ -167,8 +206,6 @@ public class CardInit {
             i_player.getCards().add(new PottedGrass(context));
 
 
-            i_player.getCards().add(new ClericCard(context));
-            i_player.getCards().add(new WizardCard(context));
 
             /// ITEM CARDS
 
@@ -219,12 +256,9 @@ public class CardInit {
             i_player.getCards().add(new PotionIdiotCourage(context));
 
 
-
             i_player.getCards().add(new CheaterCube(context));
             i_player.getCards().add(new CheaterCube(context));
             i_player.getCards().add(new CheaterCube(context));
-
-
 
 
             i_player.getCards().add(new WalkingMonsterCard1(context));

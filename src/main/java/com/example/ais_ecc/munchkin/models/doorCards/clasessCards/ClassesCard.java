@@ -1,13 +1,15 @@
 package com.example.ais_ecc.munchkin.models.doorCards.clasessCards;
 
 import com.example.ais_ecc.munchkin.models.CardAction;
-import com.example.ais_ecc.munchkin.models.classes.Classes;
+import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.models.doorCards.DoorCard;
 import com.example.ais_ecc.munchkin.payload.request.PlayCardRequest;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.action.IAction;
 import com.example.ais_ecc.munchkin.service.action.card.ActionPlayClasses;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.ais_ecc.munchkin.service.action.card.ActionPlayRace;
+import com.example.ais_ecc.munchkin.service.action.card.ActionTakeOffClass;
+import com.example.ais_ecc.munchkin.service.action.card.ActionTakeOffRace;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,43 +17,75 @@ import java.util.List;
 public abstract class ClassesCard extends DoorCard {
 
     public boolean classCard = true;
+    public ClassList _class;
 
     public ClassesCard(MunchkinContext munchkinContext) {
         super(munchkinContext);
     }
 
     @Override
-    public IAction createAction(PlayCardRequest playCardRequest) {
+    public IAction createAction(PlayCardRequest playCardRequest) throws Exception {
         var card = munchkinContext.getPlayerCardById(playCardRequest.getCardId());
         var player = munchkinContext.getPlayerById(playCardRequest.getPlayerId());
-        if (card instanceof ClassesCard) {
-            var action = new ActionPlayClasses(player, (ClassesCard) card);
-            return action;
-        }
+
+        var actionPlayClasses = new ActionPlayClasses(player, this);
+        if (actionPlayClasses.canAmI(getMunchkinContext()))
+            return actionPlayClasses;
+
+        var actionTakeOffClass = new ActionTakeOffClass(player, this);
+        if (actionTakeOffClass.canAmI(getMunchkinContext()))
+            return actionTakeOffClass;
         return null;
     }
 
     @Override
     public List<CardAction> getActions() throws Exception {
-        var res = new ArrayList<CardAction>();
-
+        var player = getMunchkinContext().getCurrentPlayer();
 
         PlayCardRequest playCardRequest = new PlayCardRequest(this.getId(), munchkinContext.getCurrentPlayer().getId(), false, "null");
+        var res = new ArrayList<CardAction>();
+        var actionPlayRace = new ActionPlayClasses(player, this);
+
+
+        var text = "Сыграть  " + get_class();
         var path = playCardRequest.toEndpointPath(this.getEdnpointPlayCard(), munchkinContext.getId());
-        var text = "Play " + this.getClasses().getName();
         var cardAction = new CardAction(path, text);
 
-        var action = createAction(playCardRequest);
         try {
-            if (action.canAmI(munchkinContext))
+            if (actionPlayRace.canAmI(munchkinContext))
                 res.add(cardAction);
         } catch (Exception e) {
             // do nothing
         }
+
+
+        text = "Сбросить  " + get_class();
+        path = playCardRequest.toEndpointPath(this.getEdnpointPlayCard(), munchkinContext.getId());
+        cardAction = new CardAction(path, text);
+        var actionTakeOffRace = new ActionTakeOffClass(player, this);
+        try {
+            if (actionTakeOffRace.canAmI(munchkinContext))
+                res.add(cardAction);
+        } catch (Exception e) {
+            // do nothing
+        }
+
         res.addAll(super.getActions());
         return res;
     }
 
-    @JsonIgnore
-    public abstract Classes getClasses();
+    public abstract void accept(Player player);
+
+    public abstract void discard(Player player);
+
+
+    public ClassList get_class() {
+        return _class;
+    }
+
+    public void set_class(ClassList _class) {
+        this._class = _class;
+    }
+
+
 }

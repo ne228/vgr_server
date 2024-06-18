@@ -2,9 +2,9 @@ package com.example.ais_ecc.munchkin.models.doorCards.enemyCards;
 
 import com.example.ais_ecc.munchkin.models.Fight;
 import com.example.ais_ecc.munchkin.models.Player;
-import com.example.ais_ecc.munchkin.models.classes.ClassList;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.ClassList;
 import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
-import com.example.ais_ecc.munchkin.models.races.RaceList;
+import com.example.ais_ecc.munchkin.models.doorCards.racesCards.RaceList;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.BonusItemCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.action.obscenity.ActionDropMyItemCard;

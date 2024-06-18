@@ -13,7 +13,6 @@ public class SpikyKnees extends BonusItemCard {
         cost = 200;
         power = 1;
         iconPath = "/images/spikyKnees.png";
-
     }
 
     @Override

@@ -34,7 +34,7 @@ public class ActionPlayRace extends IAction {
     public boolean canAmI(MunchkinContext munchkinContext) throws Exception {
         context = munchkinContext;
 
-        nameRace = raceCard.getRace().getName();
+        nameRace = raceCard.getTitle();
         this.name = "Play " + nameRace;
         this.title = "Play " + nameRace;
 
@@ -50,8 +50,8 @@ public class ActionPlayRace extends IAction {
 
     @Override
     public String start() throws Exception {
-        player.getRaces().add(raceCard.getRace());
-        raceCard.getRace().accept(player);
+        player.getRaces().add(raceCard);
+        raceCard.accept(player);
         context.discardCard(raceCard.getId());
 
         return "Player " + player.getUser().getUsername() + " is race + " + nameRace;   //TODO

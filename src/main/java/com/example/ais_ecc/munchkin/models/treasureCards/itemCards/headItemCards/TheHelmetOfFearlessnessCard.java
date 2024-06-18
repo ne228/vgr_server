@@ -1,7 +1,6 @@
 package com.example.ais_ecc.munchkin.models.treasureCards.itemCards.headItemCards;
 
 import com.example.ais_ecc.munchkin.models.Player;
-import com.example.ais_ecc.munchkin.models.races.RaceList;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.HeadItemCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 
