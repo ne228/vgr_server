@@ -115,9 +115,12 @@ public class ActionHandler {
                     return;
             }
 
+
             var resultAction = action.start();
             endActions.add(action);
             munchkinContext.getMessages().add(resultAction);
+
+            subscribeService.afterUpdate(action);
             updateContext();
             updatePlayerActions();
             updateCards();

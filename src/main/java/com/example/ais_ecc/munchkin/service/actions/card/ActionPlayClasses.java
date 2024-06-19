@@ -58,7 +58,8 @@ public class ActionPlayClasses extends IAction {
     public String start() throws Exception {
         player.getClasses().add(classesCard);
         classesCard.accept(player);
-        context.discardCard(classesCard.getId());
+        player.getCards().remove(classesCard);
+
 
         return "Player " + player.getUser().getUsername() + " is class + " + nameClass;   //TODO
     }

@@ -52,7 +52,7 @@ public class ActionPlayRace extends IAction {
     public String start() throws Exception {
         player.getRaces().add(raceCard);
         raceCard.accept(player);
-        context.discardCard(raceCard.getId());
+        player.getCards().remove(raceCard);
 
         return "Player " + player.getUser().getUsername() + " is race + " + nameRace;   //TODO
     }

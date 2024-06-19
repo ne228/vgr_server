@@ -675,12 +675,20 @@ public class MunchkinContext {
 
     public String clericExile(String card1Id, String card2Id, String card3Id) throws Exception {
         var player = getPlayerByUser(getUser());
+        var cards = new ArrayList<Card>();
         var card1 = getCardById(card1Id);
         var card2 = getCardById(card2Id);
         var card3 = getCardById(card3Id);
-        if (card1 == null || card2 == null || card3 == null)
-            throw new Exception("Not found card exception");
-        var actionClericExile = new ActionClericExile(card1, card2, card3, player);
+        if (card1 != null)
+            cards.add(card1);
+
+        if (card2 != null)
+            cards.add(card2);
+
+        if (card3 != null)
+            cards.add(card3);
+
+        var actionClericExile = new ActionClericExile(cards, player);
         actionHandler.doAction(actionClericExile);
         return "";
     }

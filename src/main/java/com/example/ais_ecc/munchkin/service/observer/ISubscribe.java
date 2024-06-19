@@ -8,11 +8,18 @@ public abstract class ISubscribe {
 
     IAction action;
     public String id = UUID.randomUUID().toString();
+
     public ISubscribe(IAction action) {
         this.action = action;
     }
-    public abstract void update();
 
+    public void update() {
+
+    }
+
+    public void afterUpdate() {
+
+    }
 
     public void setId(String id) {
         this.id = id;

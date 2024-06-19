@@ -7,20 +7,17 @@ import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.actions.IAction;
 
+import java.util.ArrayList;
+
 public class ActionClericExile extends IAction {
 
-    Card card1;
-    Card card2;
-    Card card3;
+    ArrayList<Card> cards;
     Player player;
-
     Fight fight;
 
 
-    public ActionClericExile(Card card1, Card card2, Card card3, Player player) {
-        this.card1 = card1;
-        this.card2 = card2;
-        this.card3 = card3;
+    public ActionClericExile(ArrayList<Card> cards, Player player) {
+        this.cards = cards;
         this.player = player;
         path = "cleric_exile";
         name = "Клерик: \"Изгнание\"";
@@ -46,7 +43,7 @@ public class ActionClericExile extends IAction {
         if (fight.getEnemyCards().stream().noneMatch(EnemyCard::isUnDead))
             return false;
 
-        if (player.getCards().size() < 3)
+        if (fight.getFightCounter().getClericExile() <= 0)
             return false;
 
         return true;
@@ -54,11 +51,15 @@ public class ActionClericExile extends IAction {
 
     @Override
     public String start() throws Exception {
-        context.discardCard(card1.getId());
-        context.discardCard(card2.getId());
-        context.discardCard(card3.getId());
+        for (var card : cards) {
+            if (fight.getFightCounter().getClericExile() <= 0)
+                break;
 
-        fight.addBonusPlayerPower(3);
-        return "Игрок " + player.getUser().getUsername() + " применил \"Изгнание\" и получил +3 Бонус в бою";
+            context.discardCard(card.getId());
+            fight.addBonusPlayerPower(3);
+            fight.getFightCounter().setClericExile(fight.getFightCounter().getClericExile() - 1);
+        }
+
+        return "Игрок " + player.getUser().getUsername() + " применил \"Изгнание\" и получил Бонус в бою";
     }
 }

@@ -28,11 +28,11 @@ public abstract class ArmorItemCard extends ItemCard {
         var target_player = context.getCurrentPlayer();
         subscribes = new ArrayList<>();
         for (var action : actionSubscribe) {
-            var subscribe = new ISubscribe(ActionPlayRace.createAction()) {
+            var subscribe = new ISubscribe(action) {
                 @Override
-                public void update() {
+                public void afterUpdate() {
                     var action = getAction();
-                    if (card.canPutItem(target_player)) {
+                    if (!card.canPutItem(target_player)) {
                         var takeOffAction = new ActionTakeOffArmor(target_player, card);
                         try {
                             context.getActionHandler().doAction(takeOffAction);

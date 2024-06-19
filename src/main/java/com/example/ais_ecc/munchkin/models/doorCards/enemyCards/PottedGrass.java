@@ -29,7 +29,6 @@ public class PottedGrass extends EnemyCard {
     @JsonIgnore
     @Override
     public int getTotalPower(Fight fight) throws Exception {
-
         if (fight.getFightPlayers()
                 .stream()
                 .anyMatch(player -> player.isRace(RaceList.ELF))) {

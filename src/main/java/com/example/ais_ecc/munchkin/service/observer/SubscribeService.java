@@ -22,11 +22,18 @@ public class SubscribeService {
         }
     }
 
-    public void update(IAction action){
-        for (int i = 0; i < subscribers.size(); i++) {
-            var _subscribe = subscribers.get(i);
+    public void update(IAction action) {
+        for (var _subscribe : subscribers) {
             if (_subscribe.getAction().getClass() == action.getClass())
                 _subscribe.update();
         }
     }
+
+    public void afterUpdate(IAction action) {
+        for (var _subscribe : subscribers) {
+            if (_subscribe.getAction().getClass() == action.getClass())
+                _subscribe.afterUpdate();
+        }
+    }
+
 }

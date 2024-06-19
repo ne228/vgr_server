@@ -19,6 +19,9 @@ public class Fight {
 
     @JsonIgnore
     public Player player;
+
+    private FightCounter fightCounter;
+
     public List<EnemyCard> enemyCards;
     private List<TreasureCard> helpTreasureCards;
 
@@ -30,6 +33,7 @@ public class Fight {
     private boolean isEnd;
     private List<Flushing> flushings;
 
+
     private boolean isLoss;
 
 
@@ -37,6 +41,7 @@ public class Fight {
         this.context = context;
         fightAgrees = new ArrayList<>();
         doorCards = new ArrayList<>();
+        fightCounter = new FightCounter();
         for (var player_game : context.getPlayers())
             fightAgrees.add(new FightAgree(player_game));
 
@@ -224,5 +229,13 @@ public class Fight {
 
     public void setBonusPlayerPower(int bonusPlayerPower) {
         this.bonusPlayerPower = bonusPlayerPower;
+    }
+
+    public FightCounter getFightCounter() {
+        return fightCounter;
+    }
+
+    public void setFightCounter(FightCounter fightCounter) {
+        this.fightCounter = fightCounter;
     }
 }
