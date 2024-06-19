@@ -245,6 +245,7 @@ public class CardInit {
 
             i_player.getCards().add(new CombatStepladderCard(context));
 
+            i_player.getCards().add(new OakOfGentlemenCard(context));
 
             i_player.getCards().add(new SpikyKnees(context));
             i_player.getCards().add(new SpikyKnees(context));
