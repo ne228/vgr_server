@@ -20,36 +20,43 @@ public abstract class HeadItemCard extends ItemCard {
         this.itemType = "Головняк";
     }
 
-    ISubscribe subscribe;
 
     @Override
     public void accept(Player player) {
         var context = getMunchkinContext();
         var card = this;
         var target_player = context.getCurrentPlayer();
-        subscribe = new ISubscribe(ActionPlayRace.createAction()) {
-            @Override
-            public void update() {
-                var action = getAction();
-                if (card.canPutItem(target_player)) {
-                    var takeOffAction = new ActionTakeOffHead(target_player, card);
-                    try {
-                        context.getActionHandler().doAction(takeOffAction);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
+
+        subscribes = new ArrayList<>();
+        for (var action : actionSubscribe) {
+            var subscribe = new ISubscribe(ActionPlayRace.createAction()) {
+                @Override
+                public void update() {
+                    var action = getAction();
+                    if (card.canPutItem(target_player)) {
+                        var takeOffAction = new ActionTakeOffHead(target_player, card);
+                        try {
+                            context.getActionHandler().doAction(takeOffAction);
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
-            }
-        };
+            };
+            subscribes.add(subscribe);
+            context.getActionHandler().getSubscribeService().register(subscribe);
+        }
 
-        context.getActionHandler().getSubscribeService().register(subscribe);
+
     }
 
     @Override
     public void discard(Player player) {
         var context = getMunchkinContext();
-        context.getActionHandler().getSubscribeService().unRegister(subscribe);
+        for (var sub : subscribes)
+            context.getActionHandler().getSubscribeService().unRegister(sub);
     }
+
     @Override
     public IAction createAction(PlayCardRequest playCardRequest) throws Exception {
 

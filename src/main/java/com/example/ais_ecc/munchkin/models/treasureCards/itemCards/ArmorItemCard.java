@@ -8,6 +8,7 @@ import com.example.ais_ecc.munchkin.service.actions.IAction;
 import com.example.ais_ecc.munchkin.service.actions.card.ActionPlayRace;
 import com.example.ais_ecc.munchkin.service.actions.card.items.ActionPutArmor;
 import com.example.ais_ecc.munchkin.service.actions.card.items.ActionTakeOffArmor;
+import com.example.ais_ecc.munchkin.service.actions.card.items.ActionTakeOffBonus;
 import com.example.ais_ecc.munchkin.service.observer.ISubscribe;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -15,8 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ArmorItemCard extends ItemCard {
-    ISubscribe subscribe;
-
     public ArmorItemCard(MunchkinContext munchkinContext) {
         super(munchkinContext);
         this.itemType = "Броник";
@@ -27,28 +26,32 @@ public abstract class ArmorItemCard extends ItemCard {
         var context = getMunchkinContext();
         var card = this;
         var target_player = context.getCurrentPlayer();
-        subscribe = new ISubscribe(ActionPlayRace.createAction()) {
-            @Override
-            public void update() {
-                var action = getAction();
-                if (card.canPutItem(target_player)) {
-                    var takeOffAction = new ActionTakeOffArmor(target_player, card);
-                    try {
-                        context.getActionHandler().doAction(takeOffAction);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
+        subscribes = new ArrayList<>();
+        for (var action : actionSubscribe) {
+            var subscribe = new ISubscribe(ActionPlayRace.createAction()) {
+                @Override
+                public void update() {
+                    var action = getAction();
+                    if (card.canPutItem(target_player)) {
+                        var takeOffAction = new ActionTakeOffArmor(target_player, card);
+                        try {
+                            context.getActionHandler().doAction(takeOffAction);
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
-            }
-        };
-
-        context.getActionHandler().getSubscribeService().register(subscribe);
+            };
+            subscribes.add(subscribe);
+            context.getActionHandler().getSubscribeService().register(subscribe);
+        }
     }
 
     @Override
     public void discard(Player player) {
         var context = getMunchkinContext();
-        context.getActionHandler().getSubscribeService().unRegister(subscribe);
+        for (var sub : subscribes)
+            context.getActionHandler().getSubscribeService().unRegister(sub);
     }
 
     @Override

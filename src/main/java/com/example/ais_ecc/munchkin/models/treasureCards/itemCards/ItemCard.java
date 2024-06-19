@@ -3,6 +3,15 @@ package com.example.ais_ecc.munchkin.models.treasureCards.itemCards;
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.models.treasureCards.TreasureCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
+import com.example.ais_ecc.munchkin.service.actions.IAction;
+import com.example.ais_ecc.munchkin.service.actions.card.ActionPlayClasses;
+import com.example.ais_ecc.munchkin.service.actions.card.ActionPlayRace;
+import com.example.ais_ecc.munchkin.service.actions.card.ActionTakeOffClass;
+import com.example.ais_ecc.munchkin.service.actions.card.ActionTakeOffRace;
+import com.example.ais_ecc.munchkin.service.observer.ISubscribe;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class ItemCard extends TreasureCard {
 
@@ -12,9 +21,16 @@ public abstract class ItemCard extends TreasureCard {
     public String itemType = "";
 
     public boolean itemCard = true;
+    List<ISubscribe> subscribes;
+    List<IAction> actionSubscribe;
 
     public ItemCard(MunchkinContext munchkinContext) {
         super(munchkinContext);
+        actionSubscribe = new ArrayList<>();
+        actionSubscribe.add(new ActionPlayRace(null, null));
+        actionSubscribe.add(new ActionTakeOffRace(null, null));
+        actionSubscribe.add(new ActionPlayClasses(null, null));
+        actionSubscribe.add(new ActionTakeOffClass(null, null));
     }
 
     public abstract void accept(Player  player);

@@ -15,11 +15,14 @@ public abstract class DwarfCard extends RaceCard {
 
     @Override
     public void accept(Player player) {
+        player.setCanHandCardCount(player.getCanHandCardCount() + 1);
+        player.setCanUseBigСlothesCount(player.getCanUseBigСlothesCount() + 10);
     }
 
     @Override
     public void discard(Player player) {
-
+        player.setCanHandCardCount(player.getCanHandCardCount() - 1);
+        player.setCanUseBigСlothesCount(player.getCanUseBigСlothesCount() - 10);
     }
 
 }

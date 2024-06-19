@@ -8,6 +8,7 @@ import com.example.ais_ecc.munchkin.service.actions.IAction;
 import com.example.ais_ecc.munchkin.service.actions.card.ActionPlayRace;
 import com.example.ais_ecc.munchkin.service.actions.card.items.ActionPutBonus;
 import com.example.ais_ecc.munchkin.service.actions.card.items.ActionTakeOffBonus;
+import com.example.ais_ecc.munchkin.service.actions.card.items.ActionTakeOffHead;
 import com.example.ais_ecc.munchkin.service.observer.ISubscribe;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -27,28 +28,32 @@ public abstract class BonusItemCard extends ItemCard {
         var context = getMunchkinContext();
         var card = this;
         var target_player = context.getCurrentPlayer();
-        subscribe = new ISubscribe(ActionPlayRace.createAction()) {
-            @Override
-            public void update() {
-                var action = getAction();
-                if (card.canPutItem(target_player)) {
-                    var takeOffAction = new ActionTakeOffBonus(target_player, card);
-                    try {
-                        context.getActionHandler().doAction(takeOffAction);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
+        subscribes = new ArrayList<>();
+        for (var action : actionSubscribe) {
+            var subscribe = new ISubscribe(ActionPlayRace.createAction()) {
+                @Override
+                public void update() {
+                    var action = getAction();
+                    if (card.canPutItem(target_player)) {
+                        var takeOffAction = new ActionTakeOffBonus(target_player, card);
+                        try {
+                            context.getActionHandler().doAction(takeOffAction);
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
-            }
-        };
-
-        context.getActionHandler().getSubscribeService().register(subscribe);
+            };
+            subscribes.add(subscribe);
+            context.getActionHandler().getSubscribeService().register(subscribe);
+        }
     }
 
     @Override
     public void discard(Player player) {
         var context = getMunchkinContext();
-        context.getActionHandler().getSubscribeService().unRegister(subscribe);
+        for (var sub : subscribes)
+            context.getActionHandler().getSubscribeService().unRegister(sub);
     }
 
     @Override
