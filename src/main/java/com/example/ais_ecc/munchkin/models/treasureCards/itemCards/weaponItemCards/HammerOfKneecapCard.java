@@ -20,7 +20,7 @@ public class HammerOfKneecapCard extends WeaponItemCard {
 
     @Override
     public boolean canPutItem(Player player) {
-        if (player.isRace(RaceList.HALFING))
+        if (player.isRace(RaceList.DWARF))
             return true;
         else
             return false;
