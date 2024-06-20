@@ -17,6 +17,7 @@ public class MaceOfSpikinessCard extends WeaponItemCard {
         setBigSize(false);
     }
 
+    @Override
     public boolean canPutItem(Player player) {
         for(var _class : player.getClasses()){
             if (_class._class == ClassList.CLERIC)
