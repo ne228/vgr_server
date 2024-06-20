@@ -35,6 +35,7 @@ import com.example.ais_ecc.munchkin.models.treasureCards.bonusTreasureCards.Chea
 import com.example.ais_ecc.munchkin.models.treasureCards.bonusTreasureCards.bonusTreasureCardsImpl.PotionIdiotCourage;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.armoredItemCardsImpl.BurntArmorCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.armoredItemCardsImpl.LeatherOutfitCard;
+import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.bonusItemCards.SandwichOfBelatedEpiphany;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.bonusItemCards.SpikyKnees;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.headItemCards.HornedHelmetCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.headItemCards.TheHelmetOfFearlessnessCard;
@@ -248,6 +249,8 @@ public class CardInit {
             i_player.getCards().add(new OakOfGentlemenCard(context));
 
             i_player.getCards().add(new HammerOfKneecapCard(context));
+
+            i_player.getCards().add(new SandwichOfBelatedEpiphany(context));
 
             i_player.getCards().add(new SpikyKnees(context));
             i_player.getCards().add(new SpikyKnees(context));
