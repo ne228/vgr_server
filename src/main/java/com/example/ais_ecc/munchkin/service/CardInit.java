@@ -247,6 +247,8 @@ public class CardInit {
 
             i_player.getCards().add(new OakOfGentlemenCard(context));
 
+            i_player.getCards().add(new HammerOfKneecapCard(context));
+
             i_player.getCards().add(new SpikyKnees(context));
             i_player.getCards().add(new SpikyKnees(context));
             i_player.getCards().add(new SpikyKnees(context));
