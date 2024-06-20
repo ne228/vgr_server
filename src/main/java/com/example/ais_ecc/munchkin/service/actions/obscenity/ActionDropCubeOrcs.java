@@ -4,6 +4,7 @@ import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.actions.IRollAction;
 import com.example.ais_ecc.munchkin.service.actions.RequiredAction;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Random;
 import java.util.UUID;
@@ -13,6 +14,8 @@ public class ActionDropCubeOrcs extends RequiredAction implements IRollAction {
     private Player player;
 
     private RequiredAction nextAction;
+    @JsonIgnore
+    int roll = 0;
 
 
     public ActionDropCubeOrcs(Player player, String scopeId, MunchkinContext context) {
@@ -40,7 +43,7 @@ public class ActionDropCubeOrcs extends RequiredAction implements IRollAction {
     public String start() throws Exception {
         Random random = new Random();
         var scopeId = UUID.randomUUID().toString();
-        int roll = random.nextInt(6) + 1;
+        roll = random.nextInt(6) + 1;
         if (roll <= 2) {
             nextAction = new ActionAcceptDie(player, scopeId, context);
         } else {
@@ -63,5 +66,11 @@ public class ActionDropCubeOrcs extends RequiredAction implements IRollAction {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @JsonIgnore
+    @Override
+    public int getRoll() {
+        return roll;
     }
 }

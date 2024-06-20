@@ -9,7 +9,6 @@ import com.example.ais_ecc.munchkin.service.actions.IAction;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class ActionFightEnd extends IAction {
 
@@ -85,17 +84,14 @@ public class ActionFightEnd extends IAction {
 
 
         if (playerPower > enemyPower) {
-            int maxLvlReward = fight.getEnemyCards().stream()
-                    .mapToInt(EnemyCard::getRewardLevel)
-                    .max()
-                    .orElseThrow(NoSuchElementException::new);
 
 
             int totalTreasureReward = fight.getEnemyCards().stream()
                     .mapToInt(EnemyCard::getRewardTreasure)
                     .sum();
 
-            fight.getPlayer().lvlUp(maxLvlReward);
+            for (var enemyCard : fight.getEnemyCards())
+                fight.getPlayer().lvlUp(enemyCard.getRewardLevel());
 
             for (var orderFight : fight.getFightOrders()) {
                 for (int rewardI = 0; rewardI < orderFight.treasureCount; rewardI++) {

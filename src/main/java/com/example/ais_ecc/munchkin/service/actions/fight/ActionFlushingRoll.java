@@ -7,6 +7,7 @@ import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.actions.IAction;
 import com.example.ais_ecc.munchkin.service.actions.IRollAction;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
 import java.util.Random;
@@ -114,5 +115,11 @@ public class ActionFlushingRoll extends IAction implements IRollAction {
     @Override
     public void setRoll(int rollNum) {
         flushing.setCubeNumber(rollNum);
+    }
+
+    @JsonIgnore
+    @Override
+    public int getRoll() {
+        return flushing.getCubeNumber();
     }
 }

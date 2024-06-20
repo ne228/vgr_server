@@ -747,4 +747,60 @@ public class MunchkinController {
                     .body(("Error: " + exc.getMessage()));
         }
     }
+
+    @GetMapping("/wizard_fly/{id}")
+    public ResponseEntity<?> wizardFly(@PathVariable String id,
+                                      @RequestParam(required = true) String card1Id,
+                                      @RequestParam(required = true) String card2Id,
+                                      @RequestParam(required = true) String card3Id) {
+        try {
+            var munchkinContext = contextHandler.getContext(id);
+            if (munchkinContext == null)
+                throw new Exception("Not found game id " + id);
+
+
+            munchkinContext.wizardFly(card1Id, card2Id, card3Id);
+
+
+            var response = "null"; // new GetCardsActionsResponse(munchkinContext.getCardAction(cardId));
+            return ResponseEntity
+                    .ok()
+                    .body(response.toString());
+        } catch (ExpiredJwtException exc) {
+            return ResponseEntity
+                    .status(401)
+                    .body(("Error: " + exc.getMessage()));
+        } catch (Exception exc) {
+            return ResponseEntity
+                    .status(403)
+                    .body(("Error: " + exc.getMessage()));
+        }
+    }
+
+    @GetMapping("/wizard_pacification/{id}")
+    public ResponseEntity<?> wizardPacification(@PathVariable String id,
+                                         @RequestParam(required = true) String cardId) {
+        try {
+            var munchkinContext = contextHandler.getContext(id);
+            if (munchkinContext == null)
+                throw new Exception("Not found game id " + id);
+
+            munchkinContext.wizardPacification(cardId);
+
+            var response = "null"; // new GetCardsActionsResponse(munchkinContext.getCardAction(cardId));
+            return ResponseEntity
+                    .ok()
+                    .body(response.toString());
+        } catch (ExpiredJwtException exc) {
+            return ResponseEntity
+                    .status(401)
+                    .body(("Error: " + exc.getMessage()));
+        } catch (Exception exc) {
+            return ResponseEntity
+                    .status(403)
+                    .body(("Error: " + exc.getMessage()));
+        }
+    }
+
+
 }

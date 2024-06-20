@@ -8,9 +8,7 @@ import com.example.ais_ecc.munchkin.payload.request.PlayCardRequest;
 import com.example.ais_ecc.munchkin.service.actions.*;
 import com.example.ais_ecc.munchkin.service.actions.card.ActionSellCard;
 import com.example.ais_ecc.munchkin.service.actions.card.ActionTransferCard;
-import com.example.ais_ecc.munchkin.service.actions.classes.ActionClericExile;
-import com.example.ais_ecc.munchkin.service.actions.classes.ActionHalfingRoll;
-import com.example.ais_ecc.munchkin.service.actions.classes.ActionHalfingSell;
+import com.example.ais_ecc.munchkin.service.actions.classes.*;
 import com.example.ais_ecc.munchkin.service.actions.fight.*;
 import com.example.ais_ecc.repositories.UserRepository;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -712,5 +710,36 @@ public class MunchkinContext {
         var actionHalfingSell = new ActionHalfingRoll(player, card);
         actionHandler.doAction(actionHalfingSell);
 
+    }
+
+    public String wizardFly(String card1Id, String card2Id, String card3Id) throws Exception {
+        var player = getPlayerByUser(getUser());
+        var cards = new ArrayList<Card>();
+        var card1 = getCardById(card1Id);
+        var card2 = getCardById(card2Id);
+        var card3 = getCardById(card3Id);
+        if (card1 != null)
+            cards.add(card1);
+
+        if (card2 != null)
+            cards.add(card2);
+
+        if (card3 != null)
+            cards.add(card3);
+
+        var actionWizardFly = new ActionWizardFly(player, cards);
+        actionHandler.doAction(actionWizardFly);
+        return "";
+    }
+
+
+    public void wizardPacification(String cardId) throws Exception {
+
+        var enemyCardOpt = getFight().getEnemyCards().stream()
+                .filter(card -> card.getId().equalsIgnoreCase(cardId)).findFirst();
+        if (enemyCardOpt.isPresent()) {
+            var actionWizardPacification = new ActionWizardPacification(enemyCardOpt.get());
+            actionHandler.doAction(actionWizardPacification);
+        }
     }
 }
