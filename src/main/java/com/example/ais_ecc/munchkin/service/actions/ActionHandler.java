@@ -54,12 +54,6 @@ public class ActionHandler {
 //        actions.add(ActionPlayCurse.createAction());
 
 
-        // RACES ACTIONS
-        // TODO
-//        if (player != null)
-//            for (var race : player.getRaces())
-//                for (var action : race.getActions())
-//                    actions.add(action);
     }
 
     public void updateContext() {
@@ -104,9 +98,7 @@ public class ActionHandler {
                 for (var act : requiredActions)
                     if (act.getScopeId().equalsIgnoreCase(reqAct.getScopeId()))
                         scopedActions.add(act);
-//                var scopedActions = requiredActions.stream()
-//                        .filter(act -> act.getScopeId().equalsIgnoreCase(reqAct.getScopeId()))
-//                        .collect(Collectors.toList());
+
 
                 requiredActions.removeAll(scopedActions);
 
@@ -169,7 +161,7 @@ public class ActionHandler {
             return res;
 
         // CLASSES ACTIONS
-        // TODO
+
         var classesActions = new ArrayList<IAction>();
         for (var _class : player.getClasses())
             classesActions.addAll(_class.getClassActions());
@@ -183,18 +175,21 @@ public class ActionHandler {
                 // Nothing do
             }
         }
+        // RACE ACTIONS
 
-// TODO
-//        for (Races race : player.getRaces()) {
-//            for (IAction action : race.getActions(player)) {
-//                try {
-//                    if (action.canAmI(munchkinContext))
-//                        res.add(action);
-//                } catch (Exception exc) {
-//                    // Nothing do
-//                }
-//            }
-//        }
+        var raceActions = new ArrayList<IAction>();
+        for (var race : player.getRaces())
+            raceActions.addAll(race.getRaceActions());
+
+        for (IAction action : raceActions) {
+            try {
+                var canAmi = action.canAmI(munchkinContext);
+                if (canAmi)
+                    res.add(action);
+            } catch (Exception exc) {
+                // Nothing do
+            }
+        }
 
         return res;
     }

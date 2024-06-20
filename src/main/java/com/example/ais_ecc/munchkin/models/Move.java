@@ -13,6 +13,7 @@ public class Move {
     public boolean isFromBounty = false;
     public boolean isEnd;
     public Fight fight;
+    private MoveCounter moveCounter;
 
     Player player;
     @JsonIgnore
@@ -21,6 +22,7 @@ public class Move {
     public Move(Player player, MunchkinContext context) {
         this.context = context;
         this.player = player;
+        this.moveCounter = new MoveCounter();
     }
 
     public void endKickDoor() {
@@ -108,5 +110,13 @@ public class Move {
 
     public void setContext(MunchkinContext context) {
         this.context = context;
+    }
+
+    public MoveCounter getMoveCounter() {
+        return moveCounter;
+    }
+
+    public void setMoveCounter(MoveCounter moveCounter) {
+        this.moveCounter = moveCounter;
     }
 }

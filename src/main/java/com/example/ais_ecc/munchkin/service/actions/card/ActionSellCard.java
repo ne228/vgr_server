@@ -35,15 +35,10 @@ public class ActionSellCard extends IAction {
         if (!playerHaveTargetCard)
             return false;
 
-//        if (context.getActionHandler()
-//                .getRequiredActions()
-//                .stream().anyMatch(action -> action instanceof ActionDrop1000Gold))
-//            return true;
 
-
-        if (!context.isAllNotFight()) {
+        if (!context.isAllNotFight())
             return false;
-        }
+
 
         return true;
     }

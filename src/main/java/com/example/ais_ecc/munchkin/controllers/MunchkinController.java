@@ -678,9 +678,60 @@ public class MunchkinController {
                 throw new Exception("Not found game id " + id);
 
 
-
             munchkinContext.clericExile(card1Id, card2Id, card3Id);
 
+
+            var response = "null"; // new GetCardsActionsResponse(munchkinContext.getCardAction(cardId));
+            return ResponseEntity
+                    .ok()
+                    .body(response.toString());
+        } catch (ExpiredJwtException exc) {
+            return ResponseEntity
+                    .status(401)
+                    .body(("Error: " + exc.getMessage()));
+        } catch (Exception exc) {
+            return ResponseEntity
+                    .status(403)
+                    .body(("Error: " + exc.getMessage()));
+        }
+    }
+
+    @GetMapping("/halfing_sell/{id}")
+    public ResponseEntity<?> halfingSell(@PathVariable String id,
+                                         @RequestParam(required = true) String cardId) {
+        try {
+            var munchkinContext = contextHandler.getContext(id);
+            if (munchkinContext == null)
+                throw new Exception("Not found game id " + id);
+
+
+            munchkinContext.halfingSell(cardId);
+
+
+            var response = "null"; // new GetCardsActionsResponse(munchkinContext.getCardAction(cardId));
+            return ResponseEntity
+                    .ok()
+                    .body(response.toString());
+        } catch (ExpiredJwtException exc) {
+            return ResponseEntity
+                    .status(401)
+                    .body(("Error: " + exc.getMessage()));
+        } catch (Exception exc) {
+            return ResponseEntity
+                    .status(403)
+                    .body(("Error: " + exc.getMessage()));
+        }
+    }
+
+    @GetMapping("/halfing_roll/{id}")
+    public ResponseEntity<?> halfingRoll(@PathVariable String id,
+                                         @RequestParam(required = true) String cardId) {
+        try {
+            var munchkinContext = contextHandler.getContext(id);
+            if (munchkinContext == null)
+                throw new Exception("Not found game id " + id);
+
+            munchkinContext.halfingRoll(cardId);
 
             var response = "null"; // new GetCardsActionsResponse(munchkinContext.getCardAction(cardId));
             return ResponseEntity

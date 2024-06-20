@@ -75,6 +75,7 @@ public class ActionFlushingRoll extends IAction implements IRollAction {
 
         if (flush.isEmpty())
             return false;
+
         if (flush.get().isEndRolling())
             return false;
 

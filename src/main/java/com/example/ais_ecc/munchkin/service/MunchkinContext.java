@@ -9,6 +9,8 @@ import com.example.ais_ecc.munchkin.service.actions.*;
 import com.example.ais_ecc.munchkin.service.actions.card.ActionSellCard;
 import com.example.ais_ecc.munchkin.service.actions.card.ActionTransferCard;
 import com.example.ais_ecc.munchkin.service.actions.classes.ActionClericExile;
+import com.example.ais_ecc.munchkin.service.actions.classes.ActionHalfingRoll;
+import com.example.ais_ecc.munchkin.service.actions.classes.ActionHalfingSell;
 import com.example.ais_ecc.munchkin.service.actions.fight.*;
 import com.example.ais_ecc.repositories.UserRepository;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -691,5 +693,24 @@ public class MunchkinContext {
         var actionClericExile = new ActionClericExile(cards, player);
         actionHandler.doAction(actionClericExile);
         return "";
+    }
+
+    public void halfingSell(String cardId) throws Exception {
+        var player = getPlayerByUser(getUser());
+
+        var card = getCardById(cardId);
+
+        if (card instanceof TreasureCard) {
+            var actionHalfingSell = new ActionHalfingSell(player, (TreasureCard) card);
+            actionHandler.doAction(actionHalfingSell);
+        }
+    }
+
+    public void halfingRoll(String cardId) throws Exception {
+        var player = getPlayerByUser(getUser());
+        var card = getCardById(cardId);
+        var actionHalfingSell = new ActionHalfingRoll(player, card);
+        actionHandler.doAction(actionHalfingSell);
+
     }
 }

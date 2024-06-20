@@ -73,6 +73,9 @@ public abstract class RaceCard extends DoorCard {
         return res;
     }
 
+    public List<IAction> getRaceActions() throws Exception {
+        return new ArrayList<>();
+    }
     public abstract void accept(Player player);
 
     public abstract void discard(Player player);
