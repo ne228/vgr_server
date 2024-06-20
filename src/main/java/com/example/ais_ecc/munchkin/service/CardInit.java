@@ -252,6 +252,8 @@ public class CardInit {
 
             i_player.getCards().add(new SandwichOfBelatedEpiphany(context));
 
+            i_player.getCards().add(new MaceOfSpikinessCard(context));
+
             i_player.getCards().add(new SpikyKnees(context));
             i_player.getCards().add(new SpikyKnees(context));
             i_player.getCards().add(new SpikyKnees(context));
