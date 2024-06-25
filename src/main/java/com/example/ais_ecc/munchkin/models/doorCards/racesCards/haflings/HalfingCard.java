@@ -16,7 +16,9 @@ public abstract class HalfingCard extends RaceCard {
 
     public HalfingCard(MunchkinContext munchkinContext) {
         super(munchkinContext);
-        title = "Halfing";
+        title = "Халфинг";
+        text = "На каждом ходу можешь продать одну шмотку за двойную цену (цена других шмоток не меняется).\n" +
+                "Если твой бросок на Смывку не удался, ты можешь сбросить карту и попробовать ещё раз.";
         this.race = RaceList.HALFING;
     }
 

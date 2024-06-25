@@ -45,7 +45,7 @@ public abstract class RaceCard extends DoorCard {
         var actionPlayRace = new ActionPlayRace(player, this);
 
 
-        var text = "Сыграть  " + race;
+        var text = "Сыграть  " + this.getTitle();
         var path = playCardRequest.toEndpointPath(this.getEdnpointPlayCard(), munchkinContext.getId());
         var cardAction = new CardAction(path, text);
 
@@ -57,7 +57,7 @@ public abstract class RaceCard extends DoorCard {
         }
 
 
-        text = "Сбросить  " + race;
+        text = "Сбросить  " + this.getTitle();
         path = playCardRequest.toEndpointPath(this.getEdnpointPlayCard(), munchkinContext.getId());
         cardAction = new CardAction(path, text);
         var actionTakeOffRace = new ActionTakeOffRace(player, this);

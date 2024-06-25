@@ -4,6 +4,7 @@ import com.example.ais_ecc.entity.User;
 import com.example.ais_ecc.munchkin.models.*;
 import com.example.ais_ecc.munchkin.models.doorCards.DoorCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.TreasureCard;
+import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.ItemCard;
 import com.example.ais_ecc.munchkin.payload.request.PlayCardRequest;
 import com.example.ais_ecc.munchkin.service.actions.*;
 import com.example.ais_ecc.munchkin.service.actions.card.ActionSellCard;
@@ -133,7 +134,7 @@ public class MunchkinContext {
         return null;
     }
 
-    @JsonIgnore
+
     public Player getCurrentPlayer() {
         var user = getUser();
         for (Player player : players)
@@ -674,7 +675,8 @@ public class MunchkinContext {
     }
 
     public String clericExile(String card1Id, String card2Id, String card3Id) throws Exception {
-        var player = getPlayerByUser(getUser());
+
+        var player = getCurrentPlayer();
         var cards = new ArrayList<Card>();
         var card1 = getCardById(card1Id);
         var card2 = getCardById(card2Id);
@@ -741,5 +743,47 @@ public class MunchkinContext {
             var actionWizardPacification = new ActionWizardPacification(enemyCardOpt.get());
             actionHandler.doAction(actionWizardPacification);
         }
+    }
+
+    public String warriorRampage(String card1Id, String card2Id, String card3Id) throws Exception {
+        var player = getCurrentPlayer();
+        var cards = new ArrayList<Card>();
+        var card1 = getCardById(card1Id);
+        var card2 = getCardById(card2Id);
+        var card3 = getCardById(card3Id);
+        if (card1 != null)
+            cards.add(card1);
+
+        if (card2 != null)
+            cards.add(card2);
+
+        if (card3 != null)
+            cards.add(card3);
+
+        var actionWarriorRampage = new ActionWarriorRampage(cards, player);
+        actionHandler.doAction(actionWarriorRampage);
+        return "";
+    }
+
+    public String thiefCut(String cardId, String playerId) throws Exception {
+        var player = getPlayerById(playerId);
+        var card = getCardById(cardId);
+
+
+        var actionWarriorRampage = new ActionThiefCut(player, card);
+        actionHandler.doAction(actionWarriorRampage);
+        return "";
+    }
+
+    public String thiefSteal(String cardId, String playerId) throws Exception {
+        var player = getPlayerById(playerId);
+        var card = getCardById(cardId);
+
+        if (card instanceof ItemCard) {
+            var actionWarriorRampage = new ActionThiefSteal(player, (ItemCard) card);
+            actionHandler.doAction(actionWarriorRampage);
+        }
+
+        return "ok";
     }
 }

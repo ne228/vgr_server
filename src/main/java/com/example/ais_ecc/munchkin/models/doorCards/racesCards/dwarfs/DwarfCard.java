@@ -9,7 +9,10 @@ public abstract class DwarfCard extends RaceCard {
 
     public DwarfCard(MunchkinContext munchkinContext) {
         super(munchkinContext);
-        title = "Dwarf";
+        title = "Дварф";
+        text = "Ты можешь нести любое количество " +
+                "Больших шмоток. \n" +
+                "Ты можешь держать в \"руке\" б карт.";
         this.race = RaceList.DWARF;
     }
 

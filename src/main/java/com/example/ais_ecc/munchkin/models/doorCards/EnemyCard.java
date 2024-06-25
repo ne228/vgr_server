@@ -9,6 +9,7 @@ import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.actions.IAction;
 import com.example.ais_ecc.munchkin.service.actions.card.ActionAddEnemyCard;
 import com.example.ais_ecc.munchkin.service.actions.card.ActionPlayEnemy;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +54,7 @@ public abstract class EnemyCard extends DoorCard {
     }
 
     @Override
+    @JsonIgnore
     public List<CardAction> getActions() throws Exception {
         var actions = new ArrayList<CardAction>();
         actions.addAll(super.getActions());

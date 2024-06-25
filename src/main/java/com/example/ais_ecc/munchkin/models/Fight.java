@@ -122,7 +122,7 @@ public class Fight {
         bonusPlayerPower += addPower;
     }
 
-    @JsonIgnore
+
     public ArrayList<Player> getFightPlayers() {
         var res = new ArrayList<Player>();
         res.add(getPlayer());

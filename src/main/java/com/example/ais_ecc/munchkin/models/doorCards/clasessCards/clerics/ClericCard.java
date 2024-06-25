@@ -14,14 +14,14 @@ import java.util.List;
 public abstract class ClericCard extends ClassesCard {
     public ClericCard(MunchkinContext munchkinContext) {
         super(munchkinContext);
-        title = "Клерик";
-        text = "<b>Воскрешение:</b> когда надо вытя" +
+        title = "Клирик";
+        text = "Воскрешение: когда надо вытя" +
                 "нуть карту лицом вверх, ты можешь" +
                 "вместо этого взять верхнюю карту" +
                 "из соответствующей кучи сброса. За" +
-                "тем ты должен сбросить одну карту с" +
-                "«руки».<br/>" +
-                "<strong>Изгнание:</strong> можешь сбросить до З" +
+                "тем ты должен сбросить одну карту с " +
+                "«руки»." +
+                "Изгнание: можешь сбросить до З" +
                 "карт в бою против Андедов. Каждый" +
                 "сброс дает тебе +3 Бонус.";
         _class = ClassList.CLERIC;

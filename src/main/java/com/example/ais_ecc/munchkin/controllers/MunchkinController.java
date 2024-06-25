@@ -802,5 +802,90 @@ public class MunchkinController {
         }
     }
 
+    @GetMapping("/warrior_rampage/{id}")
+    public ResponseEntity<?> warriorRampage(@PathVariable String id,
+                                      @RequestParam(required = true) String card1Id,
+                                      @RequestParam(required = true) String card2Id,
+                                      @RequestParam(required = true) String card3Id) {
+        try {
+            var munchkinContext = contextHandler.getContext(id);
+            if (munchkinContext == null)
+                throw new Exception("Not found game id " + id);
+
+
+            munchkinContext.warriorRampage(card1Id, card2Id, card3Id);
+
+
+            var response = "null"; // new GetCardsActionsResponse(munchkinContext.getCardAction(cardId));
+            return ResponseEntity
+                    .ok()
+                    .body(response.toString());
+        } catch (ExpiredJwtException exc) {
+            return ResponseEntity
+                    .status(401)
+                    .body(("Error: " + exc.getMessage()));
+        } catch (Exception exc) {
+            return ResponseEntity
+                    .status(403)
+                    .body(("Error: " + exc.getMessage()));
+        }
+    }
+
+    @GetMapping("/thief_cut/{id}")
+    public ResponseEntity<?> warriorRampage(@PathVariable String id,
+                                            @RequestParam(required = true) String cardId,
+                                            @RequestParam(required = true) String playerId) {
+        try {
+            var munchkinContext = contextHandler.getContext(id);
+            if (munchkinContext == null)
+                throw new Exception("Not found game id " + id);
+
+
+            munchkinContext.thiefCut(cardId, playerId);
+
+
+            var response = "null"; // new GetCardsActionsResponse(munchkinContext.getCardAction(cardId));
+            return ResponseEntity
+                    .ok()
+                    .body(response.toString());
+        } catch (ExpiredJwtException exc) {
+            return ResponseEntity
+                    .status(401)
+                    .body(("Error: " + exc.getMessage()));
+        } catch (Exception exc) {
+            return ResponseEntity
+                    .status(403)
+                    .body(("Error: " + exc.getMessage()));
+        }
+    }
+
+    @GetMapping("/thief_steal/{id}")
+    public ResponseEntity<?> thiefSteal(@PathVariable String id,
+                                            @RequestParam(required = true) String cardId,
+                                            @RequestParam(required = true) String playerId) {
+        try {
+            var munchkinContext = contextHandler.getContext(id);
+            if (munchkinContext == null)
+                throw new Exception("Not found game id " + id);
+
+
+            munchkinContext.thiefSteal(cardId, playerId);
+
+
+            var response = "null"; // new GetCardsActionsResponse(munchkinContext.getCardAction(cardId));
+            return ResponseEntity
+                    .ok()
+                    .body(response.toString());
+        } catch (ExpiredJwtException exc) {
+            return ResponseEntity
+                    .status(401)
+                    .body(("Error: " + exc.getMessage()));
+        } catch (Exception exc) {
+            return ResponseEntity
+                    .status(403)
+                    .body(("Error: " + exc.getMessage()));
+        }
+    }
+
 
 }

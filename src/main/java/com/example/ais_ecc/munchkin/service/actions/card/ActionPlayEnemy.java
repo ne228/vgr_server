@@ -28,6 +28,9 @@ public class ActionPlayEnemy extends IAction {
         if (move == null)
             return false;
 
+        if (!context.isYourMove())
+            return false;
+
         if (move.isFindTrouble())
             return true;
 
@@ -38,6 +41,7 @@ public class ActionPlayEnemy extends IAction {
     public String start() throws Exception {
         move.setFight(new Fight(player, context));
         move.getFight().getEnemyCards().add(enemyCard);
+        player.getCards().remove(enemyCard);
         move.endFindTroubles();
         return "Игрок " + player.getUser().getUsername() + " ищет неприятности и сражается с " + enemyCard.getTitle();
     }

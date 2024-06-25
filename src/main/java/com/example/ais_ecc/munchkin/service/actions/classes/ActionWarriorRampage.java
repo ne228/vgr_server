@@ -10,23 +10,22 @@ import com.example.ais_ecc.munchkin.service.actions.IAction;
 
 import java.util.ArrayList;
 
-public class ActionClericExile extends IAction {
-
+public class ActionWarriorRampage extends IAction {
     ArrayList<Card> cards;
     Player player;
     Fight fight;
 
 
-    public ActionClericExile(ArrayList<Card> cards, Player player) {
+    public ActionWarriorRampage(ArrayList<Card> cards, Player player) {
         this.cards = cards;
         this.player = player;
-        path = "cleric_exile";
-        name = "Клерик: \"Изгнание\"";
+        path = "warrior_rampage";
+        name = "Воин: \"Буйство\"";
     }
 
-    public ActionClericExile() {
-        path = "cleric_exile";
-        name = "Клерик: \"Изгнание\"";
+    public ActionWarriorRampage() {
+        path = "warrior_rampage";
+        name = "Воин: \"Буйство\"";
     }
 
     @Override
@@ -35,7 +34,7 @@ public class ActionClericExile extends IAction {
         context = munchkinContext;
         player = context.getCurrentPlayer();
 
-        if (!player.isClass(ClassList.CLERIC))
+        if (!player.isClass(ClassList.WARRIOR))
             return false;
 
         fight = context.getFight();
@@ -45,10 +44,7 @@ public class ActionClericExile extends IAction {
         if (fight.getFightPlayers().stream().noneMatch(fighter -> fighter.getId().equalsIgnoreCase(player.getId())))
             return false;
 
-        if (fight.getEnemyCards().stream().noneMatch(EnemyCard::isUnDead))
-            return false;
-
-        if (fight.getFightCounter().getClericExile() <= 0)
+        if (fight.getFightCounter().getWarriorRampage() <= 0)
             return false;
 
         return true;
@@ -57,14 +53,14 @@ public class ActionClericExile extends IAction {
     @Override
     public String start() throws Exception {
         for (var card : cards) {
-            if (fight.getFightCounter().getClericExile() <= 0)
+            if (fight.getFightCounter().getWarriorRampage() <= 0)
                 break;
 
             context.discardCard(card.getId());
-            fight.addBonusPlayerPower(3);
-            fight.getFightCounter().setClericExile(fight.getFightCounter().getClericExile() - 1);
+            fight.addBonusPlayerPower(1);
+            fight.getFightCounter().setWarriorRampage(fight.getFightCounter().getWarriorRampage() - 1);
         }
 
-        return "Игрок " + player.getUser().getUsername() + " применил \"Изгнание\" и получил Бонус в бою";
+        return "Игрок " + player.getUser().getUsername() + " применил \"Буйство\" и получил Бонус в бою";
     }
 }

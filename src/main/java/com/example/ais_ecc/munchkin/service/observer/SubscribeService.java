@@ -22,7 +22,7 @@ public class SubscribeService {
         }
     }
 
-    public void update(IAction action) {
+    public void update(IAction action) throws Exception {
         for (var _subscribe : subscribers) {
             if (_subscribe.getAction().getClass() == action.getClass())
                 _subscribe.update();

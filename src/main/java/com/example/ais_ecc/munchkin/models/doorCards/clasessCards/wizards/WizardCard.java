@@ -17,7 +17,7 @@ import java.util.List;
 public abstract class WizardCard extends ClassesCard {
     public WizardCard(MunchkinContext munchkinContext) {
         super(munchkinContext);
-        title = "Wizard";
+        title = "Волшебник";
         _class = ClassList.WIZARD;
         text ="Заклинание Полёта: Можешь " +
                 "сбросить до З карт после броска на " +
@@ -28,7 +28,6 @@ public abstract class WizardCard extends ClassesCard {
                 "не драться с ним; ты получаешь " +
                 "только его Сокровища, " +
                 "но не Уровень.";
-
     }
 
     @Override

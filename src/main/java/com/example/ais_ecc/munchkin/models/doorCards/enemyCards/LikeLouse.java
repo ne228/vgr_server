@@ -30,11 +30,4 @@ public class LikeLouse extends EnemyCard {
 
     }
 
-    @Override
-    public int getTotalPower(Fight fight) throws Exception {
-        if (fight.getFightPlayers().stream().anyMatch(player -> player.isRace(RaceList.ELF)))
-            return level + 5;
-
-        return level;
-    }
 }

@@ -13,7 +13,8 @@ public abstract class ElfCard extends RaceCard {
 
     public ElfCard(MunchkinContext munchkinContext) {
         super(munchkinContext);
-        title = "Elf";
+        title = "Эльф";
+        text = "+1 к Смывке." + "Поднимаешься на Уровень за каждого монстра, которого помогаешь убить.";
         this.race = RaceList.ELF;
     }
 

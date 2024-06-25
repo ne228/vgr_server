@@ -27,8 +27,6 @@ public class ActionPutBonus extends IAction {
         if (!context.isAllNotFight())
             return false;
 
-        if (player.getHeadItemCard() != null)
-            return false;
 
         if (!bonusItemCard.canPutItem(player))
             return false;
