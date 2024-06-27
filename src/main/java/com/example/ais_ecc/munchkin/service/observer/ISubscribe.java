@@ -17,7 +17,7 @@ public abstract class ISubscribe {
 
     }
 
-    public void afterUpdate() {
+    public void afterUpdate() throws Exception {
 
     }
 

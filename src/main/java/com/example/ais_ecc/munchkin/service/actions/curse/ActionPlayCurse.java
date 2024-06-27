@@ -1,8 +1,8 @@
-package com.example.ais_ecc.munchkin.service.actions.card;
+package com.example.ais_ecc.munchkin.service.actions.curse;
 
+import com.example.ais_ecc.munchkin.models.Move;
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.models.doorCards.CurseDoorCard;
-import com.example.ais_ecc.munchkin.models.Move;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.actions.IAction;
 
@@ -21,8 +21,8 @@ public class ActionPlayCurse extends IAction {
 
     private ActionPlayCurse() {
         this.path = "playCurse";
-        this.name = "Play Curse";
-        this.title = "Play Curse";
+        this.name = "Сыграть проклятие";
+        this.title = "Сыграть проклятие";
     }
 
     public static ActionPlayCurse createAction() {
@@ -47,8 +47,10 @@ public class ActionPlayCurse extends IAction {
 
     @Override
     public String start() throws Exception {
-        curseDoorCard.curseDo(player);
+        var act = new ActionAcceptCurse(player, curseDoorCard, context);
+        context.getActionHandler().addRequiredAction(act);
         context.discardCard(curseDoorCard.getId());
-        return player.getUser().getUsername() + " is cursed by card: " + curseDoorCard.getTitle();
+
+        return player.getUser().getUsername() + " проклят. " + curseDoorCard.getText();
     }
 }

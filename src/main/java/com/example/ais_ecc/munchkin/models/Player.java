@@ -2,8 +2,11 @@ package com.example.ais_ecc.munchkin.models;
 
 
 import com.example.ais_ecc.entity.User;
+import com.example.ais_ecc.munchkin.models.doorCards.CurseDoorCard;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.ClassList;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.ClassesCard;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.SuperMunchkin;
+import com.example.ais_ecc.munchkin.models.doorCards.racesCards.HalfBlood;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.RaceCard;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.RaceList;
 import com.example.ais_ecc.munchkin.models.treasureCards.TreasureCard;
@@ -26,8 +29,8 @@ public class Player {
     private List<ClassesCard> classes;
     private List<RaceCard> races;
 
-    private boolean superMunchkin = false;
-    private boolean halfBreed = false;
+    private List<CurseDoorCard> curses;
+
     private int canUseBigСlothesCount = 1;
     private int canHandCardCount = 5;
 
@@ -46,6 +49,11 @@ public class Player {
 
     private ArrayList<BonusItemCard> bonusItemCards;
 
+    private SuperMunchkin superMunchkinCard;
+
+    private HalfBlood halfBloodCard;
+
+
     // Выставленные бонусные карты
     // Выставленные оружие и тд
     public Player(User user) {
@@ -55,6 +63,7 @@ public class Player {
         classes = new ArrayList<>();
         openTreasureCards = new ArrayList<>();
         bonusItemCards = new ArrayList<>();
+        curses = new ArrayList<>();
 
         Gender[] genders = Gender.values();
         Random random = new Random();
@@ -63,6 +72,7 @@ public class Player {
         Gender randomGender = genders[randomIndex];
         gender = randomGender;
     }
+
 
     @JsonIgnore
     public boolean isHaveCard(Card card) {
@@ -153,6 +163,10 @@ public class Player {
 
 
     // CLASS ACTIONS
+    public boolean isSoloSuperMunchkin() {
+        return isSuperMunchkin() && classes.size() == 1;
+    }
+
     public boolean isClass(ClassList _class) {
         for (ClassesCard m_class : getClasses())
             if (_class == m_class.get_class())
@@ -169,6 +183,9 @@ public class Player {
 
 
     // RACE ACTIONS
+    public boolean isSoloHalfBlood() {
+        return isHalfBlood() && races.size() == 1;
+    }
 
     public boolean isRace(RaceList race) {
         for (var playerRace : getRaces())
@@ -318,19 +335,28 @@ public class Player {
     }
 
     public boolean isSuperMunchkin() {
-        return superMunchkin;
+        return (superMunchkinCard != null);
     }
 
-    public void setSuperMunchkin(boolean superMunchkin) {
-        this.superMunchkin = superMunchkin;
+
+    public boolean isHalfBlood() {
+        return halfBloodCard != null;
     }
 
-    public boolean isHalfBreed() {
-        return halfBreed;
+    public SuperMunchkin getSuperMunchkinCard() {
+        return superMunchkinCard;
     }
 
-    public void setHalfBreed(boolean halfBreed) {
-        this.halfBreed = halfBreed;
+    public void setSuperMunchkinCard(SuperMunchkin superMunchkinCard) {
+        this.superMunchkinCard = superMunchkinCard;
+    }
+
+    public HalfBlood getHalfBloodCard() {
+        return halfBloodCard;
+    }
+
+    public void setHalfBloodCard(HalfBlood halfBloodCard) {
+        this.halfBloodCard = halfBloodCard;
     }
 
     public List<RaceCard> getRaces() {
@@ -339,5 +365,13 @@ public class Player {
 
     public void setRaces(List<RaceCard> races) {
         this.races = races;
+    }
+
+    public List<CurseDoorCard> getCurses() {
+        return curses;
+    }
+
+    public void setCurses(List<CurseDoorCard> curses) {
+        this.curses = curses;
     }
 }

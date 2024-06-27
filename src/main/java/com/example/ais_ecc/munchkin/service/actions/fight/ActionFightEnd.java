@@ -4,7 +4,7 @@ import com.example.ais_ecc.munchkin.models.*;
 import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
 import com.example.ais_ecc.munchkin.service.ListExtensions;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
-import com.example.ais_ecc.munchkin.service.actions.ActionNextMove;
+import com.example.ais_ecc.munchkin.service.actions.share.ActionNextMove;
 import com.example.ais_ecc.munchkin.service.actions.IAction;
 
 import java.util.ArrayList;

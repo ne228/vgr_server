@@ -2,7 +2,7 @@ package com.example.ais_ecc.munchkin.service.actions.obscenity;
 
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
-import com.example.ais_ecc.munchkin.service.actions.ActionDie;
+import com.example.ais_ecc.munchkin.service.actions.share.ActionDie;
 import com.example.ais_ecc.munchkin.service.actions.IAction;
 import com.example.ais_ecc.munchkin.service.actions.RequiredAction;
 

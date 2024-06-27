@@ -2,7 +2,7 @@ package com.example.ais_ecc.munchkin.service.actions.classes;
 
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
-import com.example.ais_ecc.munchkin.service.actions.ActionKickDoor;
+import com.example.ais_ecc.munchkin.service.actions.share.ActionKickDoor;
 import com.example.ais_ecc.munchkin.service.actions.IAction;
 
 import java.util.ArrayList;

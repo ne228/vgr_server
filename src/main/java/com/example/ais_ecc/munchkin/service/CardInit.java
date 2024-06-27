@@ -4,10 +4,11 @@ import com.example.ais_ecc.munchkin.models.Card;
 import com.example.ais_ecc.munchkin.models.doorCards.BonusDoorCard;
 import com.example.ais_ecc.munchkin.models.doorCards.DoorCard;
 import com.example.ais_ecc.munchkin.models.doorCards.bonusDoorCards.PsychoCard;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.SuperMunchkin1;
+import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.SuperMunchkin2;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.clerics.Cleric1;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.clerics.Cleric2;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.clerics.Cleric3;
-import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.clerics.ClericCard;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.thiefs.Thief1;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.thiefs.Thief2;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.thiefs.Thief3;
@@ -17,8 +18,11 @@ import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.warriors.Warri
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.wizards.Wizard1;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.wizards.Wizard2;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.wizards.Wizard3;
-import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.wizards.WizardCard;
+import com.example.ais_ecc.munchkin.models.doorCards.curseDoorImpl.LossArmorCurse;
+import com.example.ais_ecc.munchkin.models.doorCards.curseDoorImpl.MalignMirrorCurse;
 import com.example.ais_ecc.munchkin.models.doorCards.enemyCards.*;
+import com.example.ais_ecc.munchkin.models.doorCards.racesCards.HalfBlood1;
+import com.example.ais_ecc.munchkin.models.doorCards.racesCards.HalfBlood2;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.dwarfs.Dwarf1;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.dwarfs.Dwarf2;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.dwarfs.Dwarf3;
@@ -33,6 +37,8 @@ import com.example.ais_ecc.munchkin.models.doorCards.walkingDeadCardsImpl.Walkin
 import com.example.ais_ecc.munchkin.models.doorCards.walkingDeadCardsImpl.WalkingMonsterCard3;
 import com.example.ais_ecc.munchkin.models.treasureCards.bonusTreasureCards.CheaterCube;
 import com.example.ais_ecc.munchkin.models.treasureCards.bonusTreasureCards.bonusTreasureCardsImpl.PotionIdiotCourage;
+import com.example.ais_ecc.munchkin.models.treasureCards.bonusTreasureCards.bonusTreasureCardsImpl.wishingRing.WishingRing1;
+import com.example.ais_ecc.munchkin.models.treasureCards.bonusTreasureCards.bonusTreasureCardsImpl.wishingRing.WishingRing2;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.armoredItemCardsImpl.BurntArmorCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.armoredItemCardsImpl.LeatherOutfitCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.armoredItemCardsImpl.MithrilArmorCard;
@@ -56,6 +62,15 @@ public class CardInit {
         this.context = context;
     }
 
+    private ArrayList<Card> getCurseCards() {
+        var res = new ArrayList<Card>();
+
+        res.add(new LossArmorCurse(context));
+        res.add(new MalignMirrorCurse(context));
+
+        return res;
+    }
+
     private ArrayList<Card> getClassesCards() {
         var res = new ArrayList<Card>();
         res.add(new Cleric1(context));
@@ -75,6 +90,9 @@ public class CardInit {
         res.add(new Thief2(context));
         res.add(new Thief3(context));
 
+        res.add(new SuperMunchkin1(context));
+        res.add(new SuperMunchkin2(context));
+
         return res;
     }
 
@@ -93,6 +111,9 @@ public class CardInit {
         res.add(new Halfing2(context));
         res.add(new Halfing3(context));
 
+        res.add(new HalfBlood1(context));
+        res.add(new HalfBlood2(context));
+
         return res;
     }
 
@@ -108,6 +129,8 @@ public class CardInit {
 
         for (var card : getClassesCards())
             context.getDoorCards().add((DoorCard) card);
+
+
 
 
 //        context.getDoorCards().add(new CitizenBones(context));
@@ -148,9 +171,13 @@ public class CardInit {
 
     public void initPlayerDeck() {
         for (var i_player : context.getPlayers()) {
+            i_player.getCards().addAll(getCurseCards());
+
+
             // GEN RACE CARDS
             i_player.getCards().addAll(getRaceCards());
             i_player.getCards().addAll(getClassesCards());
+
 
             // BONUS DOOR CARDS
             BonusDoorCard psychoCard = new PsychoCard(context);
@@ -206,7 +233,6 @@ public class CardInit {
             i_player.getCards().add(new PlutoniumDragon(context));
             i_player.getCards().add(new PottedGrass(context));
             i_player.getCards().add(new PottedGrass(context));
-
 
 
             /// ITEM CARDS
@@ -266,6 +292,9 @@ public class CardInit {
             i_player.getCards().add(new PotionIdiotCourage(context));
             i_player.getCards().add(new PotionIdiotCourage(context));
 
+
+            i_player.getCards().add(new WishingRing1(context));
+            i_player.getCards().add(new WishingRing2(context));
 
             i_player.getCards().add(new CheaterCube(context));
             i_player.getCards().add(new CheaterCube(context));

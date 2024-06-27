@@ -1,7 +1,8 @@
-package com.example.ais_ecc.munchkin.service.actions;
+package com.example.ais_ecc.munchkin.service.actions.share;
 
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
+import com.example.ais_ecc.munchkin.service.actions.IAction;
 import com.example.ais_ecc.munchkin.service.actions.card.items.ActionTakeOffArmor;
 import com.example.ais_ecc.munchkin.service.actions.card.items.ActionTakeOffHead;
 import com.example.ais_ecc.munchkin.service.actions.card.items.ActionTakeOffLegs;

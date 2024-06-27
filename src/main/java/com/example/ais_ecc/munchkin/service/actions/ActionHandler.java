@@ -4,6 +4,7 @@ import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.payload.response.GetCardsResponse;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.actions.fight.*;
+import com.example.ais_ecc.munchkin.service.actions.share.*;
 import com.example.ais_ecc.munchkin.service.observer.SubscribeService;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
@@ -55,6 +56,11 @@ public class ActionHandler {
 
 
     }
+    public void updateAll() throws Exception {
+        updateContext();
+        updatePlayerActions();
+        updateCards();
+    }
 
     public void updateContext() {
         var contextId = munchkinContext.getId();
@@ -89,10 +95,11 @@ public class ActionHandler {
                     .filter(act -> act.getId().equalsIgnoreCase(action.getId()))
                     .findFirst();
 
+
             // Проверяем обязательное ли действия
             // Если да выполняем по правилу обязательных действий
             // Удаляем все из scope обязательныйх действий
-            if (reqActionOpt.isPresent()) {
+            if (reqActionOpt.isPresent() ) {
                 var reqAct = reqActionOpt.get();
                 var scopedActions = new ArrayList<RequiredAction>();
                 for (var act : requiredActions)
@@ -103,10 +110,11 @@ public class ActionHandler {
                 requiredActions.removeAll(scopedActions);
 
             } else { // Если не обязательное действи, проверяем выполнены ли все обязтаельные действия
-                if (requiredActions.size() > 0)
-                    return;
+                // Дейстивя, которые можно соверашать в обход requiredAction
+                if (!action.isAvoidRequired())
+                    if (requiredActions.size() > 0)
+                        return;
             }
-
 
             var resultAction = action.start();
             endActions.add(action);
@@ -126,7 +134,6 @@ public class ActionHandler {
         updateContext();
         updatePlayerActions();
         updateCards();
-
     }
 
     public void addRequiredAction(RequiredAction action) throws Exception {

@@ -11,6 +11,7 @@ public abstract class IAction {
     protected String path;
     protected String color = "red";
     protected String title;
+    protected boolean avoidRequired = false;
     @JsonIgnore
     protected MunchkinContext context;
 
@@ -69,5 +70,13 @@ public abstract class IAction {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public boolean isAvoidRequired() {
+        return avoidRequired;
+    }
+
+    public void setAvoidRequired(boolean avoidRequired) {
+        this.avoidRequired = avoidRequired;
     }
 }

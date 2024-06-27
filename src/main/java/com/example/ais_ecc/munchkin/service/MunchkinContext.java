@@ -11,6 +11,7 @@ import com.example.ais_ecc.munchkin.service.actions.card.ActionSellCard;
 import com.example.ais_ecc.munchkin.service.actions.card.ActionTransferCard;
 import com.example.ais_ecc.munchkin.service.actions.classes.*;
 import com.example.ais_ecc.munchkin.service.actions.fight.*;
+import com.example.ais_ecc.munchkin.service.actions.share.*;
 import com.example.ais_ecc.repositories.UserRepository;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -208,8 +209,7 @@ public class MunchkinContext {
 
     public List<CardAction> getCardAction(String cardId) throws Exception {
         var card = getPlayerCardById(cardId);
-        var cardActions = card.getActions();
-        return cardActions;
+        return card.getActions();
     }
 
     public void flushingEnd() throws Exception {
@@ -233,11 +233,9 @@ public class MunchkinContext {
 
         // todo доделай add treasere card
         List<Card> allCards = new ArrayList<>();
-        for (var card : getDoorCards())
-            allCards.add(card);
+        allCards.addAll(getDoorCards());
 
-        for (var card : getTreasureCards())
-            allCards.add(card);
+        allCards.addAll(getTreasureCards());
 
         for (var player : getPlayers())
             for (var card : player.getCards()) {
@@ -260,6 +258,12 @@ public class MunchkinContext {
                 allCards.addAll(player.getBonusItemCards());
                 allCards.addAll(player.getClasses());
                 allCards.addAll(player.getRaces());
+                if (player.getSuperMunchkinCard() != null)
+                    allCards.add(player.getSuperMunchkinCard());
+                if (player.getHalfBloodCard() != null)
+                    allCards.add(player.getHalfBloodCard());
+
+                allCards.addAll(player.getCurses());
             }
 
 
@@ -372,6 +376,7 @@ public class MunchkinContext {
         var user = getUser();
         if (user == null)
             throw new Exception("Not authorized");
+
         var player = getPlayerByUser(user);
         if (player == null)
             throw new Exception("User " + user.getUsername() + " is not connected to this game");

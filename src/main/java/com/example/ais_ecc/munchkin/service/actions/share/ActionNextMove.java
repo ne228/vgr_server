@@ -1,8 +1,9 @@
-package com.example.ais_ecc.munchkin.service.actions;
+package com.example.ais_ecc.munchkin.service.actions.share;
 
 import com.example.ais_ecc.entity.User;
 import com.example.ais_ecc.munchkin.models.Move;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
+import com.example.ais_ecc.munchkin.service.actions.IAction;
 
 public class ActionNextMove extends IAction {
 

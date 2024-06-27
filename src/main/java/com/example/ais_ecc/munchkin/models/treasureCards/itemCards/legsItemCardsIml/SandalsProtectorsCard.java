@@ -3,8 +3,8 @@ package com.example.ais_ecc.munchkin.models.treasureCards.itemCards.legsItemCard
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.LegsItemCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
-import com.example.ais_ecc.munchkin.service.actions.ActionKickDoor;
-import com.example.ais_ecc.munchkin.service.actions.ActionNull;
+import com.example.ais_ecc.munchkin.service.actions.share.ActionKickDoor;
+import com.example.ais_ecc.munchkin.service.actions.share.ActionNull;
 import com.example.ais_ecc.munchkin.service.observer.ISubscribe;
 
 public class SandalsProtectorsCard extends LegsItemCard {

@@ -1,8 +1,10 @@
-package com.example.ais_ecc.munchkin.service.actions;
+package com.example.ais_ecc.munchkin.service.actions.share;
 
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.models.doorCards.CurseDoorCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
+import com.example.ais_ecc.munchkin.service.actions.IAction;
+import com.example.ais_ecc.munchkin.service.actions.curse.ActionAcceptCurse;
 
 public class ActionCurseDoor extends IAction {
 
@@ -34,8 +36,10 @@ public class ActionCurseDoor extends IAction {
 
     @Override
     public String start() throws Exception {
+        var act = new ActionAcceptCurse(player, card, context);
+        context.getActionHandler().addRequiredAction(act);
         card.curseDo(player);
-//        card.getMunchkinContext().discardCard(card.getId());
-        return player.getUser().getUsername() + " is cursed by card: " + card.getTitle();
+
+        return player.getUser().getUsername() + " проклят картой: " + card.getTitle();
     }
 }

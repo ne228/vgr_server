@@ -5,7 +5,7 @@ import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.RaceList;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
-import com.example.ais_ecc.munchkin.service.actions.ActionDie;
+import com.example.ais_ecc.munchkin.service.actions.share.ActionDie;
 
 public class CalmadzillaEnemyCard extends EnemyCard {
 

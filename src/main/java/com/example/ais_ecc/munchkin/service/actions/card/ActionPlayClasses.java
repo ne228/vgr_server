@@ -40,7 +40,10 @@ public class ActionPlayClasses extends IAction {
         if (!context.isAllNotFight())
             return false;
 
-        if (player.getClasses().size() > 0)
+        if (player.isSuperMunchkin()) {
+            if (player.getClasses().size() > 1)
+                return false;
+        } else if (player.getClasses().size() > 0)
             return false;
 
         var player = context.getCurrentPlayer();
