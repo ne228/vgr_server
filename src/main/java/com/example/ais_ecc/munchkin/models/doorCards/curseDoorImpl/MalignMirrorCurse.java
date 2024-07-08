@@ -5,6 +5,7 @@ import com.example.ais_ecc.munchkin.models.doorCards.CurseDoorCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.actions.IAction;
 import com.example.ais_ecc.munchkin.service.actions.card.items.*;
+import com.example.ais_ecc.munchkin.service.actions.fight.ActionFightEnd;
 import com.example.ais_ecc.munchkin.service.observer.ISubscribe;
 
 import java.util.ArrayList;
@@ -12,6 +13,8 @@ import java.util.List;
 
 public class MalignMirrorCurse extends CurseDoorCard {
     List<ISubscribe> subscribes;
+
+    ISubscribe afterFightSubscribe;
 
     public MalignMirrorCurse(MunchkinContext munchkinContext) {
         super(munchkinContext);
@@ -22,6 +25,7 @@ public class MalignMirrorCurse extends CurseDoorCard {
 
     @Override
     public void curseDo(Player player) throws Exception {
+        var card = this;
         var actionSubscribe = new ArrayList<IAction>();
         actionSubscribe.add(new ActionPutHead(null, null));
         actionSubscribe.add(new ActionPutLegs(null, null));
@@ -53,6 +57,20 @@ public class MalignMirrorCurse extends CurseDoorCard {
             getMunchkinContext().getActionHandler().getSubscribeService().register(subscribe);
         }
 
+        var action = new ActionFightEnd();
+        afterFightSubscribe = new ISubscribe(action) {
+            @Override
+            public void afterUpdate() throws Exception {
+                var fightEndAction = (ActionFightEnd) getAction();
+                fightEndAction.canAmI(getMunchkinContext());
+                var fight = fightEndAction.getFight();
+                if (fight.getFightPlayers().stream().anyMatch(fightPlayer -> fightPlayer.getId().equalsIgnoreCase(player.getId()))) {
+                    card.curseRemove(player);
+                }
+            }
+        };
+
+        getMunchkinContext().getActionHandler().getSubscribeService().register(afterFightSubscribe);
 
         player.getCurses().add(this);
     }
@@ -60,7 +78,13 @@ public class MalignMirrorCurse extends CurseDoorCard {
     @Override
     public void curseRemove(Player player) throws Exception {
         var context = getMunchkinContext();
-        for (var sub : subscribes)
+        for (int i = 0; i < subscribes.size(); i++) {
+            ISubscribe sub = subscribes.get(i);
             context.getActionHandler().getSubscribeService().unRegister(sub);
+        }
+        context.getActionHandler().getSubscribeService().unRegister(afterFightSubscribe);
+        player.getCurses().remove(this);
+
+
     }
 }

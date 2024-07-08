@@ -23,14 +23,16 @@ public class SubscribeService {
     }
 
     public void update(IAction action) throws Exception {
-        for (var _subscribe : subscribers) {
+        for (int i = 0; i < subscribers.size(); i++) {
+            ISubscribe _subscribe = subscribers.get(i);
             if (_subscribe.getAction().getClass() == action.getClass())
                 _subscribe.update();
         }
     }
 
     public void afterUpdate(IAction action) throws Exception {
-        for (var _subscribe : subscribers) {
+        for (int i = 0; i < subscribers.size(); i++) {
+            ISubscribe _subscribe = subscribers.get(i);
             if (_subscribe.getAction().getClass() == action.getClass())
                 _subscribe.afterUpdate();
         }

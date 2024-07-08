@@ -29,6 +29,10 @@ public class ActionFightEnd extends IAction {
         this.title = "Fight End TODO";
     }
 
+    public ActionFightEnd() {
+
+    }
+
     public static ActionFightEnd createAction(MunchkinContext context) {
         return new ActionFightEnd(context);
     }
@@ -137,4 +141,20 @@ public class ActionFightEnd extends IAction {
         }
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Move getMove() {
+        return move;
+    }
+
+    public Fight getFight() {
+        return fight;
+    }
+
+    @Override
+    public MunchkinContext getContext() {
+        return context;
+    }
 }

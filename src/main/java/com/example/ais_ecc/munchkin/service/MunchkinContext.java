@@ -276,6 +276,8 @@ public class MunchkinContext {
             }
         }
 
+        allCards.addAll(getDiscardCards());
+
         return allCards;
     }
 

@@ -41,7 +41,7 @@ public class ActionPutBonus extends IAction {
     public String start() throws Exception {
         player.getBonusItemCards().add(bonusItemCard);
         bonusItemCard.accept(player);
-        context.discardCard(bonusItemCard.getId());
+//        context.discardCard(bonusItemCard.getId());
 
         return "Игрок " + player.getUser().getUsername() + " надел " + bonusItemCard.getTitle();
     }

@@ -45,7 +45,7 @@ public class ActionPutHead extends IAction {
     public String start() throws Exception {
         player.setHeadItemCard(headItemCard);
         headItemCard.accept(player);
-        context.discardCard(headItemCard.getId());
+//        context.discardCard(headItemCard.getId());
 
         return "Player " + player.getUser().getUsername() + " put on " + headItemCard.getTitle();   //TODO
     }
