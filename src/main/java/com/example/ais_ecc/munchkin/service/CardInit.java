@@ -18,10 +18,7 @@ import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.warriors.Warri
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.wizards.Wizard1;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.wizards.Wizard2;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.wizards.Wizard3;
-import com.example.ais_ecc.munchkin.models.doorCards.curseDoorImpl.Lose1SmallItemCurse;
-import com.example.ais_ecc.munchkin.models.doorCards.curseDoorImpl.LoseLegsItemCurse;
-import com.example.ais_ecc.munchkin.models.doorCards.curseDoorImpl.LossArmorCurse;
-import com.example.ais_ecc.munchkin.models.doorCards.curseDoorImpl.MalignMirrorCurse;
+import com.example.ais_ecc.munchkin.models.doorCards.curseDoorImpl.*;
 import com.example.ais_ecc.munchkin.models.doorCards.enemyCards.*;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.HalfBlood1;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.HalfBlood2;
@@ -71,6 +68,7 @@ public class CardInit {
         res.add(new MalignMirrorCurse(context));
         res.add(new Lose1SmallItemCurse(context));
         res.add(new LoseLegsItemCurse(context));
+        res.add(new LossHeadCurse(context));
 
 
         return res;
