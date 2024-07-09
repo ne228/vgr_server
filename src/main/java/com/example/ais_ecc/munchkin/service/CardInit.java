@@ -18,6 +18,7 @@ import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.warriors.Warri
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.wizards.Wizard1;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.wizards.Wizard2;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.wizards.Wizard3;
+import com.example.ais_ecc.munchkin.models.doorCards.curseDoorImpl.Lose1SmallItem;
 import com.example.ais_ecc.munchkin.models.doorCards.curseDoorImpl.LossArmorCurse;
 import com.example.ais_ecc.munchkin.models.doorCards.curseDoorImpl.MalignMirrorCurse;
 import com.example.ais_ecc.munchkin.models.doorCards.enemyCards.*;
@@ -67,6 +68,7 @@ public class CardInit {
 
         res.add(new LossArmorCurse(context));
         res.add(new MalignMirrorCurse(context));
+        res.add(new Lose1SmallItem(context));
 
         return res;
     }
