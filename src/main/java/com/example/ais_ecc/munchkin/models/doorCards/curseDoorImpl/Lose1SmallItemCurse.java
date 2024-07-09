@@ -5,15 +5,14 @@ import com.example.ais_ecc.munchkin.models.doorCards.CurseDoorCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.ItemCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.actions.curse.ActionDropSmallItem;
-import com.example.ais_ecc.munchkin.service.actions.obscenity.ActionDropItemCard;
 import com.example.ais_ecc.munchkin.service.actions.obscenity.ActionTakeOffAllItems;
 
 import java.util.ArrayList;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public class Lose1SmallItem extends CurseDoorCard {
-    public Lose1SmallItem(MunchkinContext munchkinContext) {
+public class Lose1SmallItemCurse extends CurseDoorCard {
+    public Lose1SmallItemCurse(MunchkinContext munchkinContext) {
         super(munchkinContext);
         this.title = "ПРОКЛЯТИЕ! " +
                 "НЕВЕЛИКА ПОТЕРЯ";

@@ -4,8 +4,8 @@ import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.actions.curse.curse.ActionDropLegs;
 
-public class LoseLegsItem  extends LossArmorCurse {
-    public LoseLegsItem(MunchkinContext munchkinContext) {
+public class LoseLegsItemCurse extends LossArmorCurse {
+    public LoseLegsItemCurse(MunchkinContext munchkinContext) {
         super(munchkinContext);
         this.title = "Проклятие. Теряешь надетую обувку";
         this.text = "Теряешь надетую обувку";

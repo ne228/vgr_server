@@ -8,7 +8,7 @@ import com.example.ais_ecc.munchkin.service.actions.curse.curse.ActionDropArmor;
 public class LossArmorCurse extends CurseDoorCard {
     public LossArmorCurse(MunchkinContext munchkinContext) {
         super(munchkinContext);
-        this.title = "Проклятие";
+        this.title = "Проклятие. Теряешь надетый броник";
         this.text = "Теряешь надетый броник";
         this.iconPath = "/images/lossArmorCurse.png";
     }
