@@ -46,6 +46,11 @@ public abstract class Card {
                 .filter(x -> x.getId() != currentPlayer.getId()).collect(Collectors.toList());
 
         var res = new ArrayList<CardAction>();
+
+        // Если карта в сбросе - конец
+        if (getMunchkinContext().getDiscardCards().stream().anyMatch(card -> getId().equalsIgnoreCase(card.getId())))
+            return res;
+
         for (var player : anotherPlayerList) {
 
             PlayCardRequest playCardRequest = new PlayCardRequest(this.getId(), player.getId(), false, "null");
