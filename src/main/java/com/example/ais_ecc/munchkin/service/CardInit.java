@@ -69,7 +69,7 @@ public class CardInit {
         res.add(new Lose1SmallItemCurse(context));
         res.add(new LoseLegsItemCurse(context));
         res.add(new LossHeadCurse(context));
-
+        res.add(new Lose2CardCurse(context));
 
         return res;
     }
