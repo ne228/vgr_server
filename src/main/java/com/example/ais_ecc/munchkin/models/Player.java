@@ -2,7 +2,7 @@ package com.example.ais_ecc.munchkin.models;
 
 
 import com.example.ais_ecc.entity.User;
-import com.example.ais_ecc.munchkin.models.doorCards.CurseDoorCard;
+import com.example.ais_ecc.munchkin.models.doorCards.curseDoor.CurseDoorCard;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.ClassList;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.ClassesCard;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.SuperMunchkin;

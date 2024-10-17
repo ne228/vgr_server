@@ -2,7 +2,7 @@ package com.example.ais_ecc.munchkin.models;
 
 
 import com.example.ais_ecc.munchkin.models.doorCards.DoorCard;
-import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
+import com.example.ais_ecc.munchkin.models.doorCards.enemyCards.EnemyCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.TreasureCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.bonusTreasureCards.BonusTreasureCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;

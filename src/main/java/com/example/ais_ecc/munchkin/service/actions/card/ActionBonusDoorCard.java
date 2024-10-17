@@ -1,8 +1,8 @@
 package com.example.ais_ecc.munchkin.service.actions.card;
 
 import com.example.ais_ecc.munchkin.models.Player;
-import com.example.ais_ecc.munchkin.models.doorCards.BonusDoorCard;
-import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
+import com.example.ais_ecc.munchkin.models.doorCards.bonusDoorCards.BonusDoorCard;
+import com.example.ais_ecc.munchkin.models.doorCards.enemyCards.EnemyCard;
 import com.example.ais_ecc.munchkin.models.Fight;
 import com.example.ais_ecc.munchkin.models.Move;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;

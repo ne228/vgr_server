@@ -1,7 +1,7 @@
 package com.example.ais_ecc.munchkin.service.actions.curse;
 
 import com.example.ais_ecc.munchkin.models.Player;
-import com.example.ais_ecc.munchkin.models.doorCards.CurseDoorCard;
+import com.example.ais_ecc.munchkin.models.doorCards.curseDoor.CurseDoorCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.bonusTreasureCards.bonusTreasureCardsImpl.wishingRing.WishingRing;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.actions.IAction;

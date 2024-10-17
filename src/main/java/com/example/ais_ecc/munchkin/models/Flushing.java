@@ -1,7 +1,6 @@
 package com.example.ais_ecc.munchkin.models;
 
-import com.example.ais_ecc.munchkin.models.Player;
-import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
+import com.example.ais_ecc.munchkin.models.doorCards.enemyCards.EnemyCard;
 
 public class Flushing {
 

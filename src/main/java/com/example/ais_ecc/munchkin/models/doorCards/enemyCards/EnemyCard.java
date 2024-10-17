@@ -1,9 +1,10 @@
-package com.example.ais_ecc.munchkin.models.doorCards;
+package com.example.ais_ecc.munchkin.models.doorCards.enemyCards;
 
 import com.example.ais_ecc.munchkin.models.CardAction;
 import com.example.ais_ecc.munchkin.models.Fight;
 import com.example.ais_ecc.munchkin.models.Flushing;
 import com.example.ais_ecc.munchkin.models.Player;
+import com.example.ais_ecc.munchkin.models.doorCards.DoorCard;
 import com.example.ais_ecc.munchkin.payload.request.PlayCardRequest;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.actions.IAction;

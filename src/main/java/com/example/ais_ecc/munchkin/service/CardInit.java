@@ -1,7 +1,7 @@
 package com.example.ais_ecc.munchkin.service;
 
 import com.example.ais_ecc.munchkin.models.Card;
-import com.example.ais_ecc.munchkin.models.doorCards.BonusDoorCard;
+import com.example.ais_ecc.munchkin.models.doorCards.bonusDoorCards.BonusDoorCard;
 import com.example.ais_ecc.munchkin.models.doorCards.DoorCard;
 import com.example.ais_ecc.munchkin.models.doorCards.bonusDoorCards.PsychoCard;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.SuperMunchkin1;
@@ -18,7 +18,7 @@ import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.warriors.Warri
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.wizards.Wizard1;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.wizards.Wizard2;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.wizards.Wizard3;
-import com.example.ais_ecc.munchkin.models.doorCards.curseDoorImpl.*;
+import com.example.ais_ecc.munchkin.models.doorCards.curseDoor.*;
 import com.example.ais_ecc.munchkin.models.doorCards.enemyCards.*;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.HalfBlood1;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.HalfBlood2;
@@ -31,9 +31,9 @@ import com.example.ais_ecc.munchkin.models.doorCards.racesCards.elfs.Elf3;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.haflings.Halfing1;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.haflings.Halfing2;
 import com.example.ais_ecc.munchkin.models.doorCards.racesCards.haflings.Halfing3;
-import com.example.ais_ecc.munchkin.models.doorCards.walkingDeadCardsImpl.WalkingMonsterCard1;
-import com.example.ais_ecc.munchkin.models.doorCards.walkingDeadCardsImpl.WalkingMonsterCard2;
-import com.example.ais_ecc.munchkin.models.doorCards.walkingDeadCardsImpl.WalkingMonsterCard3;
+import com.example.ais_ecc.munchkin.models.doorCards.walkingDeadCards.WalkingMonsterCard1;
+import com.example.ais_ecc.munchkin.models.doorCards.walkingDeadCards.WalkingMonsterCard2;
+import com.example.ais_ecc.munchkin.models.doorCards.walkingDeadCards.WalkingMonsterCard3;
 import com.example.ais_ecc.munchkin.models.treasureCards.bonusTreasureCards.CheaterCube;
 import com.example.ais_ecc.munchkin.models.treasureCards.bonusTreasureCards.bonusTreasureCardsImpl.PotionIdiotCourage;
 import com.example.ais_ecc.munchkin.models.treasureCards.bonusTreasureCards.bonusTreasureCardsImpl.wishingRing.WishingRing1;

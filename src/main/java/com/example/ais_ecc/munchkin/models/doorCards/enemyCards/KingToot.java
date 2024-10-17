@@ -3,7 +3,6 @@ package com.example.ais_ecc.munchkin.models.doorCards.enemyCards;
 import com.example.ais_ecc.munchkin.models.Fight;
 import com.example.ais_ecc.munchkin.models.Flushing;
 import com.example.ais_ecc.munchkin.models.Player;
-import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.actions.obscenity.ActionDropAllHand;
 import com.example.ais_ecc.munchkin.service.actions.obscenity.ActionTakeOffAllItems;

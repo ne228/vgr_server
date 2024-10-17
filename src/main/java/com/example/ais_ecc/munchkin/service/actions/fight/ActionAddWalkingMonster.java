@@ -2,7 +2,7 @@ package com.example.ais_ecc.munchkin.service.actions.fight;
 
 import com.example.ais_ecc.munchkin.models.Fight;
 import com.example.ais_ecc.munchkin.models.Move;
-import com.example.ais_ecc.munchkin.models.doorCards.WalkingMonsterCard;
+import com.example.ais_ecc.munchkin.models.doorCards.walkingDeadCards.WalkingMonsterCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.actions.IAction;
 

@@ -1,4 +1,4 @@
-package com.example.ais_ecc.munchkin.models.doorCards.curseDoorImpl;
+package com.example.ais_ecc.munchkin.models.doorCards.curseDoor;
 
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;

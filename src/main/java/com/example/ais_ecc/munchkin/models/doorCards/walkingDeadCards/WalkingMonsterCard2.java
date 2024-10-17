@@ -1,6 +1,5 @@
-package com.example.ais_ecc.munchkin.models.doorCards.walkingDeadCardsImpl;
+package com.example.ais_ecc.munchkin.models.doorCards.walkingDeadCards;
 
-import com.example.ais_ecc.munchkin.models.doorCards.WalkingMonsterCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 
 public class WalkingMonsterCard2 extends WalkingMonsterCard {

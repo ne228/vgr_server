@@ -3,7 +3,6 @@ package com.example.ais_ecc.munchkin.models.doorCards.enemyCards;
 import com.example.ais_ecc.munchkin.models.Fight;
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.ClassList;
-import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
 import com.example.ais_ecc.munchkin.models.treasureCards.itemCards.BonusItemCard;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.actions.obscenity.ActionPickUpItemCard;
@@ -15,7 +14,7 @@ import java.util.stream.Collectors;
 public class ForumTroll extends EnemyCard {
     public ForumTroll(MunchkinContext munchkinContext) {
         super(munchkinContext);
-        title = "Форумный трольь";
+        title = "Форумный тролль";
         text = "У него нет особых способностей, и это жутко бесит";
         obscenityText = "Уничтожает игрвоой баланс, разрешая игрокам наивысшего уровня взять у тебя по одной шмотке на их вкус";
         rewardLevel = 1;

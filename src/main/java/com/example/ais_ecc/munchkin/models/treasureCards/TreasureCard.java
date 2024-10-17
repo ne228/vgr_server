@@ -24,21 +24,20 @@ public class TreasureCard extends Card {
     @Override
     public List<CardAction> getActions() throws Exception {
         var res = super.getActions();
+        try {
+            if (cost > 0) {
+                var currentPlayer = getMunchkinContext().getCurrentPlayer();
+                PlayCardRequest playCardRequest = new PlayCardRequest(this.getId(), "null", false, "null");
+                var action = new ActionSellCard(this, currentPlayer);
 
-        if (cost > 0) {
-            var currentPlayer = getMunchkinContext().getCurrentPlayer();
-            PlayCardRequest playCardRequest = new PlayCardRequest(this.getId(), "null", false, "null");
-            var action = new ActionSellCard(this, currentPlayer);
-            try {
                 if (action.canAmI(munchkinContext)) {
                     var sellCardAction = new CardAction(playCardRequest.toEndpointPath("sell_card", getMunchkinContext().getId()), "Sell");
                     res.add(sellCardAction);
                 }
-            } catch (Exception e) {
-                return res;
             }
+        } catch (Exception e) {
+            return res;
         }
-
         return res;
     }
 
