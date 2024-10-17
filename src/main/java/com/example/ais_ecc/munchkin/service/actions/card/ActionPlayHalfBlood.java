@@ -25,7 +25,7 @@ public class ActionPlayHalfBlood extends IAction {
         if (!context.isAllNotFight())
             return false;
 
-        if (player.isSuperMunchkin())
+        if (player.isHalfBlood())
             return false;
 
         var player = context.getCurrentPlayer();

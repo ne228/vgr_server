@@ -45,6 +45,8 @@ public class ActionPlayClasses extends IAction {
                 return false;
         } else if (player.getClasses().size() > 0)
             return false;
+        if (player.isClass(classesCard.get_class()))
+            return false;
 
         var player = context.getCurrentPlayer();
         var playerHaveTargetCard = player

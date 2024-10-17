@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  vgr:
+    image: springboot-app:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+        - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "8080:8080"
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: vgr
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 2705
+    ports:
+      - "5432:5432"

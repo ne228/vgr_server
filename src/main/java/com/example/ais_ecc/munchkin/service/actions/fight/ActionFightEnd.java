@@ -4,8 +4,8 @@ import com.example.ais_ecc.munchkin.models.*;
 import com.example.ais_ecc.munchkin.models.doorCards.EnemyCard;
 import com.example.ais_ecc.munchkin.service.ListExtensions;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
-import com.example.ais_ecc.munchkin.service.actions.share.ActionNextMove;
 import com.example.ais_ecc.munchkin.service.actions.IAction;
+import com.example.ais_ecc.munchkin.service.actions.share.ActionNextMove;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,8 +79,7 @@ public class ActionFightEnd extends IAction {
         int enemyPower = fight.getEnemiesPower();
         fight.setEnd(true);
         List<OrderFight> fightOrders = fight.getFightOrders();
-        for (int i = 0; i < fightOrders.size(); i++) {
-            OrderFight order = fightOrders.get(i);
+        for (OrderFight order : fightOrders) {
             if (!order.isTrust()) {
                 fight.getFightOrders().remove(order);
             }
@@ -88,8 +87,6 @@ public class ActionFightEnd extends IAction {
 
 
         if (playerPower > enemyPower) {
-
-
             int totalTreasureReward = fight.getEnemyCards().stream()
                     .mapToInt(EnemyCard::getRewardTreasure)
                     .sum();

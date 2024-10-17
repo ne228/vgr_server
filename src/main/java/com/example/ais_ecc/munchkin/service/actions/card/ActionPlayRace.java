@@ -40,10 +40,20 @@ public class ActionPlayRace extends IAction {
         if (!context.isAllNotFight())
             return false;
 
+        if (player.isRace(raceCard.getRace()))
+            return false;
+
         if (player.isHalfBlood()) {
             if (player.getRaces().size() > 1)
                 return false;
         } else if (player.getRaces().size() > 0)
+            return false;
+
+        var player = context.getCurrentPlayer();
+        var playerHaveTargetCard = player
+                .getCards().stream()
+                .anyMatch(card -> card.getId().equalsIgnoreCase(raceCard.getId()));
+        if (!playerHaveTargetCard)
             return false;
 
         return true;
