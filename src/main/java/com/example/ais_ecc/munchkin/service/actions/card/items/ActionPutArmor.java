@@ -45,6 +45,7 @@ public class ActionPutArmor extends IAction {
     public String start() throws Exception {
         player.setArmorItemCard(armorItemCard);
         armorItemCard.accept(player);
+        player.getCards().remove(armorItemCard);
 //        context.discardCard(armorItemCard.getId());
 
         return "Player " + player.getUser().getUsername() + " put on " + armorItemCard.getTitle() ;   //TODO

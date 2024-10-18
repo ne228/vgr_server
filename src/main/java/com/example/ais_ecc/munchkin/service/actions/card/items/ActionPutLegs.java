@@ -46,6 +46,7 @@ public class ActionPutLegs extends IAction {
     public String start() throws Exception {
         player.setLegsItemCard(legsItemCard);
         legsItemCard.accept(player);
+        player.getCards().remove(legsItemCard);
 //        context.discardCard(legsItemCard.getId());
 
         return "Player " + player.getUser().getUsername() + " put on " + legsItemCard.getTitle() ;   //TODO

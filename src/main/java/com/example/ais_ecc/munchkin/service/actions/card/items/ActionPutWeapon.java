@@ -75,6 +75,7 @@ public class ActionPutWeapon extends IAction {
         }
 
         weaponItemCard.accept(player);
+        player.getCards().remove(weaponItemCard);
 //        context.discardCard(weaponItemCard.getId());
 
         return "Player " + player.getUser().getUsername() + " put on " + weaponItemCard.getTitle();   //TODO
