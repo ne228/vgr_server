@@ -1,4 +1,4 @@
-package com.example.ais_ecc.munchkin.service.actions.curse.curse;
+package com.example.ais_ecc.munchkin.service.actions.curse.curseImpl;
 
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.service.ListExtensions;

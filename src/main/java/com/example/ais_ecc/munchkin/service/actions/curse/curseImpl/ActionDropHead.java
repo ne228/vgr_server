@@ -1,13 +1,13 @@
-package com.example.ais_ecc.munchkin.service.actions.curse.curse;
+package com.example.ais_ecc.munchkin.service.actions.curse.curseImpl;
 
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
 import com.example.ais_ecc.munchkin.service.actions.IAction;
 
-public class ActionDropArmor extends IAction {
+public class ActionDropHead extends IAction {
     Player player;
 
-    public ActionDropArmor(Player player) {
+    public ActionDropHead(Player player) {
         this.player = player;
     }
 
@@ -20,14 +20,14 @@ public class ActionDropArmor extends IAction {
     @Override
     public String start() throws Exception {
 
-        if (player.getArmorItemCard() != null) {
-            var card = player.getArmorItemCard();
+        if (player.getHeadItemCard() != null) {
+            var card = player.getHeadItemCard();
             card.discard(player);
-            player.setArmorItemCard(null);
+            player.setHeadItemCard(null);
             player.getCards().add(card);
             context.discardCard(card.getId());
         }
 
-        return "Игрок " + player.getUser().getUsername() + " потерял броник";
+        return "Игрок " + player.getUser().getUsername() + " потерял головняк";
     }
 }

@@ -2,7 +2,7 @@ package com.example.ais_ecc.munchkin.models.doorCards.curseDoor;
 
 import com.example.ais_ecc.munchkin.models.Player;
 import com.example.ais_ecc.munchkin.service.MunchkinContext;
-import com.example.ais_ecc.munchkin.service.actions.curse.curse.ActionPullCardHand;
+import com.example.ais_ecc.munchkin.service.actions.curse.curseImpl.ActionPullCardHand;
 
 import java.util.UUID;
 
