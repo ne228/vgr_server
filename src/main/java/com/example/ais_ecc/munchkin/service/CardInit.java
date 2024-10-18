@@ -1,8 +1,8 @@
 package com.example.ais_ecc.munchkin.service;
 
 import com.example.ais_ecc.munchkin.models.Card;
-import com.example.ais_ecc.munchkin.models.doorCards.bonusDoorCards.BonusDoorCard;
 import com.example.ais_ecc.munchkin.models.doorCards.DoorCard;
+import com.example.ais_ecc.munchkin.models.doorCards.bonusDoorCards.BonusDoorCard;
 import com.example.ais_ecc.munchkin.models.doorCards.bonusDoorCards.PsychoCard;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.SuperMunchkin1;
 import com.example.ais_ecc.munchkin.models.doorCards.clasessCards.SuperMunchkin2;
@@ -67,6 +67,7 @@ public class CardInit {
         res.add(new LossArmorCurse(context));
         res.add(new MalignMirrorCurse(context));
         res.add(new Lose1SmallItemCurse(context));
+        res.add(new Lose1SmallItemCurse2(context));
         res.add(new LoseLegsItemCurse(context));
         res.add(new LossHeadCurse(context));
         res.add(new Lose2CardCurse(context));
@@ -132,8 +133,6 @@ public class CardInit {
 
         for (var card : getClassesCards())
             context.getDoorCards().add((DoorCard) card);
-
-
 
 
 //        context.getDoorCards().add(new CitizenBones(context));

@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public class Lose1SmallItemCurse extends CurseDoorCard {
-    public Lose1SmallItemCurse(MunchkinContext munchkinContext) {
+public class Lose1SmallItemCurse2 extends CurseDoorCard {
+    public Lose1SmallItemCurse2(MunchkinContext munchkinContext) {
         super(munchkinContext);
         this.title = "ПРОКЛЯТИЕ! " +
                 "НЕВЕЛИКА ПОТЕРЯ";
