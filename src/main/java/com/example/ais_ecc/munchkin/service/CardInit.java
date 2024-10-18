@@ -73,6 +73,7 @@ public class CardInit {
         res.add(new Lose2CardCurse(context));
         res.add(new DropClassCurse(context));
         res.add(new DropRaceCurse(context));
+        res.add(new TrulyObnoxiousCurse(context));
 
         return res;
     }
