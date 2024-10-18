@@ -71,6 +71,7 @@ public class CardInit {
         res.add(new LoseLegsItemCurse(context));
         res.add(new LossHeadCurse(context));
         res.add(new Lose2CardCurse(context));
+        res.add(new DropClassCurse(context));
 
         return res;
     }
